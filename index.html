@@ -1114,20 +1114,10 @@
     pointer-events:none;
     background:linear-gradient(180deg, rgba(13,10,19,0.55), transparent 22%, transparent 78%, rgba(13,10,19,0.55));
   }
-  .cat-reel-window.punching{ animation:reel-window-rush 2s cubic-bezier(.22,.9,.24,1); }
-  @keyframes reel-window-rush{
-    0%{ transform:scale(1) rotateX(0deg); }
-    3%{ transform:scale(2.6) rotateX(-22deg); }
-    8%{ transform:scale(0.7) rotateX(10deg); }
-    14%{ transform:scale(1.7) rotateX(-10deg); }
-    20%{ transform:scale(0.85) rotateX(5deg); }
-    28%{ transform:scale(1.4) rotateX(-4deg); }
-    38%{ transform:scale(0.9) rotateX(2deg); }
-    50%{ transform:scale(1.15); }
-    64%{ transform:scale(0.97); }
-    78%{ transform:scale(1.05); }
-    90%{ transform:scale(1.3); }
-    100%{ transform:scale(1); }
+  .cat-reel-window.punching{ animation:reel-window-flash 0.5s ease-out; }
+  @keyframes reel-window-flash{
+    0%{ box-shadow:0 20px 45px -20px rgba(0,0,0,0.6), inset 0 0 0 1px rgba(0,0,0,0.2), 0 0 0 3px rgba(212,175,106,0.55); }
+    100%{ box-shadow:0 20px 45px -20px rgba(0,0,0,0.6), inset 0 0 0 1px rgba(0,0,0,0.2), 0 0 0 0 rgba(212,175,106,0); }
   }
   .cat-reel-strip{
     display:flex;
@@ -1135,14 +1125,15 @@
     transform:translateY(0);
   }
   .cat-reel-strip.spinning{
-    transition:transform 1.9s cubic-bezier(.1,.85,.15,1);
-    animation:reel-blur-rush 1.9s ease-out;
+    transition:transform 2.3s cubic-bezier(.12,.85,.2,1);
+    animation:reel-blur-rush 2.3s ease-out;
   }
   @keyframes reel-blur-rush{
-    0%{ filter:blur(0) brightness(1); }
-    8%{ filter:blur(13px) brightness(1.5); }
-    22%{ filter:blur(7px) brightness(1.18); }
-    100%{ filter:blur(0) brightness(1); }
+    0%{ filter:blur(0); }
+    6%{ filter:blur(16px); }
+    45%{ filter:blur(14px); }
+    75%{ filter:blur(5px); }
+    100%{ filter:blur(0); }
   }
   .cat-reel-strip img{
     width:150px;
@@ -2500,6 +2491,7 @@
       const REEL_ITEM_H = 150;
       const CAT_POOL = ['kucing-1.png','kucing-2.png','kucing-3.png','kucing-4.png','kucing-5.png'];
       const CAT_JACKPOT = 'kucing-2.png';
+      const CAT_PREVIEW = 'kucing-1.png'; // gambar diem sebelum di-spin, mutlak kucing-1
       const CAT_JACKPOT_CHANCE = 0.5; // ~50% dapet kucing-2
       const CAT_MAX_SPINS = 4;
       let catRevealed = false;
@@ -2513,7 +2505,7 @@
       }
 
       function buildReel(resultFile){
-        const FILLER_COUNT = 14;
+        const FILLER_COUNT = 26;
         let html = '';
         for(let i = 0; i < FILLER_COUNT; i++){
           const f = CAT_POOL[Math.floor(Math.random() * CAT_POOL.length)];
@@ -2528,7 +2520,8 @@
         catRevealed = false;
         spinsUsed = 0;
         catReelStrip.classList.remove('spinning');
-        buildReel(CAT_JACKPOT); // preview diem di kucing-2 sebelum di-spin
+        catReelStrip.innerHTML = '<img src="' + CAT_PREVIEW + '" alt="">'; // diem di kucing-1 sebelum di-spin
+        reelLastIndex = 0;
         catReelStrip.style.transform = 'translateY(0px)';
         catSpinText.textContent = `Spin buat lihat hadiah kucingnyaa~ (${CAT_MAX_SPINS}x kesempatan)`;
         catSpinBtn.textContent = 'Spin 🎰';
@@ -2539,6 +2532,11 @@
         if(spinsUsed >= CAT_MAX_SPINS) return; // kesempatan habis
         catSpinBtn.disabled = true;
         try{ spinSfx.currentTime = 0; spinSfx.play().catch(() => {}); }catch(e){}
+        catReelStrip.classList.remove('spinning');
+        catReelStrip.style.transition = 'none';
+        catReelStrip.style.transform = 'translateY(0px)'; // reset posisi biar mulai muter dari 0 tiap spin
+        void catReelStrip.offsetHeight; // paksa reflow
+        catReelStrip.style.transition = '';
         const result = pickCatResult();
         buildReel(result);
         catReelWindow.classList.remove('punching');
@@ -2547,9 +2545,10 @@
         void catReelStrip.offsetHeight; // paksa reflow biar transisinya mulus
         catReelStrip.classList.add('spinning');
         catReelStrip.style.transform = `translateY(-${reelLastIndex * REEL_ITEM_H}px)`;
-        const blipTimer = setInterval(() => SFX.blip(), 110);
+        const blipTimer = setInterval(() => SFX.blip(), 90);
         setTimeout(() => {
           clearInterval(blipTimer);
+          catReelStrip.classList.remove('spinning');
           SFX.pop();
           spinsUsed++;
           catRevealed = true;
@@ -2563,7 +2562,7 @@
             catSpinBtn.textContent = 'Yeay!';
             catSpinBtn.disabled = true;
           }
-        }, 2000);
+        }, 2300);
       });
 
       allOverlays.push(el);
