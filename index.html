@@ -1117,15 +1117,16 @@
   .cat-reel-window.punching{ animation:reel-window-rush 2s cubic-bezier(.22,.9,.24,1); }
   @keyframes reel-window-rush{
     0%{ transform:scale(1) rotateX(0deg); }
-    4%{ transform:scale(1.9) rotateX(-14deg); }
-    10%{ transform:scale(0.82) rotateX(6deg); }
-    16%{ transform:scale(1.35) rotateX(-6deg); }
-    24%{ transform:scale(0.92) rotateX(3deg); }
-    34%{ transform:scale(1.12) rotateX(-2deg); }
-    48%{ transform:scale(0.96) rotateX(1deg); }
-    62%{ transform:scale(1.05); }
-    78%{ transform:scale(0.99); }
-    90%{ transform:scale(1.22); }
+    3%{ transform:scale(2.6) rotateX(-22deg); }
+    8%{ transform:scale(0.7) rotateX(10deg); }
+    14%{ transform:scale(1.7) rotateX(-10deg); }
+    20%{ transform:scale(0.85) rotateX(5deg); }
+    28%{ transform:scale(1.4) rotateX(-4deg); }
+    38%{ transform:scale(0.9) rotateX(2deg); }
+    50%{ transform:scale(1.15); }
+    64%{ transform:scale(0.97); }
+    78%{ transform:scale(1.05); }
+    90%{ transform:scale(1.3); }
     100%{ transform:scale(1); }
   }
   .cat-reel-strip{
@@ -1468,7 +1469,7 @@
 <!-- notice kecil nunjuk ke tombol musik yang sudah ada -->
 <div class="music-notice" id="musicNotice">Musik udah nyala~ mau ganti lagu? Klik ikon 🎵+ di pojok atas</div>
 
-<audio id="bgm" src="musik.mp3" loop preload="none"></audio>
+<audio id="bgm" src="musik.mp3" preload="none"></audio>
 <audio id="spinSfx" src="jengjeng.mp3" preload="auto"></audio>
 
 <script>
@@ -2195,6 +2196,10 @@
   });
   bgm.addEventListener('play', syncMusicToggleIcon);
   bgm.addEventListener('pause', syncMusicToggleIcon);
+  bgm.addEventListener('ended', () => {
+    bgm.currentTime = 0; // balik ke awal, tapi nunggu diklik manual buat main lagi
+    syncMusicToggleIcon();
+  });
 
   syncMusicToggleIcon();
   syncActiveMusicOption();
@@ -2499,7 +2504,7 @@
       const REEL_ITEM_H = 150;
       const CAT_POOL = ['kucing-1.png','kucing-2.png','kucing-3.png','kucing-4.png','kucing-5.png'];
       const CAT_JACKPOT = 'kucing-2.png';
-      const CAT_JACKPOT_CHANCE = 0.8; // ~80% dapet kucing-2
+      const CAT_JACKPOT_CHANCE = 0.5; // ~50% dapet kucing-2
       const CAT_MAX_SPINS = 4;
       let catRevealed = false;
       let reelLastIndex = 0;
