@@ -1117,15 +1117,15 @@
   .cat-reel-window.punching{ animation:reel-window-rush 2s cubic-bezier(.22,.9,.24,1); }
   @keyframes reel-window-rush{
     0%{ transform:scale(1) rotateX(0deg); }
-    5%{ transform:scale(1.28) rotateX(-8deg); }
-    11%{ transform:scale(0.9) rotateX(5deg); }
-    18%{ transform:scale(1.16) rotateX(-4deg); }
-    26%{ transform:scale(0.95) rotateX(2deg); }
-    36%{ transform:scale(1.08) rotateX(-2deg); }
-    50%{ transform:scale(0.97) rotateX(1deg); }
-    65%{ transform:scale(1.04) rotateX(0deg); }
-    80%{ transform:scale(0.99); }
-    92%{ transform:scale(1.18); }
+    4%{ transform:scale(1.9) rotateX(-14deg); }
+    10%{ transform:scale(0.82) rotateX(6deg); }
+    16%{ transform:scale(1.35) rotateX(-6deg); }
+    24%{ transform:scale(0.92) rotateX(3deg); }
+    34%{ transform:scale(1.12) rotateX(-2deg); }
+    48%{ transform:scale(0.96) rotateX(1deg); }
+    62%{ transform:scale(1.05); }
+    78%{ transform:scale(0.99); }
+    90%{ transform:scale(1.22); }
     100%{ transform:scale(1); }
   }
   .cat-reel-strip{
@@ -2500,8 +2500,10 @@
       const CAT_POOL = ['kucing-1.png','kucing-2.png','kucing-3.png','kucing-4.png','kucing-5.png'];
       const CAT_JACKPOT = 'kucing-2.png';
       const CAT_JACKPOT_CHANCE = 0.8; // ~80% dapet kucing-2
+      const CAT_MAX_SPINS = 4;
       let catRevealed = false;
       let reelLastIndex = 0;
+      let spinsUsed = 0;
 
       function pickCatResult(){
         if(Math.random() < CAT_JACKPOT_CHANCE) return CAT_JACKPOT;
@@ -2523,16 +2525,17 @@
 
       resetCatReel = function(){
         catRevealed = false;
+        spinsUsed = 0;
         catReelStrip.classList.remove('spinning');
         buildReel(CAT_JACKPOT); // preview diem di kucing-2 sebelum di-spin
         catReelStrip.style.transform = 'translateY(0px)';
-        catSpinText.textContent = 'Spin buat lihat hadiah kucingnyaa~';
+        catSpinText.textContent = `Spin buat lihat hadiah kucingnyaa~ (${CAT_MAX_SPINS}x kesempatan)`;
         catSpinBtn.textContent = 'Spin 🎰';
         catSpinBtn.disabled = false;
       };
 
       catSpinBtn.addEventListener('click', () => {
-        if(catRevealed) return; // udah kebuka, tombol cuma dekorasi "Yeay!"
+        if(spinsUsed >= CAT_MAX_SPINS) return; // kesempatan habis
         catSpinBtn.disabled = true;
         try{ spinSfx.currentTime = 0; spinSfx.play().catch(() => {}); }catch(e){}
         const result = pickCatResult();
@@ -2547,10 +2550,18 @@
         setTimeout(() => {
           clearInterval(blipTimer);
           SFX.pop();
-          catSpinText.textContent = 'Selamat, kamu dapet kucing ini! 🐱💛';
-          catSpinBtn.textContent = 'Yeay!';
-          catSpinBtn.disabled = false;
+          spinsUsed++;
           catRevealed = true;
+          const sisa = CAT_MAX_SPINS - spinsUsed;
+          if(sisa > 0){
+            catSpinText.textContent = `Dapet kucing ini! 🐱💛 Sisa ${sisa}x kesempatan spin.`;
+            catSpinBtn.textContent = `Spin Lagi (${sisa} tersisa)`;
+            catSpinBtn.disabled = false;
+          } else {
+            catSpinText.textContent = 'Selamat, kamu dapet kucing ini! Kesempatan spin sudah habis 🐱💛';
+            catSpinBtn.textContent = 'Yeay!';
+            catSpinBtn.disabled = true;
+          }
         }, 2000);
       });
 
