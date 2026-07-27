@@ -1469,7 +1469,7 @@
 <!-- notice kecil nunjuk ke tombol musik yang sudah ada -->
 <div class="music-notice" id="musicNotice">Musik udah nyala~ mau ganti lagu? Klik ikon 🎵+ di pojok atas</div>
 
-<audio id="bgm" src="musik.mp3" preload="none"></audio>
+<audio id="bgm" src="musik.mp3" loop preload="none"></audio>
 <audio id="spinSfx" src="jengjeng.mp3" preload="auto"></audio>
 
 <script>
@@ -2196,10 +2196,6 @@
   });
   bgm.addEventListener('play', syncMusicToggleIcon);
   bgm.addEventListener('pause', syncMusicToggleIcon);
-  bgm.addEventListener('ended', () => {
-    bgm.currentTime = 0; // balik ke awal, tapi nunggu diklik manual buat main lagi
-    syncMusicToggleIcon();
-  });
 
   syncMusicToggleIcon();
   syncActiveMusicOption();
