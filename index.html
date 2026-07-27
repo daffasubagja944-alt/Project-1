@@ -626,6 +626,8 @@
     white-space:nowrap;
   }
   .t-dot.final{
+    position:absolute;
+    top:50%; left:100%;
     width:36px;
     height:36px;
     background:linear-gradient(135deg, var(--gold), var(--rose));
@@ -636,15 +638,40 @@
     font-weight:700;
     color:#241a12;
     box-shadow:0 0 18px rgba(215,178,106,0.55);
+    cursor:grab;
+    touch-action:none;
+    transform:translate(-50%,-50%) scale(0);
+    transition:box-shadow .2s ease;
   }
+  .timeline-track.reveal .t-dot.final{ transform:translate(-50%,-50%) scale(1); }
+  .t-dot.final:active{ cursor:grabbing; }
+  .t-dot.final.dragging{ transition:none; box-shadow:0 0 24px rgba(215,178,106,0.8); }
+  @keyframes handle-hint-nudge{
+    0%,100%{ transform:translate(-50%,-50%) scale(1) translateX(0); }
+    30%{ transform:translate(-50%,-50%) scale(1) translateX(-10px); }
+    60%{ transform:translate(-50%,-50%) scale(1) translateX(0); }
+  }
+  .t-dot.final.hint-nudge{ animation:handle-hint-nudge 1s ease-in-out 2; }
   .t-dot.final .t-label{
     top:auto;
     bottom:-16px;
     color:var(--gold);
     font-weight:600;
   }
+  .timeline-hint{
+    font-size:0.72rem;
+    color:var(--muted);
+    margin:2px 0 0;
+  }
   #slide-2d h2{ font-size:clamp(1.3rem, 5vw, 1.7rem); margin:18px 0 0; }
   #slide-2d .sub{ color:var(--muted); font-size:0.88rem; }
+  #slide-2d h2.tl-shake{ animation:tl-number-shake .22s ease; }
+  @keyframes tl-number-shake{
+    0%,100%{ transform:translateX(0); }
+    25%{ transform:translateX(-3px) rotate(-1deg); }
+    50%{ transform:translateX(3px) rotate(1deg); }
+    75%{ transform:translateX(-2px); }
+  }
 
   .streak-text{
     display:flex;
@@ -714,6 +741,21 @@
   .music-toggle:hover{ transform:translateY(-1px); border-color:var(--gold); }
   .music-toggle.playing svg{ color:var(--gold); }
   .music-toggle.playing{ animation:music-pulse 1.6s ease-in-out infinite; }
+  .music-toggle-plus{
+    position:absolute;
+    bottom:-2px; right:-2px;
+    width:17px; height:17px;
+    border-radius:50%;
+    background:linear-gradient(135deg, var(--gold), var(--rose));
+    color:#241a12;
+    font-size:0.72rem;
+    font-weight:800;
+    line-height:1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border:1.5px solid var(--void);
+  }
   @keyframes music-pulse{
     0%,100%{ box-shadow:0 8px 20px -10px rgba(0,0,0,0.5), 0 0 0 0 rgba(215,178,106,0.35); }
     50%{ box-shadow:0 8px 20px -10px rgba(0,0,0,0.5), 0 0 0 6px rgba(215,178,106,0); }
@@ -1062,6 +1104,7 @@
     border:1px solid var(--line);
     box-shadow:0 20px 45px -20px rgba(0,0,0,0.6), inset 0 0 0 1px rgba(0,0,0,0.2);
     position:relative;
+    perspective:500px;
   }
   .cat-reel-window::before{
     content:'';
@@ -1071,13 +1114,34 @@
     pointer-events:none;
     background:linear-gradient(180deg, rgba(13,10,19,0.55), transparent 22%, transparent 78%, rgba(13,10,19,0.55));
   }
+  .cat-reel-window.punching{ animation:reel-window-rush 2s cubic-bezier(.22,.9,.24,1); }
+  @keyframes reel-window-rush{
+    0%{ transform:scale(1) rotateX(0deg); }
+    5%{ transform:scale(1.28) rotateX(-8deg); }
+    11%{ transform:scale(0.9) rotateX(5deg); }
+    18%{ transform:scale(1.16) rotateX(-4deg); }
+    26%{ transform:scale(0.95) rotateX(2deg); }
+    36%{ transform:scale(1.08) rotateX(-2deg); }
+    50%{ transform:scale(0.97) rotateX(1deg); }
+    65%{ transform:scale(1.04) rotateX(0deg); }
+    80%{ transform:scale(0.99); }
+    92%{ transform:scale(1.18); }
+    100%{ transform:scale(1); }
+  }
   .cat-reel-strip{
     display:flex;
     flex-direction:column;
     transform:translateY(0);
   }
   .cat-reel-strip.spinning{
-    transition:transform 2.6s cubic-bezier(.1,.85,.15,1);
+    transition:transform 1.9s cubic-bezier(.1,.85,.15,1);
+    animation:reel-blur-rush 1.9s ease-out;
+  }
+  @keyframes reel-blur-rush{
+    0%{ filter:blur(0) brightness(1); }
+    8%{ filter:blur(13px) brightness(1.5); }
+    22%{ filter:blur(7px) brightness(1.18); }
+    100%{ filter:blur(0) brightness(1); }
   }
   .cat-reel-strip img{
     width:150px;
@@ -1212,9 +1276,11 @@
   <section class="slide" id="slide-2d">
     <span class="eyebrow">tanggal spesial</span>
     <div class="mini-calendar">
-      <div class="cal-header">Agustus 2026</div>
+      <div class="cal-header" id="calHeader">Agustus 2026</div>
       <div class="cal-grid">
         <span class="cal-dow">M</span><span class="cal-dow">S</span><span class="cal-dow">S</span><span class="cal-dow">R</span><span class="cal-dow">K</span><span class="cal-dow">J</span><span class="cal-dow">S</span>
+      </div>
+      <div class="cal-grid" id="calDays">
         <span class="cal-day empty"></span><span class="cal-day empty"></span><span class="cal-day empty"></span><span class="cal-day empty"></span><span class="cal-day empty"></span><span class="cal-day empty"></span><span class="cal-day">1</span>
         <span class="cal-day">2</span><span class="cal-day">3</span><span class="cal-day">4</span><span class="cal-day">5</span><span class="cal-day">6</span><span class="cal-day">7</span><span class="cal-day">8</span>
         <span class="cal-day">9</span><span class="cal-day">10</span><span class="cal-day">11</span><span class="cal-day">12</span><span class="cal-day">13</span><span class="cal-day">14</span><span class="cal-day">15</span>
@@ -1226,7 +1292,8 @@
     <div class="timeline-journey">
       <div class="timeline-track" id="timelineTrack"></div>
     </div>
-    <h2>18 tahun perjalanan 🎉</h2>
+    <p class="timeline-hint" id="timelineHint">👉 geser bulatan terakhir buat intip tahun-tahun sebelumnya</p>
+    <h2 id="timelineHeading">18 tahun perjalanan 🎉</h2>
     <p class="sub">Dari 30 Agustus 2008, sampe hari ini.</p>
   </section>
 
@@ -1299,16 +1366,8 @@
         </div>
         <div class="tetris-overlay hidden" id="catSpinOverlay">
           <p class="tetris-overlay-title">Hadiah spesial 🎁</p>
-          <div class="cat-reel-window">
-            <div class="cat-reel-strip" id="catReelStrip">
-              <img src="kucing-1.png" alt="">
-              <img src="kucing-1.png" alt="">
-              <img src="kucing-1.png" alt="">
-              <img src="kucing-1.png" alt="">
-              <img src="kucing-1.png" alt="">
-              <img src="kucing-1.png" alt="">
-              <img src="kucing-2.png" alt="">
-            </div>
+          <div class="cat-reel-window" id="catReelWindow">
+            <div class="cat-reel-strip" id="catReelStrip"></div>
           </div>
           <p class="tetris-overlay-text" id="catSpinText">Spin buat lihat hadiah kucingnyaa~</p>
           <button class="gift-btn" id="catSpinBtn">Spin 🎰</button>
@@ -1345,8 +1404,12 @@
   <button class="nav-btn" id="nextBtn">Next</button>
 </nav>
 
-<button class="music-toggle" id="musicToggle" aria-label="Pilih musik">
-  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+<button class="music-toggle" id="musicToggle" aria-label="Ganti musik">
+  <svg viewBox="0 0 24 24" width="18" height="18">
+    <path d="M8 17V4l8-1.3v9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="5.5" cy="17" r="2.6" fill="currentColor"/>
+  </svg>
+  <span class="music-toggle-plus">+</span>
 </button>
 
 <div class="music-modal-backdrop" id="musicModalBackdrop">
@@ -1403,9 +1466,9 @@
 </div>
 
 <!-- notice kecil nunjuk ke tombol musik yang sudah ada -->
-<div class="music-notice" id="musicNotice">Musik udah nyala~ mau ganti lagu? Klik ikon 🎵 di pojok atas</div>
+<div class="music-notice" id="musicNotice">Musik udah nyala~ mau ganti lagu? Klik ikon 🎵+ di pojok atas</div>
 
-<audio id="bgm" src="musik.mp3" preload="none"></audio>
+<audio id="bgm" src="musik.mp3" loop preload="none"></audio>
 <audio id="spinSfx" src="jengjeng.mp3" preload="auto"></audio>
 
 <script>
@@ -1774,39 +1837,131 @@
     streakTimeouts.push(fallbackId);
   }
 
-  // ---------- SLIDE 2D: 2008 → 2026 TIMELINE JOURNEY ----------
+  // ---------- SLIDE 2D: 2008 → 2026 TIMELINE JOURNEY (bisa digeser) ----------
   const timelineTrack = document.getElementById('timelineTrack');
+  const timelineHint = document.getElementById('timelineHint');
+  const calHeader = document.getElementById('calHeader');
+  const calDays = document.getElementById('calDays');
+  const timelineHeading = document.getElementById('timelineHeading');
+  const TL_START_YEAR = 2008;
+  const TL_END_YEAR = 2026;
+  const TL_STEPS = TL_END_YEAR - TL_START_YEAR; // 18 — index 0..18
+  let timelineHandle = null;
+  let tlIndex = TL_STEPS; // posisi sekarang (default: tahun 2026 / umur 18)
+
   (function buildTimeline(){
-    const startYear = 2008;
-    const endYear = 2026;
-    for(let y = startYear; y <= endYear; y++){
+    for(let y = TL_START_YEAR; y < TL_END_YEAR; y++){
       const dot = document.createElement('div');
-      const isFinal = (y === endYear);
-      dot.className = 't-dot' + (isFinal ? ' final' : '');
-      if(y === startYear || isFinal){
+      dot.className = 't-dot';
+      if(y === TL_START_YEAR){
         const label = document.createElement('span');
         label.className = 't-label';
-        label.textContent = isFinal ? '18' : String(startYear);
+        label.textContent = String(TL_START_YEAR);
         dot.appendChild(label);
       }
-      if(isFinal) dot.textContent = '18';
       timelineTrack.appendChild(dot);
     }
+    timelineHandle = document.createElement('div');
+    timelineHandle.className = 't-dot final';
+    timelineHandle.id = 'timelineHandle';
+    const label = document.createElement('span');
+    label.className = 't-label';
+    label.id = 'timelineHandleLabel';
+    label.textContent = String(TL_STEPS);
+    timelineHandle.appendChild(label);
+    timelineHandle.setAttribute('role', 'slider');
+    timelineHandle.setAttribute('aria-label', 'Geser buat lihat tahun sebelumnya');
+    timelineTrack.appendChild(timelineHandle);
   })();
+
+  function daysInAugust(){ return 31; }
+  function firstWeekdayOfAugust(year){
+    // Minggu=0 ... Sabtu=6, cocok sama urutan header M S S R K J S
+    return new Date(year, 7, 1).getDay();
+  }
+  function updateCalendarForYear(year){
+    calHeader.textContent = 'Agustus ' + year;
+    const offset = firstWeekdayOfAugust(year);
+    let html = '';
+    for(let i = 0; i < offset; i++) html += '<span class="cal-day empty"></span>';
+    for(let d = 1; d <= daysInAugust(); d++){
+      html += '<span class="cal-day' + (d === 30 ? ' highlight' : '') + '">' + d + '</span>';
+    }
+    calDays.innerHTML = html;
+  }
+
+  function updateTimelineHandlePosition(){
+    const leftPct = (tlIndex / TL_STEPS) * 100;
+    timelineHandle.style.left = leftPct + '%';
+  }
+
+  function setTimelineIndex(index){
+    const newIndex = Math.min(Math.max(index, 0), TL_STEPS);
+    const changed = newIndex !== tlIndex;
+    tlIndex = newIndex;
+    const age = tlIndex;
+    const year = TL_START_YEAR + tlIndex;
+    document.getElementById('timelineHandleLabel').textContent = age;
+    timelineHeading.textContent = age + ' tahun perjalanan 🎉';
+    updateCalendarForYear(year);
+    updateTimelineHandlePosition();
+    if(changed){
+      if(navigator.vibrate) navigator.vibrate(12);
+      timelineHeading.classList.remove('tl-shake');
+      void timelineHeading.offsetWidth; // reflow biar animasinya re-trigger tiap kali
+      timelineHeading.classList.add('tl-shake');
+    }
+  }
+
+  function tlRatioFromClientX(clientX){
+    const rect = timelineTrack.getBoundingClientRect();
+    return Math.min(Math.max((clientX - rect.left) / rect.width, 0), 1);
+  }
+
+  let tlDragging = false;
+  function onTlPointerMove(e){
+    if(!tlDragging) return;
+    const ratio = tlRatioFromClientX(e.clientX);
+    setTimelineIndex(Math.round(ratio * TL_STEPS));
+  }
+  function endTlDrag(){
+    if(!tlDragging) return;
+    tlDragging = false;
+    timelineHandle.classList.remove('dragging');
+    window.removeEventListener('pointermove', onTlPointerMove);
+    window.removeEventListener('pointerup', endTlDrag);
+  }
+  timelineHandle.addEventListener('pointerdown', (e) => {
+    e.preventDefault();
+    tlDragging = true;
+    timelineHandle.classList.remove('hint-nudge');
+    timelineHandle.classList.add('dragging');
+    window.addEventListener('pointermove', onTlPointerMove);
+    window.addEventListener('pointerup', endTlDrag);
+  });
+
   let timelineTimeouts = [];
   function resetTimeline(){
     timelineTimeouts.forEach(id => clearTimeout(id));
     timelineTimeouts = [];
     timelineTrack.classList.remove('reveal');
+    timelineHandle.classList.remove('hint-nudge');
+    setTimelineIndex(TL_STEPS); // balik ke 2026 / 18 tahun tiap kali slide dibuka ulang
   }
   function playTimeline(){
     resetTimeline();
-    const dots = Array.from(timelineTrack.children);
+    const dots = Array.from(timelineTrack.children).filter(d => d !== timelineHandle);
     dots.forEach(d => { d.style.transitionDelay = '0s'; });
     void timelineTrack.offsetWidth; // force reflow so the class re-triggers cleanly
     dots.forEach((d, i) => { d.style.transitionDelay = Math.min(i * 45, 900) + 'ms'; });
+    timelineHandle.style.transitionDelay = Math.min(dots.length * 45, 900) + 'ms';
     const id = setTimeout(() => timelineTrack.classList.add('reveal'), 30);
     timelineTimeouts.push(id);
+    // kasih hint kecil biar keliatan ini bisa digeser
+    const nudgeId = setTimeout(() => {
+      timelineHandle.classList.add('hint-nudge');
+    }, 1400);
+    timelineTimeouts.push(nudgeId);
   }
 
   function silenceTypeSounds(){
@@ -2040,18 +2195,6 @@
   });
   bgm.addEventListener('play', syncMusicToggleIcon);
   bgm.addEventListener('pause', syncMusicToggleIcon);
-
-  // ---------- lanjut otomatis ke lagu berikutnya kalau lagu abis ----------
-  const PLAYLIST = ['musik.mp3', 'lagu-1.mp3', 'lagu-2.mp3', 'lagu-3.mp3', 'lagu-4.mp3'];
-  function playNextTrack(){
-    const idx = PLAYLIST.indexOf(currentBgmFile());
-    const nextIdx = (idx === -1 ? 0 : (idx + 1) % PLAYLIST.length);
-    bgm.src = PLAYLIST[nextIdx];
-    bgm.currentTime = 0;
-    bgm.play().catch(() => {});
-    syncActiveMusicOption();
-  }
-  bgm.addEventListener('ended', playNextTrack);
 
   syncMusicToggleIcon();
   syncActiveMusicOption();
@@ -2345,20 +2488,43 @@
     // biar kalau ada masalah di sini, game utama (canvas + kontrol D-pad) tetap jalan normal
     try{
       const el = document.getElementById('catSpinOverlay');
+      const catReelWindow = document.getElementById('catReelWindow');
       const catReelStrip = document.getElementById('catReelStrip');
       const catSpinText = document.getElementById('catSpinText');
       const catSpinBtn = document.getElementById('catSpinBtn');
       const spinSfx = document.getElementById('spinSfx');
-      if(!el || !catReelStrip || !catSpinText || !catSpinBtn){
+      if(!el || !catReelWindow || !catReelStrip || !catSpinText || !catSpinBtn){
         throw new Error('elemen cat-spin tidak ditemukan di halaman');
       }
       const REEL_ITEM_H = 150;
-      const REEL_LAST_INDEX = catReelStrip.children.length - 1; // gambar terakhir = hadiahnya
+      const CAT_POOL = ['kucing-1.png','kucing-2.png','kucing-3.png','kucing-4.png','kucing-5.png'];
+      const CAT_JACKPOT = 'kucing-2.png';
+      const CAT_JACKPOT_CHANCE = 0.8; // ~80% dapet kucing-2
       let catRevealed = false;
+      let reelLastIndex = 0;
+
+      function pickCatResult(){
+        if(Math.random() < CAT_JACKPOT_CHANCE) return CAT_JACKPOT;
+        const others = CAT_POOL.filter(f => f !== CAT_JACKPOT);
+        return others[Math.floor(Math.random() * others.length)];
+      }
+
+      function buildReel(resultFile){
+        const FILLER_COUNT = 14;
+        let html = '';
+        for(let i = 0; i < FILLER_COUNT; i++){
+          const f = CAT_POOL[Math.floor(Math.random() * CAT_POOL.length)];
+          html += '<img src="' + f + '" alt="">';
+        }
+        html += '<img src="' + resultFile + '" alt="">';
+        catReelStrip.innerHTML = html;
+        reelLastIndex = catReelStrip.children.length - 1;
+      }
 
       resetCatReel = function(){
         catRevealed = false;
         catReelStrip.classList.remove('spinning');
+        buildReel(CAT_JACKPOT); // preview diem di kucing-2 sebelum di-spin
         catReelStrip.style.transform = 'translateY(0px)';
         catSpinText.textContent = 'Spin buat lihat hadiah kucingnyaa~';
         catSpinBtn.textContent = 'Spin 🎰';
@@ -2369,10 +2535,15 @@
         if(catRevealed) return; // udah kebuka, tombol cuma dekorasi "Yeay!"
         catSpinBtn.disabled = true;
         try{ spinSfx.currentTime = 0; spinSfx.play().catch(() => {}); }catch(e){}
+        const result = pickCatResult();
+        buildReel(result);
+        catReelWindow.classList.remove('punching');
+        void catReelWindow.offsetWidth;
+        catReelWindow.classList.add('punching');
         void catReelStrip.offsetHeight; // paksa reflow biar transisinya mulus
         catReelStrip.classList.add('spinning');
-        catReelStrip.style.transform = `translateY(-${REEL_LAST_INDEX * REEL_ITEM_H}px)`;
-        const blipTimer = setInterval(() => SFX.blip(), 140);
+        catReelStrip.style.transform = `translateY(-${reelLastIndex * REEL_ITEM_H}px)`;
+        const blipTimer = setInterval(() => SFX.blip(), 110);
         setTimeout(() => {
           clearInterval(blipTimer);
           SFX.pop();
@@ -2380,7 +2551,7 @@
           catSpinBtn.textContent = 'Yeay!';
           catSpinBtn.disabled = false;
           catRevealed = true;
-        }, 2700);
+        }, 2000);
       });
 
       allOverlays.push(el);
