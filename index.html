@@ -1777,29 +1777,6 @@
     </div>
   </section>
 
-  <!-- SLIDE ENDING — EPILOGUE -->
-  <section class="slide" id="slide-ending">
-    <div class="ending-blackout" id="endingBlackout">
-      <p id="endingOneMoreThing">One more thing...</p>
-    </div>
-    <div class="ldr-map glass-card ending-map hidden" id="endingMap">
-      <div class="ldr-pin ldr-pin-a"><span class="ldr-pin-dot"></span><span class="ldr-pin-label">Bandung</span></div>
-      <div class="ldr-pin ldr-pin-b"><span class="ldr-pin-dot"></span><span class="ldr-pin-label">Yogyakarta</span></div>
-      <svg class="ldr-line" viewBox="0 0 300 160" preserveAspectRatio="none">
-        <path id="endingPath" d="M40,120 C110,20 190,20 260,50" fill="none" stroke="url(#endingGrad)" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="6 8"/>
-        <defs>
-          <linearGradient id="endingGrad" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stop-color="#A78BFA"/>
-            <stop offset="100%" stop-color="#8B5CF6"/>
-          </linearGradient>
-        </defs>
-      </svg>
-    </div>
-    <p class="ending-caption hidden" id="endingCaption"></p>
-    <p class="ending-final hidden" id="endingFinal">See you at the end of this distance. 🤍</p>
-    <button class="skip-btn ending-close-btn hidden" id="endingCloseBtn">Close This Story</button>
-  </section>
-
 </div>
 
 <div class="toast-stack" id="toastStack"></div>
@@ -1975,7 +1952,7 @@
     backBtn.disabled = current === 0;
     nextBtn.textContent = current === slides.length - 1 ? 'Selesai' : 'Next';
     dots.forEach((d,i) => d.classList.toggle('active', i === current));
-    controls.classList.toggle('visible', current > 0 && current !== slides.length - 1);
+    controls.classList.toggle('visible', current > 0);
   }
 
   function goTo(index){
@@ -1990,7 +1967,6 @@
     resetBloom();
     resetBlend();
     resetFlowerGame();
-    resetEnding();
     slides[current].classList.remove('active');
     current = index;
     slides[current].classList.add('active');
@@ -2005,7 +1981,6 @@
     if(current === 8) playTimeline();
     if(current === 9) resetPostcardBook();
     if(current === 10) resetTetris();
-    if(current === slides.length - 1) playEnding();
   }
 
   backBtn.addEventListener('click', () => goTo(current - 1));
@@ -2071,7 +2046,7 @@
     if(ldrMapInst || typeof L === 'undefined') return;
     try{
       ldrMapInst = L.map('ldrMapReal', {
-        zoomControl:false, dragging:false, scrollWheelZoom:false,
+        zoomControl:false, dragging:true, scrollWheelZoom:false,
         doubleClickZoom:false, boxZoom:false, keyboard:false, touchZoom:false,
         attributionControl:true, fadeAnimation:true
       }).setView(BANDUNG, 11);
@@ -2290,42 +2265,6 @@
   }
   flowerItems.forEach(setupFlowerDrag);
   function initFlowerGame(){ resetFlowerGame(); }
-
-  // ============ SLIDE ENDING — EPILOGUE ============
-  const endingMap = document.getElementById('endingMap');
-  const endingCaption = document.getElementById('endingCaption');
-  const endingFinal = document.getElementById('endingFinal');
-  const endingCloseBtn = document.getElementById('endingCloseBtn');
-  const ENDING_LINES = ["Until someday...", "This distance...", "...will only become...", "...a memory."];
-  let endingTimers = [];
-  function resetEnding(){
-    endingTimers.forEach(id => clearTimeout(id));
-    endingTimers = [];
-    endingMap.classList.add('hidden');
-    endingCaption.classList.add('hidden');
-    endingCaption.textContent = '';
-    endingFinal.classList.add('hidden');
-    endingCloseBtn.classList.add('hidden');
-  }
-  function playEnding(){
-    resetEnding();
-    let t = 2200;
-    endingTimers.push(setTimeout(() => {
-      endingMap.classList.remove('hidden');
-      endingCaption.classList.remove('hidden');
-    }, t));
-    ENDING_LINES.forEach((line, i) => {
-      endingTimers.push(setTimeout(() => { endingCaption.textContent = line; }, t + 500 + i * 1100));
-    });
-    const afterLines = t + 500 + ENDING_LINES.length * 1100 + 600;
-    endingTimers.push(setTimeout(() => {
-      endingFinal.classList.remove('hidden');
-      endingCloseBtn.classList.remove('hidden');
-    }, afterLines));
-  }
-  endingCloseBtn.addEventListener('click', () => {
-    document.querySelector('.app').classList.add('closing');
-  });
 
   // ---------- OPEN GIFT ----------
   const bgm = document.getElementById('bgm');
