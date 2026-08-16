@@ -1,0 +1,5748 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Happy 18th, Fahiraaa 🎂</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Quicksand:wght@400;500;600;700&family=Caveat:wght@600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:#09090B;
+    --void-2:#111827;
+    --panel:#171533;
+    --panel-2:#1E1B4B;
+    --line:rgba(167,139,250,0.22);
+    --rose:#A78BFA;
+    --rose-soft:#C4B5FD;
+    --gold:#8B5CF6;
+    --lavender:#A78BFA;
+    --mint:#6D28D9;
+    --text:#F5F3FF;
+    --muted:#A1A1AA;
+    --paper:#f2e6c9;
+    --paper-line:#cbb377;
+    --ink:#4a3a2c;
+  }
+
+  *{box-sizing:border-box;}
+  html,body{
+    margin:0;
+    padding:0;
+    height:100%;
+    background:
+      radial-gradient(circle at 12% 8%, rgba(139,92,246,0.28), transparent 42%),
+      radial-gradient(circle at 88% 18%, rgba(109,40,217,0.20), transparent 40%),
+      radial-gradient(circle at 20% 85%, rgba(167,139,250,0.12), transparent 45%),
+      radial-gradient(circle at 85% 90%, rgba(196,181,253,0.22), transparent 48%),
+      var(--void);
+    color:var(--text);
+    font-family:'Quicksand', sans-serif;
+    font-weight:500;
+    overflow:hidden;
+    -webkit-tap-highlight-color:transparent;
+  }
+
+  h1,h2,h3, .display{
+    font-family:'Fredoka', sans-serif;
+    font-weight:600;
+    letter-spacing:0.005em;
+  }
+
+  button{font-family:inherit;}
+  button:focus-visible, textarea:focus-visible, a:focus-visible{
+    outline:2px solid var(--gold);
+    outline-offset:3px;
+  }
+
+  /* ---------- particle layer: floating "18" ---------- */
+  .particle-field{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    overflow:hidden;
+    z-index:1;
+  }
+  .particle{
+    position:absolute;
+    bottom:-60px;
+    font-family:'Fredoka', sans-serif;
+    font-weight:600;
+    color:var(--rose);
+    opacity:0;
+    user-select:none;
+    animation-name:rise;
+    animation-timing-function:ease-in;
+    animation-fill-mode:forwards;
+  }
+  @keyframes rise{
+    0%{ transform:translateY(0) rotate(0deg); opacity:0; }
+    8%{ opacity:0.55; }
+    85%{ opacity:0.35; }
+    100%{ transform:translateY(-115vh) rotate(18deg); opacity:0; }
+  }
+
+  /* ---------- app shell ---------- */
+  .app{
+    position:relative;
+    z-index:2;
+    width:100vw;
+    height:100vh;
+    height:100dvh;
+  }
+
+  .slide{
+    position:absolute;
+    inset:0;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:18px;
+    padding:28px 22px 110px;
+    text-align:center;
+    opacity:0;
+    transform:translateY(18px) scale(0.98);
+    filter:blur(2px);
+    pointer-events:none;
+    transition:opacity .6s cubic-bezier(.16,1,.3,1), transform .6s cubic-bezier(.16,1,.3,1), filter .6s cubic-bezier(.16,1,.3,1);
+    overflow-y:auto;
+    -webkit-overflow-scrolling:touch;
+  }
+  .slide.active{
+    opacity:1;
+    transform:none;
+    filter:blur(0px);
+    pointer-events:auto;
+  }
+
+  .eyebrow{
+    font-size:0.72rem;
+    letter-spacing:0.3em;
+    text-transform:uppercase;
+    color:var(--gold);
+    font-weight:600;
+  }
+
+  /* ---------- slide 1 : intro ---------- */
+  .loader-stage{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:18px;
+  }
+  .loader-stage.hide{ display:none; }
+  .loader-ring{
+    width:52px;
+    height:52px;
+    border-radius:50%;
+    border:2px solid var(--line);
+    border-top-color:var(--gold);
+    animation:spin 0.9s linear infinite;
+  }
+  @keyframes spin{ to{ transform:rotate(360deg); } }
+  .loader-text{
+    color:var(--muted);
+    font-size:0.85rem;
+    letter-spacing:0.03em;
+  }
+  .teaser-stage{
+    display:none;
+    flex-direction:column;
+    align-items:center;
+    gap:16px;
+    opacity:0;
+    transition:opacity .6s ease;
+    max-width:300px;
+  }
+  .teaser-stage.show{ display:flex; }
+  .teaser-stage.show.visible{ opacity:1; }
+  .teaser-text{
+    font-family:'Fredoka', sans-serif;
+    font-size:1.15rem;
+    line-height:1.5;
+    color:var(--rose-soft);
+  }
+  .teaser-btn{
+    margin-top:6px;
+    border:1px solid var(--line);
+    background:rgba(255,255,255,0.03);
+    color:var(--text);
+    padding:13px 26px;
+    border-radius:999px;
+    font-size:0.85rem;
+    font-weight:600;
+    cursor:pointer;
+    transition:transform .2s ease, border-color .2s ease;
+  }
+  .teaser-btn:hover{ border-color:var(--gold); transform:translateY(-1px); }
+  .intro-content{
+    display:none;
+    flex-direction:column;
+    align-items:center;
+    gap:18px;
+    position:relative;
+    opacity:0;
+    transition:opacity .7s ease;
+  }
+  .intro-content.show{ display:flex; }
+  .intro-content.show.visible{ opacity:1; }
+  #slide-1 .display{
+    font-size:clamp(2.1rem, 8vw, 3.4rem);
+    line-height:1.08;
+    margin:6px 0 2px;
+  }
+  #slide-1 .display em{
+    color:var(--rose-soft);
+  }
+  #slide-1 .sub{
+    color:var(--muted);
+    font-size:0.95rem;
+    max-width:320px;
+    line-height:1.5;
+  }
+  .gift-btn{
+    margin-top:22px;
+    position:relative;
+    border:2px solid var(--gold);
+    background:linear-gradient(180deg, #A78BFA, #7C3AED);
+    color:#F5F3FF;
+    padding:16px 40px;
+    border-radius:999px;
+    font-size:0.95rem;
+    font-weight:700;
+    letter-spacing:0.02em;
+    cursor:pointer;
+    transition:transform .18s cubic-bezier(.5,1.8,.6,1), box-shadow .25s ease, background .25s ease;
+    box-shadow:0 6px 0 0 #6D28D9, 0 10px 18px -6px rgba(139,92,246,0.5);
+    animation:bounce-idle 2.2s ease-in-out infinite;
+  }
+  .gift-btn:hover{ transform:translateY(-3px); }
+  .gift-btn:active{ transform:translateY(3px); box-shadow:0 2px 0 0 #6D28D9; }
+  @keyframes bounce-idle{
+    0%,100%{ transform:translateY(0); }
+    50%{ transform:translateY(-6px); }
+  }
+  @keyframes pulse-ring{
+    0%,100%{ box-shadow:0 0 0 0 rgba(139,92,246,0.28); }
+    50%{ box-shadow:0 0 0 10px rgba(139,92,246,0); }
+  }
+
+  /* ============ GLASSMORPHISM BASE ============ */
+  .glass-card{
+    background:rgba(30,27,75,0.35);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+    border:1px solid rgba(167,139,250,0.22);
+    border-radius:24px;
+    box-shadow:0 20px 50px -25px rgba(0,0,0,0.6);
+  }
+  .skip-btn{
+    background:none;
+    border:1px solid var(--line);
+    color:var(--muted);
+    padding:11px 22px;
+    border-radius:999px;
+    font-size:0.82rem;
+    cursor:pointer;
+    margin-top:10px;
+  }
+  .hidden{ display:none !important; }
+
+  @keyframes fade-in-soft{ from{ opacity:0; transform:translateY(6px); } to{ opacity:1; transform:translateY(0); } }
+  @keyframes ldr-cinematic-zoom{
+    0%{ transform:scale(0.92); }
+    50%{ transform:scale(1.04); }
+    100%{ transform:scale(1); }
+  }
+
+  /* ============ SLIDE NOTES — tampil langsung, tanpa gate amplop ============ */
+  .bloom-preline{
+    font-size:0.95rem;
+    color:var(--muted);
+    letter-spacing:0.03em;
+    opacity:0;
+    animation:ending-fade-hold 2.6s ease forwards;
+  }
+
+  /* ============ SLIDE BLEND — SPOTIFY BLEND ============ */
+  .blend-fx{ position:absolute; inset:0; pointer-events:none; overflow:hidden; }
+  .blend-note{
+    position:absolute;
+    bottom:-10%;
+    font-size:1.4rem;
+    color:var(--rose-soft);
+    opacity:0.55;
+    animation:note-float 6s ease-in infinite;
+  }
+  .n1{ left:18%; animation-delay:0s; }
+  .n2{ left:52%; animation-delay:1.8s; }
+  .n3{ left:78%; animation-delay:3.4s; }
+  @keyframes note-float{ 0%{ transform:translateY(0) rotate(0deg); opacity:0; } 15%{ opacity:0.6; } 100%{ transform:translateY(-70vh) rotate(25deg); opacity:0; } }
+  .blend-eq{ display:flex; align-items:flex-end; gap:5px; height:34px; margin:6px 0; }
+  .blend-eq span{
+    width:5px;
+    background:linear-gradient(180deg, var(--rose-soft), var(--gold));
+    border-radius:3px;
+    animation:eq-bounce 1s ease-in-out infinite;
+  }
+  .blend-eq span:nth-child(1){ height:14px; animation-delay:0s; }
+  .blend-eq span:nth-child(2){ height:28px; animation-delay:.15s; }
+  .blend-eq span:nth-child(3){ height:18px; animation-delay:.3s; }
+  .blend-eq span:nth-child(4){ height:32px; animation-delay:.45s; }
+  .blend-eq span:nth-child(5){ height:20px; animation-delay:.6s; }
+  @keyframes eq-bounce{ 0%,100%{ transform:scaleY(0.4); } 50%{ transform:scaleY(1); } }
+  .blend-card{ padding:20px 22px; max-width:340px; margin:6px 0 10px; }
+  .blend-card p{ font-size:0.88rem; line-height:1.6; color:var(--text); margin:0 0 10px; }
+  .blend-card p:last-child{ margin-bottom:0; }
+  .blend-hint{ font-size:0.76rem; color:var(--muted); margin:2px 0 4px; }
+  .blend-matching{
+    position:fixed; inset:0; z-index:55;
+    background:rgba(9,9,11,0.88);
+    backdrop-filter:blur(10px);
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px;
+    text-align:center; padding:24px;
+  }
+  .blend-matching p{ color:var(--text); font-size:1rem; }
+  .blend-bar{ width:min(70vw,260px); height:8px; border-radius:999px; background:rgba(255,255,255,0.08); overflow:hidden; }
+  .blend-bar-fill{ height:100%; width:0%; background:linear-gradient(90deg, var(--rose-soft), var(--gold)); transition:width .1s linear; }
+  .blend-pct{ color:var(--rose-soft); font-size:0.85rem; }
+
+  /* ============ SLIDE ENDING — EPILOGUE ============ */
+  #slide-ending{ background:#09090B; }
+  .ending-blackout{
+    display:flex; align-items:center; justify-content:center;
+    min-height:40vh;
+  }
+  .ending-blackout p{
+    color:var(--muted);
+    font-size:1rem;
+    letter-spacing:0.04em;
+    opacity:0;
+    animation:ending-fade-hold 3.6s ease forwards;
+  }
+  @keyframes ending-fade-hold{
+    0%{ opacity:0; }
+    20%{ opacity:1; }
+    80%{ opacity:1; }
+    100%{ opacity:0; }
+  }
+  .ending-caption{
+    margin-top:16px;
+    font-size:1.15rem;
+    color:var(--text);
+    text-align:center;
+    min-height:1.4em;
+  }
+  .ending-final{
+    margin-top:22px;
+    font-size:1.2rem;
+    color:var(--rose-soft);
+    text-align:center;
+    animation:fade-in-soft .8s ease;
+  }
+  .ending-close-btn{ margin-top:20px; }
+  .app.closing{ transition:opacity 1.5s ease; opacity:0; }
+  button, .nav-btn, .evasive-btn, .teaser-btn, .music-btn, .tetris-controls button, .catSpinBtn{
+    transition:transform .15s cubic-bezier(.5,1.8,.6,1);
+  }
+  button:active, .nav-btn:active, .evasive-btn:active, .teaser-btn:active, .music-btn:active, .tetris-controls button:active{
+    transform:scale(0.88);
+  }
+  .ring{
+    position:absolute;
+    width:150px;height:150px;
+    border:1px solid var(--line);
+    border-radius:50%;
+    top:50%;left:50%;
+    transform:translate(-50%,-58%);
+  }
+  .ring.r2{ width:220px; height:220px; opacity:0.6; }
+  .ring.r3{ width:290px; height:290px; opacity:0.35; }
+
+  /* ---------- slide 2 : surprise ---------- */
+  .surprise-stage{
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:6px;
+  }
+  .photo-frame{
+    width:min(60vw, 220px);
+    height:min(60vw, 220px);
+    border-radius:26px;
+    overflow:hidden;
+    border:1px solid var(--line);
+    background:var(--panel);
+    box-shadow:0 20px 45px -20px rgba(0,0,0,0.6);
+    animation:float 4.2s ease-in-out infinite;
+  }
+  .photo-frame img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+  @keyframes float{
+    0%,100%{ transform:translateY(0) rotate(-2deg); }
+    50%{ transform:translateY(-16px) rotate(2deg); }
+  }
+
+  /* ---------- bonus photos (18th birthday memes) ---------- */
+  .bonus-photos{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    align-items:flex-start;
+    gap:14px;
+    margin-top:20px;
+    max-width:min(92vw, 420px);
+  }
+  .bonus-photo{
+    width:min(46vw, 190px);
+    max-width:100%;
+    height:auto;
+    display:block;
+    border-radius:18px;
+    border:1px solid var(--line);
+    box-shadow:0 18px 36px -16px rgba(0,0,0,0.6);
+    opacity:0;
+    animation:card-throw-in-left .8s cubic-bezier(.18,.82,.22,1.12) forwards;
+    animation-delay:.3s;
+  }
+  .bonus-photo:nth-child(2){
+    animation-name:card-throw-in-right;
+    animation-delay:.5s;
+  }
+  @keyframes card-throw-in-left{
+    0%{ opacity:0; transform:translate(-42vw,-70px) rotate(-46deg) scale(0.6); }
+    55%{ opacity:1; }
+    68%{ transform:translate(6px,6px) rotate(7deg) scale(1.04); }
+    84%{ transform:translate(-3px,-2px) rotate(-4deg) scale(0.99); }
+    100%{ opacity:1; transform:translate(0,0) rotate(-3deg) scale(1); }
+  }
+  @keyframes card-throw-in-right{
+    0%{ opacity:0; transform:translate(42vw,-70px) rotate(46deg) scale(0.6); }
+    55%{ opacity:1; }
+    68%{ transform:translate(-6px,6px) rotate(-7deg) scale(1.04); }
+    84%{ transform:translate(3px,-2px) rotate(4deg) scale(0.99); }
+    100%{ opacity:1; transform:translate(0,0) rotate(3deg) scale(1); }
+  }
+  @media (max-width:380px){
+    .bonus-photo{ width:min(78vw, 220px); }
+  }
+
+  /* slide-2 kini lebih tinggi kontennya (foto bonus) — mulai dari atas & bisa
+     digeser penuh biar bocil.gif di atas nggak ketutup / kepotong */
+  #slide-2{
+    justify-content:flex-start;
+    padding-top:64px;
+  }
+
+  #slide-2c{
+    justify-content:flex-start;
+    padding-top:56px;
+  }
+  .slide-scroll-hint{
+    font-size:0.7rem;
+    color:var(--muted);
+    margin:-10px 0 0;
+  }
+
+  .gerbera{
+    width:min(70vw, 240px);
+    margin-top:-6px;
+  }
+  #slide-2 h2{
+    font-size:clamp(1.3rem, 5vw, 1.7rem);
+    margin:4px 0 0;
+  }
+  #slide-2 .sub{ color:var(--muted); font-size:0.88rem; }
+
+  .toast-stack{
+    position:fixed;
+    top:14px;
+    left:0;
+    right:0;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:8px;
+    z-index:20;
+    pointer-events:none;
+    padding:0 16px;
+  }
+  .toast{
+    width:min(92vw, 340px);
+    display:flex;
+    align-items:center;
+    gap:11px;
+    background:rgba(26,20,36,0.72);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:18px;
+    padding:11px 14px;
+    box-shadow:0 12px 30px -10px rgba(0,0,0,0.55);
+    transform:translateY(-40px);
+    opacity:0;
+    animation:toast-in .45s cubic-bezier(.34,1.56,.64,1) forwards, toast-out .45s ease forwards 3.2s;
+  }
+  .toast-icon{
+    flex:0 0 auto;
+    width:30px;height:30px;
+    border-radius:9px;
+    background:linear-gradient(135deg, var(--rose), var(--lavender));
+    display:flex;align-items:center;justify-content:center;
+    font-size:15px;
+  }
+  .toast-body{ text-align:left; }
+  .toast-title{ font-size:0.72rem; color:var(--muted); font-weight:600; letter-spacing:0.02em; }
+  .toast-msg{ font-size:0.87rem; font-weight:600; color:var(--text); }
+  @keyframes toast-in{ to{ transform:translateY(0); opacity:1; } }
+  @keyframes toast-out{ to{ transform:translateY(-24px); opacity:0; } }
+
+  /* ---------- slide 2b : growing flower ---------- */
+  /* ---------- slide flower : growing flower garden (yellow blooms) ---------- */
+  .flower-garden-stage{
+    position:relative;
+    width:min(90vw, 360px);
+    height:min(46vh, 340px);
+    overflow:hidden;
+  }
+  #slide-flower h2{ font-size:clamp(1.3rem, 5vw, 1.7rem); margin:2px 0 0; }
+  #slide-flower .sub{ color:var(--muted); font-size:0.88rem; }
+
+  /* ---------- growing flower garden (scoped from external flower project) ---------- */
+
+
+.flower-scene {
+  --dark-color: #000;
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  background-color: transparent;
+  overflow: hidden;
+  perspective: 1000px;
+}
+
+.flower-scene .night {
+  display: none;
+}
+
+.flower-scene *,
+.flower-scene *::before,
+.flower-scene *::after {
+  animation-play-state: paused;
+}
+.flower-scene.playing *,
+.flower-scene.playing *::before,
+.flower-scene.playing *::after {
+  animation-play-state: running;
+}
+.flower-scene.resetting *,
+.flower-scene.resetting *::before,
+.flower-scene.resetting *::after {
+  animation: none !important;
+}
+
+.flower-scene .night {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 100%;
+  filter: blur(0.1vmin);
+  background-image: radial-gradient(ellipse at top, transparent 0%, var(--dark-color)), radial-gradient(ellipse at bottom, var(--dark-color), rgba(145, 233, 255, 0.2)), repeating-linear-gradient(220deg, rgb(0, 0, 0) 0px, rgb(0, 0, 0) 19px, transparent 19px, transparent 22px), repeating-linear-gradient(189deg, rgb(0, 0, 0) 0px, rgb(0, 0, 0) 19px, transparent 19px, transparent 22px), repeating-linear-gradient(148deg, rgb(0, 0, 0) 0px, rgb(0, 0, 0) 19px, transparent 19px, transparent 22px), linear-gradient(90deg, rgb(7, 107, 42), rgb(240, 240, 240));
+}
+
+.flower-scene .flowers {
+  position: relative;
+  transform: scale(0.62);
+}
+
+.flower-scene .flower {
+  position: absolute;
+  bottom: 10vmin;
+  transform-origin: bottom center;
+  z-index: 10;
+  --fl-speed: 0.3s;
+}
+.flower-scene .flower--1 {
+  -webkit-animation: moving-flower-1 4s linear infinite;
+          animation: moving-flower-1 4s linear infinite;
+}
+.flower-scene .flower--1 .flower__line {
+  height: 70vmin;
+  -webkit-animation-delay: 0.3s;
+          animation-delay: 0.3s;
+}
+.flower-scene .flower--1 .flower__line__leaf--1 {
+  -webkit-animation: blooming-leaf-right var(--fl-speed) 1.6s backwards;
+          animation: blooming-leaf-right var(--fl-speed) 1.6s backwards;
+}
+.flower-scene .flower--1 .flower__line__leaf--2 {
+  -webkit-animation: blooming-leaf-right var(--fl-speed) 1.4s backwards;
+          animation: blooming-leaf-right var(--fl-speed) 1.4s backwards;
+}
+.flower-scene .flower--1 .flower__line__leaf--3 {
+  -webkit-animation: blooming-leaf-left var(--fl-speed) 1.2s backwards;
+          animation: blooming-leaf-left var(--fl-speed) 1.2s backwards;
+}
+.flower-scene .flower--1 .flower__line__leaf--4 {
+  -webkit-animation: blooming-leaf-left var(--fl-speed) 1s backwards;
+          animation: blooming-leaf-left var(--fl-speed) 1s backwards;
+}
+.flower-scene .flower--1 .flower__line__leaf--5 {
+  -webkit-animation: blooming-leaf-right var(--fl-speed) 1.8s backwards;
+          animation: blooming-leaf-right var(--fl-speed) 1.8s backwards;
+}
+.flower-scene .flower--1 .flower__line__leaf--6 {
+  -webkit-animation: blooming-leaf-left var(--fl-speed) 2s backwards;
+          animation: blooming-leaf-left var(--fl-speed) 2s backwards;
+}
+.flower-scene .flower--2 {
+  left: 50%;
+  transform: rotate(20deg);
+  -webkit-animation: moving-flower-2 4s linear infinite;
+          animation: moving-flower-2 4s linear infinite;
+}
+.flower-scene .flower--2 .flower__line {
+  height: 60vmin;
+  -webkit-animation-delay: 0.6s;
+          animation-delay: 0.6s;
+}
+.flower-scene .flower--2 .flower__line__leaf--1 {
+  -webkit-animation: blooming-leaf-right var(--fl-speed) 1.9s backwards;
+          animation: blooming-leaf-right var(--fl-speed) 1.9s backwards;
+}
+.flower-scene .flower--2 .flower__line__leaf--2 {
+  -webkit-animation: blooming-leaf-right var(--fl-speed) 1.7s backwards;
+          animation: blooming-leaf-right var(--fl-speed) 1.7s backwards;
+}
+.flower-scene .flower--2 .flower__line__leaf--3 {
+  -webkit-animation: blooming-leaf-left var(--fl-speed) 1.5s backwards;
+          animation: blooming-leaf-left var(--fl-speed) 1.5s backwards;
+}
+.flower-scene .flower--2 .flower__line__leaf--4 {
+  -webkit-animation: blooming-leaf-left var(--fl-speed) 1.3s backwards;
+          animation: blooming-leaf-left var(--fl-speed) 1.3s backwards;
+}
+.flower-scene .flower--3 {
+  left: 50%;
+  transform: rotate(-15deg);
+  -webkit-animation: moving-flower-3 4s linear infinite;
+          animation: moving-flower-3 4s linear infinite;
+}
+.flower-scene .flower--3 .flower__line {
+  -webkit-animation-delay: 0.9s;
+          animation-delay: 0.9s;
+}
+.flower-scene .flower--3 .flower__line__leaf--1 {
+  -webkit-animation: blooming-leaf-right var(--fl-speed) 2.5s backwards;
+          animation: blooming-leaf-right var(--fl-speed) 2.5s backwards;
+}
+.flower-scene .flower--3 .flower__line__leaf--2 {
+  -webkit-animation: blooming-leaf-right var(--fl-speed) 2.3s backwards;
+          animation: blooming-leaf-right var(--fl-speed) 2.3s backwards;
+}
+.flower-scene .flower--3 .flower__line__leaf--3 {
+  -webkit-animation: blooming-leaf-left var(--fl-speed) 2.1s backwards;
+          animation: blooming-leaf-left var(--fl-speed) 2.1s backwards;
+}
+.flower-scene .flower--3 .flower__line__leaf--4 {
+  -webkit-animation: blooming-leaf-left var(--fl-speed) 1.9s backwards;
+          animation: blooming-leaf-left var(--fl-speed) 1.9s backwards;
+}
+.flower-scene .flower__leafs {
+  position: relative;
+  -webkit-animation: blooming-flower 2s backwards;
+          animation: blooming-flower 2s backwards;
+}
+.flower-scene .flower__leafs--1 {
+  -webkit-animation-delay: 1.1s;
+          animation-delay: 1.1s;
+}
+.flower-scene .flower__leafs--2 {
+  -webkit-animation-delay: 1.4s;
+          animation-delay: 1.4s;
+}
+.flower-scene .flower__leafs--3 {
+  -webkit-animation-delay: 1.7s;
+          animation-delay: 1.7s;
+}
+.flower-scene .flower__leafs::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: translate(-50%, -100%);
+  width: 8vmin;
+  height: 8vmin;
+  background-color: #6bf0ff;
+  filter: blur(10vmin);
+}
+.flower-scene .flower__leaf {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 8vmin;
+  height: 11vmin;
+  border-radius: 51% 49% 47% 53%/44% 45% 55% 69%;
+  background-color: #ffd54f;
+  background-image: linear-gradient(to top, #f4b400, #f4b400);
+  transform-origin: bottom center;
+  opacity: 0.9;
+  box-shadow: inset 0 0 2vmin rgba(255, 255, 255, 0.5);
+}
+.flower-scene .flower__leaf--1 {
+  transform: translate(-10%, 1%) rotateY(40deg) rotateX(-50deg);
+}
+.flower-scene .flower__leaf--2 {
+  transform: translate(-50%, -4%) rotateX(40deg);
+}
+.flower-scene .flower__leaf--3 {
+  transform: translate(-90%, 0%) rotateY(45deg) rotateX(50deg);
+}
+.flower-scene .flower__leaf--4 {
+  width: 8vmin;
+  height: 8vmin;
+  transform-origin: bottom left;
+  border-radius: 4vmin 10vmin 4vmin 4vmin;
+  transform: translate(0%, 18%) rotateX(70deg) rotate(-43deg);
+  background-image: linear-gradient(to top, #f4b400, #f4b400);
+  z-index: 1;
+  opacity: 0.8;
+}
+.flower-scene .flower__white-circle {
+  position: absolute;
+  left: -3.5vmin;
+  top: -3vmin;
+  width: 9vmin;
+  height: 4vmin;
+  border-radius: 50%;
+  background-color: #fff;
+}
+.flower-scene .flower__white-circle::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 45%;
+  transform: translate(-50%, -50%);
+  width: 60%;
+  height: 60%;
+  border-radius: inherit;
+  background-image: repeating-linear-gradient(135deg, rgba(0, 0, 0, 0.03) 0px, rgba(0, 0, 0, 0.03) 1px, transparent 1px, transparent 12px), repeating-linear-gradient(45deg, rgba(0, 0, 0, 0.03) 0px, rgba(0, 0, 0, 0.03) 1px, transparent 1px, transparent 12px), repeating-linear-gradient(67.5deg, rgba(0, 0, 0, 0.03) 0px, rgba(0, 0, 0, 0.03) 1px, transparent 1px, transparent 12px), repeating-linear-gradient(135deg, rgba(0, 0, 0, 0.03) 0px, rgba(0, 0, 0, 0.03) 1px, transparent 1px, transparent 12px), repeating-linear-gradient(45deg, rgba(0, 0, 0, 0.03) 0px, rgba(0, 0, 0, 0.03) 1px, transparent 1px, transparent 12px), repeating-linear-gradient(112.5deg, rgba(0, 0, 0, 0.03) 0px, rgba(0, 0, 0, 0.03) 1px, transparent 1px, transparent 12px), repeating-linear-gradient(112.5deg, rgba(0, 0, 0, 0.03) 0px, rgba(0, 0, 0, 0.03) 1px, transparent 1px, transparent 12px), repeating-linear-gradient(45deg, rgba(0, 0, 0, 0.03) 0px, rgba(0, 0, 0, 0.03) 1px, transparent 1px, transparent 12px), repeating-linear-gradient(22.5deg, rgba(0, 0, 0, 0.03) 0px, rgba(0, 0, 0, 0.03) 1px, transparent 1px, transparent 12px), repeating-linear-gradient(45deg, rgba(0, 0, 0, 0.03) 0px, rgba(0, 0, 0, 0.03) 1px, transparent 1px, transparent 12px), repeating-linear-gradient(22.5deg, rgba(0, 0, 0, 0.03) 0px, rgba(0, 0, 0, 0.03) 1px, transparent 1px, transparent 12px), repeating-linear-gradient(135deg, rgba(0, 0, 0, 0.03) 0px, rgba(0, 0, 0, 0.03) 1px, transparent 1px, transparent 12px), repeating-linear-gradient(157.5deg, rgba(0, 0, 0, 0.03) 0px, rgba(0, 0, 0, 0.03) 1px, transparent 1px, transparent 12px), repeating-linear-gradient(67.5deg, rgba(0, 0, 0, 0.03) 0px, rgba(0, 0, 0, 0.03) 1px, transparent 1px, transparent 12px), repeating-linear-gradient(67.5deg, rgba(0, 0, 0, 0.03) 0px, rgba(0, 0, 0, 0.03) 1px, transparent 1px, transparent 12px), linear-gradient(90deg, rgb(127, 47, 21), rgb(255, 206, 0));
+}
+.flower-scene .flower__line {
+  height: 55vmin;
+  width: 1.5vmin;
+  background-image: linear-gradient(to left, rgba(0, 0, 0, 0.2), transparent, rgba(255, 255, 255, 0.2)), linear-gradient(to top, transparent 10%, #583e08, #944415);
+  box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.5);
+  -webkit-animation: grow-flower-tree 4s backwards;
+          animation: grow-flower-tree 4s backwards;
+}
+.flower-scene .flower__line__leaf {
+  --w: 7vmin;
+  --h: calc(var(--w) + 2vmin);
+  position: absolute;
+  top: 20%;
+  left: 90%;
+  width: var(--w);
+  height: var(--h);
+  border-top-right-radius: var(--h);
+  border-bottom-left-radius: var(--h);
+  background-image: linear-gradient(to top, rgba(20, 117, 122, 0.4), #095721);
+}
+.flower-scene .flower__line__leaf--1 {
+  transform: rotate(70deg) rotateY(30deg);
+}
+.flower-scene .flower__line__leaf--2 {
+  top: 45%;
+  transform: rotate(70deg) rotateY(30deg);
+}
+.flower-scene .flower__line__leaf--3, .flower-scene .flower__line__leaf--4, .flower-scene .flower__line__leaf--6 {
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: var(--h);
+  border-bottom-right-radius: var(--h);
+  left: -460%;
+  top: 12%;
+  transform: rotate(-70deg) rotateY(30deg);
+}
+.flower-scene .flower__line__leaf--4 {
+  top: 40%;
+}
+.flower-scene .flower__line__leaf--5 {
+  top: 0;
+  transform-origin: left;
+  transform: rotate(70deg) rotateY(30deg) scale(0.6);
+}
+.flower-scene .flower__line__leaf--6 {
+  top: -2%;
+  left: -450%;
+  transform-origin: right;
+  transform: rotate(-70deg) rotateY(30deg) scale(0.6);
+}
+.flower-scene .flower__light {
+  position: absolute;
+  bottom: 0vmin;
+  width: 1vmin;
+  height: 1vmin;
+  background-color: rgb(255, 251, 0);
+  border-radius: 50%;
+  filter: blur(0.2vmin);
+  -webkit-animation: light-ans 4s linear infinite backwards;
+          animation: light-ans 4s linear infinite backwards;
+}
+.flower-scene .flower__light:nth-child(odd) {
+  background-color: #f76baf;
+}
+.flower-scene .flower__light--1 {
+  left: -2vmin;
+  -webkit-animation-delay: 1s;
+          animation-delay: 1s;
+}
+.flower-scene .flower__light--2 {
+  left: 3vmin;
+  -webkit-animation-delay: 0.5s;
+          animation-delay: 0.5s;
+}
+.flower-scene .flower__light--3 {
+  left: -6vmin;
+  -webkit-animation-delay: 0.3s;
+          animation-delay: 0.3s;
+}
+.flower-scene .flower__light--4 {
+  left: 6vmin;
+  -webkit-animation-delay: 0.9s;
+          animation-delay: 0.9s;
+}
+.flower-scene .flower__light--5 {
+  left: -1vmin;
+  -webkit-animation-delay: 1.5s;
+          animation-delay: 1.5s;
+}
+.flower-scene .flower__light--6 {
+  left: -4vmin;
+  -webkit-animation-delay: 3s;
+          animation-delay: 3s;
+}
+.flower-scene .flower__light--7 {
+  left: 3vmin;
+  -webkit-animation-delay: 2s;
+          animation-delay: 2s;
+}
+.flower-scene .flower__light--8 {
+  left: -6vmin;
+  -webkit-animation-delay: 3.5s;
+          animation-delay: 3.5s;
+}
+.flower-scene .flower__grass {
+  --c: #04661f;
+  --line-w: 1.5vmin;
+  position: absolute;
+  bottom: 12vmin;
+  left: -7vmin;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  z-index: 20;
+  transform-origin: bottom center;
+  transform: rotate(-48deg) rotateY(40deg);
+}
+.flower-scene .flower__grass--1 {
+  -webkit-animation: moving-grass 2s linear infinite;
+          animation: moving-grass 2s linear infinite;
+}
+.flower-scene .flower__grass--2 {
+  left: 2vmin;
+  bottom: 10vmin;
+  transform: scale(0.5) rotate(75deg) rotateX(10deg) rotateY(-200deg);
+  opacity: 0.8;
+  z-index: 0;
+  -webkit-animation: moving-grass--2 1.5s linear infinite;
+          animation: moving-grass--2 1.5s linear infinite;
+}
+.flower-scene .flower__grass--top {
+  width: 7vmin;
+  height: 10vmin;
+  border-top-right-radius: 100%;
+  border-right: var(--line-w) solid var(--c);
+  transform-origin: bottom center;
+  transform: rotate(-2deg);
+}
+.flower-scene .flower__grass--bottom {
+  margin-top: -2px;
+  width: var(--line-w);
+  height: 25vmin;
+  background-image: linear-gradient(to top, transparent, var(--c));
+}
+.flower-scene .flower__grass__leaf {
+  --size: 10vmin;
+  position: absolute;
+  width: calc(var(--size) * 2.1);
+  height: var(--size);
+  border-top-left-radius: var(--size);
+  border-top-right-radius: var(--size);
+  background-image: linear-gradient(to top, transparent, transparent 30%, var(--c));
+  z-index: 100;
+}
+.flower-scene .flower__grass__leaf--1 {
+  top: -6%;
+  left: 30%;
+  --size: 6vmin;
+  transform: rotate(-20deg);
+  -webkit-animation: growing-grass-ans--1 2s 2.6s backwards;
+          animation: growing-grass-ans--1 2s 2.6s backwards;
+}
+@-webkit-keyframes growing-grass-ans--1 {
+  0% {
+    transform-origin: bottom left;
+    transform: rotate(-20deg) scale(0);
+  }
+}
+@keyframes growing-grass-ans--1 {
+  0% {
+    transform-origin: bottom left;
+    transform: rotate(-20deg) scale(0);
+  }
+}
+.flower-scene .flower__grass__leaf--2 {
+  top: -5%;
+  left: -110%;
+  --size: 6vmin;
+  transform: rotate(10deg);
+  -webkit-animation: growing-grass-ans--2 2s 2.4s linear backwards;
+          animation: growing-grass-ans--2 2s 2.4s linear backwards;
+}
+@-webkit-keyframes growing-grass-ans--2 {
+  0% {
+    transform-origin: bottom right;
+    transform: rotate(10deg) scale(0);
+  }
+}
+@keyframes growing-grass-ans--2 {
+  0% {
+    transform-origin: bottom right;
+    transform: rotate(10deg) scale(0);
+  }
+}
+.flower-scene .flower__grass__leaf--3 {
+  top: 5%;
+  left: 60%;
+  --size: 8vmin;
+  transform: rotate(-18deg) rotateX(-20deg);
+  -webkit-animation: growing-grass-ans--3 2s 2.2s linear backwards;
+          animation: growing-grass-ans--3 2s 2.2s linear backwards;
+}
+@-webkit-keyframes growing-grass-ans--3 {
+  0% {
+    transform-origin: bottom left;
+    transform: rotate(-18deg) rotateX(-20deg) scale(0);
+  }
+}
+@keyframes growing-grass-ans--3 {
+  0% {
+    transform-origin: bottom left;
+    transform: rotate(-18deg) rotateX(-20deg) scale(0);
+  }
+}
+.flower-scene .flower__grass__leaf--4 {
+  top: 6%;
+  left: -135%;
+  --size: 8vmin;
+  transform: rotate(2deg);
+  -webkit-animation: growing-grass-ans--4 2s 2s linear backwards;
+          animation: growing-grass-ans--4 2s 2s linear backwards;
+}
+@-webkit-keyframes growing-grass-ans--4 {
+  0% {
+    transform-origin: bottom right;
+    transform: rotate(2deg) scale(0);
+  }
+}
+@keyframes growing-grass-ans--4 {
+  0% {
+    transform-origin: bottom right;
+    transform: rotate(2deg) scale(0);
+  }
+}
+.flower-scene .flower__grass__leaf--5 {
+  top: 20%;
+  left: 60%;
+  --size: 10vmin;
+  transform: rotate(-24deg) rotateX(-20deg);
+  -webkit-animation: growing-grass-ans--5 2s 1.8s linear backwards;
+          animation: growing-grass-ans--5 2s 1.8s linear backwards;
+}
+@-webkit-keyframes growing-grass-ans--5 {
+  0% {
+    transform-origin: bottom left;
+    transform: rotate(-24deg) rotateX(-20deg) scale(0);
+  }
+}
+@keyframes growing-grass-ans--5 {
+  0% {
+    transform-origin: bottom left;
+    transform: rotate(-24deg) rotateX(-20deg) scale(0);
+  }
+}
+.flower-scene .flower__grass__leaf--6 {
+  top: 22%;
+  left: -180%;
+  --size: 10vmin;
+  transform: rotate(10deg);
+  -webkit-animation: growing-grass-ans--6 2s 1.6s linear backwards;
+          animation: growing-grass-ans--6 2s 1.6s linear backwards;
+}
+@-webkit-keyframes growing-grass-ans--6 {
+  0% {
+    transform-origin: bottom right;
+    transform: rotate(10deg) scale(0);
+  }
+}
+@keyframes growing-grass-ans--6 {
+  0% {
+    transform-origin: bottom right;
+    transform: rotate(10deg) scale(0);
+  }
+}
+.flower-scene .flower__grass__leaf--7 {
+  top: 39%;
+  left: 70%;
+  --size: 10vmin;
+  transform: rotate(-10deg);
+  -webkit-animation: growing-grass-ans--7 2s 1.4s linear backwards;
+          animation: growing-grass-ans--7 2s 1.4s linear backwards;
+}
+@-webkit-keyframes growing-grass-ans--7 {
+  0% {
+    transform-origin: bottom left;
+    transform: rotate(-10deg) scale(0);
+  }
+}
+@keyframes growing-grass-ans--7 {
+  0% {
+    transform-origin: bottom left;
+    transform: rotate(-10deg) scale(0);
+  }
+}
+.flower-scene .flower__grass__leaf--8 {
+  top: 40%;
+  left: -215%;
+  --size: 11vmin;
+  transform: rotate(10deg);
+  -webkit-animation: growing-grass-ans--8 2s 1.2s linear backwards;
+          animation: growing-grass-ans--8 2s 1.2s linear backwards;
+}
+@-webkit-keyframes growing-grass-ans--8 {
+  0% {
+    transform-origin: bottom right;
+    transform: rotate(10deg) scale(0);
+  }
+}
+@keyframes growing-grass-ans--8 {
+  0% {
+    transform-origin: bottom right;
+    transform: rotate(10deg) scale(0);
+  }
+}
+.flower-scene .flower__grass__overlay {
+  position: absolute;
+  top: -10%;
+  right: 0%;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  filter: blur(1.5vmin);
+  z-index: 100;
+}
+.flower-scene .flower__g-long {
+  --w: 2vmin;
+  --h: 6vmin;
+  --c: #0e5b3c;
+  position: absolute;
+  bottom: 10vmin;
+  left: -3vmin;
+  transform-origin: bottom center;
+  transform: rotate(-30deg) rotateY(-20deg);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  -webkit-animation: flower-g-long-ans 3s linear infinite;
+          animation: flower-g-long-ans 3s linear infinite;
+}
+@-webkit-keyframes flower-g-long-ans {
+  0%, 100% {
+    transform: rotate(-30deg) rotateY(-20deg);
+  }
+  50% {
+    transform: rotate(-32deg) rotateY(-20deg);
+  }
+}
+@keyframes flower-g-long-ans {
+  0%, 100% {
+    transform: rotate(-30deg) rotateY(-20deg);
+  }
+  50% {
+    transform: rotate(-32deg) rotateY(-20deg);
+  }
+}
+.flower-scene .flower__g-long__top {
+  top: calc(var(--h) * -1);
+  width: calc(var(--w) + 1vmin);
+  height: var(--h);
+  border-top-right-radius: 100%;
+  border-right: 0.7vmin solid var(--c);
+  transform: translate(-0.7vmin, 1vmin);
+}
+.flower-scene .flower__g-long__bottom {
+  width: var(--w);
+  height: 50vmin;
+  transform-origin: bottom center;
+  background-image: linear-gradient(to top, transparent 30%, var(--c));
+  box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.5);
+  -webkit-clip-path: polygon(35% 0, 65% 1%, 100% 100%, 0% 100%);
+          clip-path: polygon(35% 0, 65% 1%, 100% 100%, 0% 100%);
+}
+.flower-scene .flower__g-right {
+  position: absolute;
+  bottom: 6vmin;
+  left: -2vmin;
+  transform-origin: bottom left;
+  transform: rotate(20deg);
+}
+.flower-scene .flower__g-right .leaf {
+  width: 30vmin;
+  height: 50vmin;
+  border-top-left-radius: 100%;
+  border-left: 2vmin solid #217005;
+  background-image: linear-gradient(to bottom, transparent, var(--dark-color) 60%);
+  -webkit-mask-image: linear-gradient(to top, transparent 30%, #24803e 60%);
+}
+.flower-scene .flower__g-right--1 {
+  -webkit-animation: flower-g-right-ans 2.5s linear infinite;
+          animation: flower-g-right-ans 2.5s linear infinite;
+}
+.flower-scene .flower__g-right--2 {
+  left: 5vmin;
+  transform: rotateY(-180deg);
+  -webkit-animation: flower-g-right-ans--2 3s linear infinite;
+          animation: flower-g-right-ans--2 3s linear infinite;
+}
+.flower-scene .flower__g-right--2 .leaf {
+  height: 75vmin;
+  filter: blur(0.3vmin);
+  opacity: 0.8;
+}
+@-webkit-keyframes flower-g-right-ans {
+  0%, 100% {
+    transform: rotate(20deg);
+  }
+  50% {
+    transform: rotate(24deg) rotateX(-20deg);
+  }
+}
+@keyframes flower-g-right-ans {
+  0%, 100% {
+    transform: rotate(20deg);
+  }
+  50% {
+    transform: rotate(24deg) rotateX(-20deg);
+  }
+}
+@-webkit-keyframes flower-g-right-ans--2 {
+  0%, 100% {
+    transform: rotateY(-180deg) rotate(0deg) rotateX(-20deg);
+  }
+  50% {
+    transform: rotateY(-180deg) rotate(6deg) rotateX(-20deg);
+  }
+}
+@keyframes flower-g-right-ans--2 {
+  0%, 100% {
+    transform: rotateY(-180deg) rotate(0deg) rotateX(-20deg);
+  }
+  50% {
+    transform: rotateY(-180deg) rotate(6deg) rotateX(-20deg);
+  }
+}
+.flower-scene .flower__g-front {
+  position: absolute;
+  bottom: 6vmin;
+  left: 2.5vmin;
+  z-index: 100;
+  transform-origin: bottom center;
+  transform: rotate(-28deg) rotateY(30deg) scale(1.04);
+  -webkit-animation: flower__g-front-ans 2s linear infinite;
+          animation: flower__g-front-ans 2s linear infinite;
+}
+@-webkit-keyframes flower__g-front-ans {
+  0%, 100% {
+    transform: rotate(-28deg) rotateY(30deg) scale(1.04);
+  }
+  50% {
+    transform: rotate(-35deg) rotateY(40deg) scale(1.04);
+  }
+}
+@keyframes flower__g-front-ans {
+  0%, 100% {
+    transform: rotate(-28deg) rotateY(30deg) scale(1.04);
+  }
+  50% {
+    transform: rotate(-35deg) rotateY(40deg) scale(1.04);
+  }
+}
+.flower-scene .flower__g-front__line {
+  width: 0.3vmin;
+  height: 20vmin;
+  background-image: linear-gradient(to top, transparent, #042e0b, transparent 100%);
+  position: relative;
+}
+.flower-scene .flower__g-front__leaf-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: bottom left;
+  transform: rotate(10deg);
+}
+.flower-scene .flower__g-front__leaf-wrapper:nth-child(even) {
+  left: 0vmin;
+  transform: rotateY(-180deg) rotate(5deg);
+  -webkit-animation: flower__g-front__leaf-left-ans 1s ease-in backwards;
+          animation: flower__g-front__leaf-left-ans 1s ease-in backwards;
+}
+.flower-scene .flower__g-front__leaf-wrapper:nth-child(odd) {
+  -webkit-animation: flower__g-front__leaf-ans 1s ease-in backwards;
+          animation: flower__g-front__leaf-ans 1s ease-in backwards;
+}
+.flower-scene .flower__g-front__leaf-wrapper--1 {
+  top: -8vmin;
+  transform: scale(0.7);
+  -webkit-animation: flower__g-front__leaf-ans 1s 5.5s ease-in backwards !important;
+          animation: flower__g-front__leaf-ans 1s 5.5s ease-in backwards !important;
+}
+.flower-scene .flower__g-front__leaf-wrapper--2 {
+  top: -8vmin;
+  transform: rotateY(-180deg) scale(0.7) !important;
+  -webkit-animation: flower__g-front__leaf-left-ans-2 1s 4.6s ease-in backwards !important;
+          animation: flower__g-front__leaf-left-ans-2 1s 4.6s ease-in backwards !important;
+}
+.flower-scene .flower__g-front__leaf-wrapper--3 {
+  top: -3vmin;
+  -webkit-animation: flower__g-front__leaf-ans 1s 4.6s ease-in backwards;
+          animation: flower__g-front__leaf-ans 1s 4.6s ease-in backwards;
+}
+.flower-scene .flower__g-front__leaf-wrapper--4 {
+  top: -3vmin;
+  transform: rotateY(-180deg) scale(0.9) !important;
+  -webkit-animation: flower__g-front__leaf-left-ans-2 1s 4.6s ease-in backwards !important;
+          animation: flower__g-front__leaf-left-ans-2 1s 4.6s ease-in backwards !important;
+}
+@-webkit-keyframes flower__g-front__leaf-left-ans-2 {
+  0% {
+    transform: rotateY(-180deg) scale(0);
+  }
+}
+@keyframes flower__g-front__leaf-left-ans-2 {
+  0% {
+    transform: rotateY(-180deg) scale(0);
+  }
+}
+.flower-scene .flower__g-front__leaf-wrapper--5, .flower-scene .flower__g-front__leaf-wrapper--6 {
+  top: 2vmin;
+}
+.flower-scene .flower__g-front__leaf-wrapper--7, .flower-scene .flower__g-front__leaf-wrapper--8 {
+  top: 6.5vmin;
+}
+.flower-scene .flower__g-front__leaf-wrapper--2 {
+  -webkit-animation-delay: 5.2s !important;
+          animation-delay: 5.2s !important;
+}
+.flower-scene .flower__g-front__leaf-wrapper--3 {
+  -webkit-animation-delay: 4.9s !important;
+          animation-delay: 4.9s !important;
+}
+.flower-scene .flower__g-front__leaf-wrapper--5 {
+  -webkit-animation-delay: 4.3s !important;
+          animation-delay: 4.3s !important;
+}
+.flower-scene .flower__g-front__leaf-wrapper--6 {
+  -webkit-animation-delay: 4.1s !important;
+          animation-delay: 4.1s !important;
+}
+.flower-scene .flower__g-front__leaf-wrapper--7 {
+  -webkit-animation-delay: 3.8s !important;
+          animation-delay: 3.8s !important;
+}
+.flower-scene .flower__g-front__leaf-wrapper--8 {
+  -webkit-animation-delay: 3.5s !important;
+          animation-delay: 3.5s !important;
+}
+@-webkit-keyframes flower__g-front__leaf-ans {
+  0% {
+    transform: rotate(10deg) scale(0);
+  }
+}
+@keyframes flower__g-front__leaf-ans {
+  0% {
+    transform: rotate(10deg) scale(0);
+  }
+}
+@-webkit-keyframes flower__g-front__leaf-left-ans {
+  0% {
+    transform: rotateY(-180deg) rotate(5deg) scale(0);
+  }
+}
+@keyframes flower__g-front__leaf-left-ans {
+  0% {
+    transform: rotateY(-180deg) rotate(5deg) scale(0);
+  }
+}
+.flower-scene .flower__g-front__leaf {
+  width: 10vmin;
+  height: 10vmin;
+  border-radius: 100% 0% 0% 100%/100% 100% 0% 0%;
+  box-shadow: inset 0 2px 1vmin hsla(184deg, 97%, 58%, 0.2);
+  background-image: linear-gradient(to bottom left, transparent, var(--dark-color)), linear-gradient(to bottom right, #064f0a 50%, transparent 50%, transparent);
+  -webkit-mask-image: linear-gradient(to bottom right, #097149 50%, transparent 50%, transparent);
+  mask-image: linear-gradient(to bottom right, #0e8723 50%, transparent 50%, transparent);
+}
+.flower-scene .flower__g-fr {
+  position: absolute;
+  bottom: -4vmin;
+  left: vmin;
+  transform-origin: bottom left;
+  z-index: 10;
+  -webkit-animation: flower__g-fr-ans 2s linear infinite;
+          animation: flower__g-fr-ans 2s linear infinite;
+}
+@-webkit-keyframes flower__g-fr-ans {
+  0%, 100% {
+    transform: rotate(2deg);
+  }
+  50% {
+    transform: rotate(4deg);
+  }
+}
+@keyframes flower__g-fr-ans {
+  0%, 100% {
+    transform: rotate(2deg);
+  }
+  50% {
+    transform: rotate(4deg);
+  }
+}
+.flower-scene .flower__g-fr .leaf {
+  width: 30vmin;
+  height: 50vmin;
+  border-top-left-radius: 100%;
+  border-left: 2vmin solid #147b47;
+  -webkit-mask-image: linear-gradient(to top, transparent 25%, #0e4e2a 50%);
+  position: relative;
+  z-index: 1;
+}
+.flower-scene .flower__g-fr__leaf {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 10vmin;
+  height: 10vmin;
+  border-radius: 100% 0% 0% 100%/100% 100% 0% 0%;
+  box-shadow: inset 0 2px 1vmin hsla(184deg, 97%, 58%, 0.2);
+  background-image: linear-gradient(to bottom left, transparent, var(--dark-color) 98%), linear-gradient(to bottom right, #106e18 45%, transparent 50%, transparent);
+  -webkit-mask-image: linear-gradient(135deg, #175f22 40%, transparent 50%, transparent);
+}
+.flower-scene .flower__g-fr__leaf--1 {
+  left: 20vmin;
+  transform: rotate(45deg);
+  -webkit-animation: flower__g-fr-leaft-ans-1 0.5s 5.2s linear backwards;
+          animation: flower__g-fr-leaft-ans-1 0.5s 5.2s linear backwards;
+}
+@-webkit-keyframes flower__g-fr-leaft-ans-1 {
+  0% {
+    transform-origin: left;
+    transform: rotate(45deg) scale(0);
+  }
+}
+@keyframes flower__g-fr-leaft-ans-1 {
+  0% {
+    transform-origin: left;
+    transform: rotate(45deg) scale(0);
+  }
+}
+.flower-scene .flower__g-fr__leaf--2 {
+  left: 12vmin;
+  top: -7vmin;
+  transform: rotate(25deg) rotateY(-180deg);
+  -webkit-animation: flower__g-fr-leaft-ans-6 0.5s 5s linear backwards;
+          animation: flower__g-fr-leaft-ans-6 0.5s 5s linear backwards;
+}
+.flower-scene .flower__g-fr__leaf--3 {
+  left: 15vmin;
+  top: 6vmin;
+  transform: rotate(55deg);
+  -webkit-animation: flower__g-fr-leaft-ans-5 0.5s 4.8s linear backwards;
+          animation: flower__g-fr-leaft-ans-5 0.5s 4.8s linear backwards;
+}
+.flower-scene .flower__g-fr__leaf--4 {
+  left: 6vmin;
+  top: -2vmin;
+  transform: rotate(25deg) rotateY(-180deg);
+  -webkit-animation: flower__g-fr-leaft-ans-6 0.5s 4.6s linear backwards;
+          animation: flower__g-fr-leaft-ans-6 0.5s 4.6s linear backwards;
+}
+.flower-scene .flower__g-fr__leaf--5 {
+  left: 10vmin;
+  top: 14vmin;
+  transform: rotate(55deg);
+  -webkit-animation: flower__g-fr-leaft-ans-5 0.5s 4.4s linear backwards;
+          animation: flower__g-fr-leaft-ans-5 0.5s 4.4s linear backwards;
+}
+@-webkit-keyframes flower__g-fr-leaft-ans-5 {
+  0% {
+    transform-origin: left;
+    transform: rotate(55deg) scale(0);
+  }
+}
+@keyframes flower__g-fr-leaft-ans-5 {
+  0% {
+    transform-origin: left;
+    transform: rotate(55deg) scale(0);
+  }
+}
+.flower-scene .flower__g-fr__leaf--6 {
+  left: 0vmin;
+  top: 6vmin;
+  transform: rotate(25deg) rotateY(-180deg);
+  -webkit-animation: flower__g-fr-leaft-ans-6 0.5s 4.2s linear backwards;
+          animation: flower__g-fr-leaft-ans-6 0.5s 4.2s linear backwards;
+}
+@-webkit-keyframes flower__g-fr-leaft-ans-6 {
+  0% {
+    transform-origin: right;
+    transform: rotate(25deg) rotateY(-180deg) scale(0);
+  }
+}
+@keyframes flower__g-fr-leaft-ans-6 {
+  0% {
+    transform-origin: right;
+    transform: rotate(25deg) rotateY(-180deg) scale(0);
+  }
+}
+.flower-scene .flower__g-fr__leaf--7 {
+  left: 5vmin;
+  top: 22vmin;
+  transform: rotate(45deg);
+  -webkit-animation: flower__g-fr-leaft-ans-7 0.5s 4s linear backwards;
+          animation: flower__g-fr-leaft-ans-7 0.5s 4s linear backwards;
+}
+@-webkit-keyframes flower__g-fr-leaft-ans-7 {
+  0% {
+    transform-origin: left;
+    transform: rotate(45deg) scale(0);
+  }
+}
+@keyframes flower__g-fr-leaft-ans-7 {
+  0% {
+    transform-origin: left;
+    transform: rotate(45deg) scale(0);
+  }
+}
+.flower-scene .flower__g-fr__leaf--8 {
+  left: -4vmin;
+  top: 15vmin;
+  transform: rotate(15deg) rotateY(-180deg);
+  -webkit-animation: flower__g-fr-leaft-ans-8 0.5s 3.8s linear backwards;
+          animation: flower__g-fr-leaft-ans-8 0.5s 3.8s linear backwards;
+}
+@-webkit-keyframes flower__g-fr-leaft-ans-8 {
+  0% {
+    transform-origin: right;
+    transform: rotate(15deg) rotateY(-180deg) scale(0);
+  }
+}
+@keyframes flower__g-fr-leaft-ans-8 {
+  0% {
+    transform-origin: right;
+    transform: rotate(15deg) rotateY(-180deg) scale(0);
+  }
+}
+
+.flower-scene .long-g {
+  position: absolute;
+  bottom: 25vmin;
+  left: -42vmin;
+  transform-origin: bottom left;
+}
+.flower-scene .long-g--1 {
+  bottom: 0vmin;
+  transform: scale(0.8) rotate(-5deg);
+}
+.flower-scene .long-g--1 .leaf {
+  -webkit-mask-image: linear-gradient(to top, transparent 40%, #196d2a 80%) !important;
+}
+.flower-scene .long-g--1 .leaf--1 {
+  --w: 5vmin;
+  --h: 60vmin;
+  left: -2vmin;
+  transform: rotate(3deg) rotateY(-180deg);
+}
+.flower-scene .long-g--2, .flower-scene .long-g--3 {
+  bottom: -3vmin;
+  left: -35vmin;
+  transform-origin: center;
+  transform: scale(0.6) rotateX(60deg);
+}
+.flower-scene .long-g--2 .leaf, .flower-scene .long-g--3 .leaf {
+  -webkit-mask-image: linear-gradient(to top, transparent 50%, #176220 80%) !important;
+}
+.flower-scene .long-g--2 .leaf--1, .flower-scene .long-g--3 .leaf--1 {
+  left: -1vmin;
+  transform: rotateY(-180deg);
+}
+.flower-scene .long-g--3 {
+  left: -17vmin;
+  bottom: 0vmin;
+}
+.flower-scene .long-g--3 .leaf {
+  -webkit-mask-image: linear-gradient(to top, transparent 40%, #176220 80%) !important;
+}
+.flower-scene .long-g--4 {
+  left: 25vmin;
+  bottom: -3vmin;
+  transform-origin: center;
+  transform: scale(0.6) rotateX(60deg);
+}
+.flower-scene .long-g--4 .leaf {
+  -webkit-mask-image: linear-gradient(to top, transparent 50%, #176220 80%) !important;
+}
+.flower-scene .long-g--5 {
+  left: 42vmin;
+  bottom: 0vmin;
+  transform: scale(0.8) rotate(2deg);
+}
+.flower-scene .long-g--6 {
+  left: 0vmin;
+  bottom: -20vmin;
+  z-index: 100;
+  filter: blur(0.3vmin);
+  transform: scale(0.8) rotate(2deg);
+}
+.flower-scene .long-g--7 {
+  left: 35vmin;
+  bottom: 20vmin;
+  z-index: -1;
+  filter: blur(0.3vmin);
+  transform: scale(0.6) rotate(2deg);
+  opacity: 0.7;
+}
+.flower-scene .long-g .leaf {
+  --w: 15vmin;
+  --h: 40vmin;
+  --c: #1aaa15;
+  position: absolute;
+  bottom: 0;
+  width: var(--w);
+  height: var(--h);
+  border-top-left-radius: 100%;
+  border-left: 2vmin solid var(--c);
+  -webkit-mask-image: linear-gradient(to top, transparent 20%, var(--dark-color));
+  transform-origin: bottom center;
+}
+.flower-scene .long-g .leaf--0 {
+  left: 2vmin;
+  -webkit-animation: leaf-ans-1 4s linear infinite;
+          animation: leaf-ans-1 4s linear infinite;
+}
+.flower-scene .long-g .leaf--1 {
+  --w: 5vmin;
+  --h: 60vmin;
+  -webkit-animation: leaf-ans-1 4s linear infinite;
+          animation: leaf-ans-1 4s linear infinite;
+}
+.flower-scene .long-g .leaf--2 {
+  --w: 10vmin;
+  --h: 40vmin;
+  left: -0.5vmin;
+  bottom: 5vmin;
+  transform-origin: bottom left;
+  transform: rotateY(-180deg);
+  -webkit-animation: leaf-ans-2 3s linear infinite;
+          animation: leaf-ans-2 3s linear infinite;
+}
+.flower-scene .long-g .leaf--3 {
+  --w: 5vmin;
+  --h: 30vmin;
+  left: -1vmin;
+  bottom: 3.2vmin;
+  transform-origin: bottom left;
+  transform: rotate(-10deg) rotateY(-180deg);
+  -webkit-animation: leaf-ans-3 3s linear infinite;
+          animation: leaf-ans-3 3s linear infinite;
+}
+
+@-webkit-keyframes leaf-ans-1 {
+  0%, 100% {
+    transform: rotate(-5deg) scale(1);
+  }
+  50% {
+    transform: rotate(5deg) scale(1.1);
+  }
+}
+
+@keyframes leaf-ans-1 {
+  0%, 100% {
+    transform: rotate(-5deg) scale(1);
+  }
+  50% {
+    transform: rotate(5deg) scale(1.1);
+  }
+}
+@-webkit-keyframes leaf-ans-2 {
+  0%, 100% {
+    transform: rotateY(-180deg) rotate(5deg);
+  }
+  50% {
+    transform: rotateY(-180deg) rotate(0deg) scale(1.1);
+  }
+}
+@keyframes leaf-ans-2 {
+  0%, 100% {
+    transform: rotateY(-180deg) rotate(5deg);
+  }
+  50% {
+    transform: rotateY(-180deg) rotate(0deg) scale(1.1);
+  }
+}
+@-webkit-keyframes leaf-ans-3 {
+  0%, 100% {
+    transform: rotate(-10deg) rotateY(-180deg);
+  }
+  50% {
+    transform: rotate(-20deg) rotateY(-180deg);
+  }
+}
+@keyframes leaf-ans-3 {
+  0%, 100% {
+    transform: rotate(-10deg) rotateY(-180deg);
+  }
+  50% {
+    transform: rotate(-20deg) rotateY(-180deg);
+  }
+}
+.flower-scene .grow-ans {
+  -webkit-animation: grow-ans 2s var(--d) backwards;
+          animation: grow-ans 2s var(--d) backwards;
+}
+
+@-webkit-keyframes grow-ans {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+}
+
+@keyframes grow-ans {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+}
+@-webkit-keyframes light-ans {
+  0% {
+    opacity: 0;
+    transform: translateY(0vmin);
+  }
+  25% {
+    opacity: 1;
+    transform: translateY(-5vmin) translateX(-2vmin);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-15vmin) translateX(2vmin);
+    filter: blur(0.2vmin);
+  }
+  75% {
+    transform: translateY(-20vmin) translateX(-2vmin);
+    filter: blur(0.2vmin);
+  }
+  100% {
+    transform: translateY(-30vmin);
+    opacity: 0;
+    filter: blur(1vmin);
+  }
+}
+@keyframes light-ans {
+  0% {
+    opacity: 0;
+    transform: translateY(0vmin);
+  }
+  25% {
+    opacity: 1;
+    transform: translateY(-5vmin) translateX(-2vmin);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-15vmin) translateX(2vmin);
+    filter: blur(0.2vmin);
+  }
+  75% {
+    transform: translateY(-20vmin) translateX(-2vmin);
+    filter: blur(0.2vmin);
+  }
+  100% {
+    transform: translateY(-30vmin);
+    opacity: 0;
+    filter: blur(1vmin);
+  }
+}
+@-webkit-keyframes moving-flower-1 {
+  0%, 100% {
+    transform: rotate(2deg);
+  }
+  50% {
+    transform: rotate(-2deg);
+  }
+}
+@keyframes moving-flower-1 {
+  0%, 100% {
+    transform: rotate(2deg);
+  }
+  50% {
+    transform: rotate(-2deg);
+  }
+}
+@-webkit-keyframes moving-flower-2 {
+  0%, 100% {
+    transform: rotate(18deg);
+  }
+  50% {
+    transform: rotate(14deg);
+  }
+}
+@keyframes moving-flower-2 {
+  0%, 100% {
+    transform: rotate(18deg);
+  }
+  50% {
+    transform: rotate(14deg);
+  }
+}
+@-webkit-keyframes moving-flower-3 {
+  0%, 100% {
+    transform: rotate(-18deg);
+  }
+  50% {
+    transform: rotate(-20deg) rotateY(-10deg);
+  }
+}
+@keyframes moving-flower-3 {
+  0%, 100% {
+    transform: rotate(-18deg);
+  }
+  50% {
+    transform: rotate(-20deg) rotateY(-10deg);
+  }
+}
+@-webkit-keyframes blooming-leaf-right {
+  0% {
+    transform-origin: left;
+    transform: rotate(70deg) rotateY(30deg) scale(0);
+  }
+}
+@keyframes blooming-leaf-right {
+  0% {
+    transform-origin: left;
+    transform: rotate(70deg) rotateY(30deg) scale(0);
+  }
+}
+@-webkit-keyframes blooming-leaf-left {
+  0% {
+    transform-origin: right;
+    transform: rotate(-70deg) rotateY(30deg) scale(0);
+  }
+}
+@keyframes blooming-leaf-left {
+  0% {
+    transform-origin: right;
+    transform: rotate(-70deg) rotateY(30deg) scale(0);
+  }
+}
+@-webkit-keyframes grow-flower-tree {
+  0% {
+    height: 0;
+    border-radius: 1vmin;
+  }
+}
+@keyframes grow-flower-tree {
+  0% {
+    height: 0;
+    border-radius: 1vmin;
+  }
+}
+@-webkit-keyframes blooming-flower {
+  0% {
+    transform: scale(0);
+  }
+}
+@keyframes blooming-flower {
+  0% {
+    transform: scale(0);
+  }
+}
+@-webkit-keyframes moving-grass {
+  0%, 100% {
+    transform: rotate(-48deg) rotateY(40deg);
+  }
+  50% {
+    transform: rotate(-50deg) rotateY(40deg);
+  }
+}
+@keyframes moving-grass {
+  0%, 100% {
+    transform: rotate(-48deg) rotateY(40deg);
+  }
+  50% {
+    transform: rotate(-50deg) rotateY(40deg);
+  }
+}
+@-webkit-keyframes moving-grass--2 {
+  0%, 100% {
+    transform: scale(0.5) rotate(75deg) rotateX(10deg) rotateY(-200deg);
+  }
+  50% {
+    transform: scale(0.5) rotate(79deg) rotateX(10deg) rotateY(-200deg);
+  }
+}
+@keyframes moving-grass--2 {
+  0%, 100% {
+    transform: scale(0.5) rotate(75deg) rotateX(10deg) rotateY(-200deg);
+  }
+  50% {
+    transform: scale(0.5) rotate(79deg) rotateX(10deg) rotateY(-200deg);
+  }
+}
+.flower-scene .growing-grass {
+  -webkit-animation: growing-grass-ans 1s 2s backwards;
+          animation: growing-grass-ans 1s 2s backwards;
+}
+
+@-webkit-keyframes growing-grass-ans {
+  0% {
+    transform: scale(0);
+  }
+}
+
+@keyframes growing-grass-ans {
+  0% {
+    transform: scale(0);
+  }
+}
+.flower-scene .container * {
+  -webkit-animation-play-state: paused !important;
+          animation-play-state: paused !important;
+}
+
+
+  /* ---------- slide 3 : postcard book ---------- */
+  .postcard-book{
+    width:min(92vw, 340px);
+  }
+  .postcard-viewport{
+    position:relative;
+    overflow:hidden;
+    border-radius:18px;
+    touch-action:pan-y;
+  }
+  .postcard-track{
+    display:flex;
+    width:300%;
+    transition:transform .5s cubic-bezier(.4,0,.2,1);
+  }
+  .postcard-page{
+    flex:0 0 33.3334%;
+    width:33.3334%;
+    box-sizing:border-box;
+  }
+  .postcard{
+    position:relative;
+    min-height:420px;
+    background:var(--paper);
+    border-radius:18px;
+    padding:74px 22px 26px;
+    box-shadow:0 25px 50px -18px rgba(0,0,0,0.65);
+    color:var(--ink);
+    text-align:left;
+    box-sizing:border-box;
+  }
+  .postcard-stamp{
+    position:absolute;
+    top:16px; right:16px;
+    width:46px; height:56px;
+    border:2px dashed rgba(74,58,44,0.35);
+    border-radius:4px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:22px;
+    background:rgba(255,255,255,0.35);
+  }
+  .postcard-postmark{
+    position:absolute;
+    top:22px; right:72px;
+    width:52px; height:52px;
+    border:2px solid rgba(74,58,44,0.18);
+    border-radius:50%;
+  }
+  .postcard-postmark::after{
+    content:'';
+    position:absolute;
+    inset:6px;
+    border:1px dashed rgba(74,58,44,0.18);
+    border-radius:50%;
+  }
+  .postcard-to{
+    font-family:'Space Mono', monospace;
+    font-size:0.68rem;
+    color:rgba(74,58,44,0.55);
+    letter-spacing:0.04em;
+    margin:0 0 14px;
+  }
+  .postcard-arrow{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    width:34px;
+    height:34px;
+    border-radius:50%;
+    border:1px solid var(--line);
+    background:rgba(20,15,28,0.55);
+    color:var(--text);
+    font-size:18px;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    backdrop-filter:blur(8px);
+    z-index:3;
+  }
+  .postcard-arrow.prev{ left:6px; }
+  .postcard-arrow.next{ right:6px; }
+  .postcard-arrow:disabled{ opacity:0.25; cursor:default; }
+  .postcard-dots{
+    display:flex;
+    justify-content:center;
+    gap:8px;
+    margin-top:14px;
+  }
+  .pc-dot{
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.2);
+    transition:background .3s ease, width .3s ease;
+  }
+  .pc-dot.active{ background:var(--gold); width:20px; border-radius:4px; }
+  .handwritten{
+    font-family:'Caveat', cursive;
+    font-size:clamp(1.3rem, 5.6vw, 1.65rem);
+    line-height:1.55;
+    margin:0;
+    text-align:left;
+  }
+  .handwritten .name{ color:#a83a52; font-weight:700; }
+  .type-cursor{
+    display:inline-block;
+    width:2px;
+    height:1em;
+    vertical-align:-0.15em;
+    margin-left:2px;
+    background:var(--ink);
+    animation:cursor-blink 0.9s step-end infinite;
+  }
+  @keyframes cursor-blink{
+    0%,49%{ opacity:1; }
+    50%,100%{ opacity:0; }
+  }
+
+  .photo-arches{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    align-items:center;
+    gap:12px;
+    margin-top:40px;
+  }
+  .arch{
+    position:relative;
+    width:82px;
+    aspect-ratio:1/1;
+    border-radius:50%;
+    overflow:hidden;
+    box-shadow:0 8px 16px -8px rgba(0,0,0,0.4);
+  }
+  .arch img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+  .arch:nth-child(even){ transform:translateY(-6px); }
+  .photo-arches .arch{
+    opacity:0;
+    transform:scale(0.35);
+    transition:opacity .5s ease, transform .5s cubic-bezier(.34,1.56,.64,1);
+  }
+  .photo-arches.reveal .arch{ opacity:1; transform:scale(1); }
+  .photo-arches.reveal .arch:nth-child(even){ transform:scale(1) translateY(-6px); }
+  .photo-arches.reveal .arch:nth-child(1){ transition-delay:0s; }
+  .photo-arches.reveal .arch:nth-child(2){ transition-delay:.15s; }
+  .photo-arches.reveal .arch:nth-child(3){ transition-delay:.3s; }
+  .photo-arches.reveal .arch:nth-child(4){ transition-delay:.45s; }
+  .photo-arches.reveal .arch:nth-child(5){ transition-delay:.6s; }
+
+  /* ---------- slide 2c : streak flame + florin reveal ---------- */
+  .flame-stage{
+    position:relative;
+    width:min(62vw, 230px);
+    aspect-ratio:9/10;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    opacity:1;
+    transition:opacity .5s ease;
+  }
+  .flame-stage.hide{ opacity:0; }
+  .flame-stage video{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    opacity:0;
+    pointer-events:none;
+    mix-blend-mode:screen;
+  }
+  .flame-stage canvas{
+    position:relative;
+    width:100%;
+    height:100%;
+    display:block;
+  }
+  #slide-2c h2{ font-size:clamp(1.3rem, 5vw, 1.7rem); margin:2px 0 0; }
+  #slide-2c .sub{ color:var(--muted); font-size:0.88rem; }
+
+  /* ---------- slide 2d : calendar + timeline journey ---------- */
+  .mini-calendar{
+    width:min(78vw, 250px);
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:16px;
+  }
+  .cal-header{
+    text-align:center;
+    font-family:'Fredoka', sans-serif;
+    color:var(--rose-soft);
+    font-size:1.05rem;
+    margin-bottom:10px;
+  }
+  .cal-grid{
+    display:grid;
+    grid-template-columns:repeat(7, 1fr);
+    gap:5px;
+  }
+  .cal-dow{
+    font-size:0.62rem;
+    color:var(--muted);
+    text-align:center;
+    padding-bottom:4px;
+  }
+  .cal-day{
+    aspect-ratio:1/1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:0.72rem;
+    color:var(--text);
+    border-radius:50%;
+  }
+  .cal-day.empty{ visibility:hidden; }
+  .cal-day.highlight{
+    background:linear-gradient(135deg, var(--gold), var(--rose));
+    color:#241a12;
+    font-weight:700;
+    box-shadow:0 0 12px rgba(139,92,246,0.5);
+    animation:calendar-pulse 1.8s ease-in-out infinite;
+  }
+  @keyframes calendar-pulse{
+    0%,100%{ transform:scale(1); }
+    50%{ transform:scale(1.14); }
+  }
+
+  .timeline-journey{
+    width:min(92vw, 340px);
+    margin-top:6px;
+    padding:0 6px;
+  }
+  .timeline-track{
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    row-gap:16px;
+    padding:14px 2px;
+  }
+  .timeline-track::before{
+    content:'';
+    position:absolute;
+    left:2px; right:2px; top:50%;
+    height:1px;
+    background:repeating-linear-gradient(to right, var(--line) 0 4px, transparent 4px 9px);
+    z-index:0;
+  }
+  .t-dot{
+    position:relative;
+    z-index:1;
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:var(--muted);
+    opacity:0;
+    transform:scale(0);
+    transition:opacity .35s ease, transform .35s cubic-bezier(.34,1.56,.64,1);
+  }
+  .timeline-track.reveal .t-dot{ opacity:1; transform:scale(1); }
+  .t-dot .t-label{
+    position:absolute;
+    top:13px;
+    left:50%;
+    transform:translateX(-50%);
+    font-size:0.58rem;
+    color:var(--muted);
+    white-space:nowrap;
+  }
+  .t-dot.final{
+    position:absolute;
+    top:50%; left:100%;
+    width:36px;
+    height:36px;
+    background:linear-gradient(135deg, var(--gold), var(--rose));
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:0.8rem;
+    font-weight:700;
+    color:#241a12;
+    box-shadow:0 0 18px rgba(139,92,246,0.55);
+    cursor:grab;
+    touch-action:none;
+    transform:translate(-50%,-50%) scale(0);
+    transition:box-shadow .2s ease;
+  }
+  .timeline-track.reveal .t-dot.final{ transform:translate(-50%,-50%) scale(1); }
+  .t-dot.final:active{ cursor:grabbing; }
+  .t-dot.final.dragging{ transition:none; box-shadow:0 0 24px rgba(139,92,246,0.8); }
+  @keyframes handle-hint-nudge{
+    0%,100%{ transform:translate(-50%,-50%) scale(1) translateX(0); }
+    30%{ transform:translate(-50%,-50%) scale(1) translateX(-10px); }
+    60%{ transform:translate(-50%,-50%) scale(1) translateX(0); }
+  }
+  .t-dot.final.hint-nudge{ animation:handle-hint-nudge 1s ease-in-out 2; }
+  .t-dot.final .t-label{
+    top:auto;
+    bottom:-16px;
+    color:var(--gold);
+    font-weight:600;
+  }
+  .timeline-hint{
+    font-size:0.72rem;
+    color:var(--muted);
+    margin:2px 0 0;
+  }
+  #slide-2d h2{ font-size:clamp(1.3rem, 5vw, 1.7rem); margin:18px 0 0; }
+  #slide-2d .sub{ color:var(--muted); font-size:0.88rem; }
+  #slide-2d h2.tl-shake{ animation:tl-number-shake .22s ease; }
+  @keyframes tl-number-shake{
+    0%,100%{ transform:translateX(0); }
+    25%{ transform:translateX(-3px) rotate(-1deg); }
+    50%{ transform:translateX(3px) rotate(1deg); }
+    75%{ transform:translateX(-2px); }
+  }
+
+  .streak-text{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:6px;
+    opacity:0;
+    transform:translateY(16px);
+    transition:opacity .6s ease, transform .6s cubic-bezier(.4,0,.2,1);
+  }
+  .streak-text.reveal{ opacity:1; transform:none; }
+
+  /* ---------- florin 400+ streak achievement badge ---------- */
+  .florin-400-badge{
+    position:relative;
+    width:min(52vw, 190px);
+    margin:4px auto 6px;
+    opacity:0;
+    transform:translateY(30px) scale(0.85);
+    transition:opacity .7s cubic-bezier(.34,1.56,.64,1), transform .7s cubic-bezier(.34,1.56,.64,1);
+  }
+  .florin-400-badge.reveal{ opacity:1; transform:translateY(0) scale(1); }
+  .florin-400-badge img{
+    width:100%;
+    height:auto;
+    display:block;
+    filter:drop-shadow(0 10px 22px rgba(139,92,246,0.45));
+  }
+  .florin-400-badge::before{
+    content:'';
+    position:absolute;
+    inset:-14%;
+    z-index:-1;
+    border-radius:50%;
+    background:radial-gradient(circle, rgba(196,181,253,0.55), rgba(139,92,246,0.18) 55%, transparent 72%);
+    opacity:0;
+    transform:scale(0.6);
+  }
+  .florin-400-badge.reveal::before{
+    animation:florin400-glow 1.4s ease-out .15s 1 forwards;
+  }
+  @keyframes florin400-glow{
+    0%{ opacity:0; transform:scale(0.6); }
+    35%{ opacity:1; transform:scale(1.15); }
+    100%{ opacity:0; transform:scale(1.4); }
+  }
+  .f400-spark{
+    position:absolute;
+    left:var(--x); top:var(--y);
+    width:8px; height:8px;
+    background:radial-gradient(circle, #fff, var(--gold) 60%, transparent 75%);
+    border-radius:50%;
+    opacity:0;
+    transform:scale(0);
+    pointer-events:none;
+  }
+  .florin-400-badge.reveal .f400-spark{
+    animation:f400-sparkle .9s ease-out var(--d) 1 forwards;
+  }
+  @keyframes f400-sparkle{
+    0%{ opacity:0; transform:scale(0) rotate(0deg); }
+    40%{ opacity:1; transform:scale(1) rotate(90deg); }
+    100%{ opacity:0; transform:scale(0.3) rotate(180deg); }
+  }
+
+  /* ---------- postcard 2 content (hope & wish) ---------- */
+  .note-date-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    font-family:'Space Mono', monospace;
+    font-size:0.78rem;
+    color:var(--ink);
+    opacity:0.75;
+    padding-bottom:10px;
+    margin-bottom:14px;
+    border-bottom:1px solid var(--paper-line);
+  }
+  .note-notes{
+    display:flex;
+    justify-content:space-between;
+    font-size:1.3rem;
+    color:var(--lavender);
+    opacity:0.7;
+    margin:6px 0 16px;
+  }
+  .note-body{
+    font-family:'Space Mono', monospace;
+    font-size:0.86rem;
+    line-height:1.9;
+    margin:0;
+  }
+  .note-highlight{
+    display:block;
+    margin-top:16px;
+    font-weight:700;
+  }
+
+  /* ---------- floating music toggle (persistent across all slides) ---------- */
+  .music-toggle{
+    position:fixed;
+    top:calc(16px + env(safe-area-inset-top));
+    right:16px;
+    z-index:40;
+    width:44px;
+    height:44px;
+    border-radius:50%;
+    border:1px solid var(--line);
+    background:rgba(26,20,36,0.55);
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+    color:var(--text);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    box-shadow:0 8px 20px -10px rgba(0,0,0,0.5);
+    transition:transform .2s ease, border-color .2s ease;
+  }
+  .music-toggle:hover{ transform:translateY(-1px); border-color:var(--gold); }
+  .music-toggle.playing svg{ color:var(--gold); }
+  .music-toggle.playing{ animation:music-pulse 1.6s ease-in-out infinite; }
+  .music-toggle-plus{
+    position:absolute;
+    bottom:-2px; right:-2px;
+    width:17px; height:17px;
+    border-radius:50%;
+    background:linear-gradient(135deg, var(--gold), var(--rose));
+    color:#241a12;
+    font-size:0.72rem;
+    font-weight:800;
+    line-height:1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border:1.5px solid var(--void);
+  }
+  @keyframes music-pulse{
+    0%,100%{ box-shadow:0 8px 20px -10px rgba(0,0,0,0.5), 0 0 0 0 rgba(139,92,246,0.35); }
+    50%{ box-shadow:0 8px 20px -10px rgba(0,0,0,0.5), 0 0 0 6px rgba(139,92,246,0); }
+  }
+
+  .music-modal-backdrop{
+    position:fixed;
+    inset:0;
+    z-index:50;
+    background:rgba(8,6,12,0.6);
+    backdrop-filter:blur(4px);
+    display:flex;
+    align-items:flex-end;
+    justify-content:center;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .3s ease;
+  }
+  .music-modal-backdrop.open{ opacity:1; pointer-events:auto; }
+  .music-modal{
+    width:100%;
+    max-width:420px;
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:22px 22px 0 0;
+    padding:18px 16px calc(22px + env(safe-area-inset-bottom));
+    transform:translateY(24px);
+    transition:transform .35s cubic-bezier(.16,1,.3,1);
+  }
+  .music-modal-backdrop.open .music-modal{ transform:translateY(0); }
+  .music-modal-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    font-family:'Fredoka', sans-serif;
+    font-size:1.05rem;
+    color:var(--text);
+    margin-bottom:12px;
+  }
+  .music-modal-header button{
+    background:none;
+    border:none;
+    color:var(--muted);
+    font-size:1rem;
+    cursor:pointer;
+    padding:4px;
+  }
+  .music-option{
+    width:100%;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:12px 10px;
+    border:none;
+    border-radius:14px;
+    background:transparent;
+    color:var(--text);
+    text-align:left;
+    cursor:pointer;
+    transition:background .2s ease;
+  }
+  .music-option:hover{ background:rgba(255,255,255,0.04); }
+  .music-option.active{ background:rgba(139,92,246,0.12); }
+  .music-option-icon{
+    width:34px; height:34px;
+    border-radius:50%;
+    background:var(--panel-2);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--muted);
+    flex:0 0 auto;
+  }
+  .music-option.active .music-option-icon{ color:var(--gold); }
+  .music-option-text{ display:flex; flex-direction:column; }
+  .music-option-title{ font-size:0.9rem; font-weight:600; }
+  .music-option-artist{ font-size:0.75rem; color:var(--muted); }
+
+  /* ---------- slide 3d : tetris ---------- */
+  #slide-3d h2{ font-size:clamp(1.2rem, 4.6vw, 1.5rem); margin:2px 0 0; }
+  .tetris-wrap{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:12px;
+    width:100%;
+  }
+  .tetris-hud{
+    display:flex;
+    gap:24px;
+    font-size:0.85rem;
+    color:var(--muted);
+  }
+  .tetris-hud-label{ display:block; font-size:0.65rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--muted); }
+  .tetris-hud > div span:last-child{ font-family:'Fredoka', sans-serif; font-size:1.1rem; color:var(--text); }
+  .tetris-stage{
+    position:relative;
+    width:min(62vw, 220px);
+    aspect-ratio:9/16;
+    border-radius:14px;
+    overflow:hidden;
+    border:1px solid var(--line);
+    background:var(--panel);
+    box-shadow:0 20px 45px -20px rgba(0,0,0,0.6);
+  }
+  .tetris-stage canvas{ width:100%; height:100%; display:block; }
+  .tetris-overlay{
+    position:absolute;
+    inset:0;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:14px;
+    text-align:center;
+    padding:20px;
+    background:rgba(13,10,19,0.88);
+    backdrop-filter:blur(6px);
+    transition:opacity .4s ease;
+  }
+  .tetris-overlay.hidden{ opacity:0; pointer-events:none; }
+  .tetris-overlay p{ font-size:0.85rem; color:var(--muted); margin:0; }
+  .tetris-overlay-title{ font-family:'Fredoka', sans-serif; font-size:1.4rem !important; color:var(--rose-soft) !important; }
+  .tetris-overlay-text{ max-width:220px; }
+  .tetris-controls{
+    display:flex;
+    gap:10px;
+  }
+  .tetris-controls button{
+    width:52px;
+    height:44px;
+    border-radius:12px;
+    border:1px solid var(--line);
+    background:var(--panel);
+    color:var(--text);
+    font-size:1.1rem;
+    cursor:pointer;
+  }
+  .tetris-controls button:active{ border-color:var(--gold); }
+
+  /* ---------- slide ws : cari kata ---------- */
+  #slide-ws h2{ font-size:clamp(1.2rem, 4.6vw, 1.5rem); margin:2px 0 0; }
+  .ws-wrap{
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:14px;
+    width:min(92vw, 380px);
+    padding:20px 14px 22px;
+  }
+  .ws-hud{
+    display:flex;
+    gap:22px;
+    font-size:0.85rem;
+    color:var(--muted);
+  }
+  .ws-hud-label{ display:block; font-size:0.62rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--muted); }
+  .ws-hud > div span:last-child{ font-family:'Fredoka', sans-serif; font-size:1.05rem; color:var(--text); }
+  .ws-grid{
+    display:grid;
+    gap:2px;
+    width:100%;
+    touch-action:none;
+    user-select:none;
+    -webkit-user-select:none;
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:6px;
+  }
+  .ws-cell{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    aspect-ratio:1/1;
+    font-family:'Space Mono', monospace;
+    font-weight:700;
+    font-size:0.66rem;
+    color:var(--text);
+    background:rgba(255,255,255,0.02);
+    border-radius:4px;
+    cursor:pointer;
+    transition:background .12s ease, color .12s ease;
+  }
+  .ws-cell.selecting{ background:rgba(139,92,246,0.4); color:#fff; }
+  .ws-cell.found{ background:rgba(139,92,246,0.55); color:#fff; }
+  .ws-cell.hint{ background:rgba(196,181,253,0.65); color:#1E1B4B; animation:ws-hint-pulse 1.4s ease; }
+  @keyframes ws-hint-pulse{
+    0%,100%{ box-shadow:0 0 0 0 rgba(167,139,250,0.6); }
+    50%{ box-shadow:0 0 0 6px rgba(167,139,250,0); }
+  }
+  .ws-actions{ display:flex; gap:10px; }
+  .ws-hint-btn{
+    border:1px solid var(--line);
+    background:var(--panel);
+    color:var(--text);
+    padding:9px 20px;
+    border-radius:999px;
+    font-size:0.82rem;
+    font-weight:600;
+    cursor:pointer;
+  }
+  .ws-hint-btn:disabled{ opacity:0.4; cursor:not-allowed; }
+  .ws-hint-btn:active:not(:disabled){ border-color:var(--gold); }
+  .ws-wordlist{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    justify-content:center;
+    width:100%;
+  }
+  .ws-word{
+    font-size:0.76rem;
+    padding:6px 12px;
+    border-radius:999px;
+    border:1px solid var(--line);
+    color:var(--muted);
+    font-family:'Fredoka', sans-serif;
+    letter-spacing:0.02em;
+  }
+  .ws-word.done{
+    color:var(--text);
+    border-color:var(--gold);
+    background:rgba(139,92,246,0.18);
+    text-decoration:line-through;
+    text-decoration-color:var(--rose-soft);
+  }
+  .ws-win-overlay{
+    position:absolute;
+    inset:0;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:14px;
+    text-align:center;
+    padding:20px;
+    background:rgba(13,10,19,0.92);
+    backdrop-filter:blur(6px);
+    border-radius:24px;
+    transition:opacity .4s ease;
+  }
+  .ws-win-overlay.hidden{ opacity:0; pointer-events:none; }
+  .ws-win-title{ font-family:'Fredoka', sans-serif; font-size:1.3rem !important; color:var(--rose-soft) !important; margin:0; }
+  .ws-win-text{ font-size:0.9rem; color:var(--muted); margin:0; }
+
+  /* ---------- slide poll : seru gak, tombol Tidak kabur ---------- */
+  #slide-poll h2{ font-size:clamp(1.2rem, 4.6vw, 1.5rem); margin:2px 0 0; }
+  .poll-wrap{
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:16px;
+    margin-top:8px;
+    min-height:140px;
+  }
+  .poll-no-btn{
+    /* posisi awal & dodge dikontrol lewat JS (positionPollNoBtn/dodgePollNoBtn) */
+    transition:top .55s cubic-bezier(.34,1.56,.64,1), left .55s cubic-bezier(.34,1.56,.64,1);
+  }
+  .poll-answer{
+    font-family:'Fredoka', sans-serif;
+    font-size:1rem;
+    color:var(--rose-soft);
+    margin-top:10px;
+  }
+
+  /* ---------- slide 4 : feedback ---------- */
+  #slide-4 h2{ font-size:clamp(1.3rem, 5vw, 1.7rem); margin-bottom:2px; }
+  #slide-4 .sub{ color:var(--muted); font-size:0.88rem; max-width:300px; }
+  .feedback-box{
+    width:min(88vw, 340px);
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:16px;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+  }
+  textarea{
+    resize:none;
+    height:90px;
+    background:var(--panel-2);
+    border:1px solid var(--line);
+    border-radius:12px;
+    color:var(--text);
+    padding:12px;
+    font-size:0.88rem;
+    font-family:inherit;
+    line-height:1.4;
+  }
+  textarea::placeholder{ color:var(--muted); }
+  .send-btn{
+    border:none;
+    background:linear-gradient(135deg, var(--rose), var(--lavender));
+    color:#1a1120;
+    font-weight:700;
+    padding:13px;
+    border-radius:12px;
+    font-size:0.9rem;
+    cursor:pointer;
+    transition:transform .2s ease, filter .2s ease;
+  }
+  .send-btn:hover{ transform:translateY(-1px); filter:brightness(1.06); }
+  .send-note{ font-size:0.72rem; color:var(--muted); }
+
+  /* ---------- nav controls (liquid floating pill) ---------- */
+  .controls{
+    position:fixed;
+    left:0; right:0; bottom:0;
+    z-index:30;
+    display:flex;
+    justify-content:center;
+    padding:0 22px calc(20px + env(safe-area-inset-bottom));
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .4s ease;
+  }
+  .controls.visible{ opacity:1; pointer-events:auto; }
+  .nav-pill{
+    position:relative;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    width:100%;
+    max-width:320px;
+    padding:10px 12px;
+    border-radius:999px;
+    background:rgba(20,15,27,0.7);
+    border:1px solid rgba(255,255,255,0.09);
+    backdrop-filter:blur(18px) saturate(160%);
+    -webkit-backdrop-filter:blur(18px) saturate(160%);
+    box-shadow:0 18px 42px -18px rgba(0,0,0,0.7);
+  }
+  .nav-side-btn{
+    width:38px; height:38px;
+    flex-shrink:0;
+    border-radius:50%;
+    border:1px solid var(--line);
+    background:rgba(255,255,255,0.04);
+    color:var(--text);
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer;
+    transition:transform .2s ease, border-color .2s ease, opacity .2s ease;
+  }
+  .nav-side-btn:hover{ border-color:var(--gold); transform:translateY(-1px); }
+  .nav-side-btn:disabled{ opacity:0.3; cursor:default; transform:none; }
+  .nav-spacer{ width:54px; flex-shrink:0; }
+  .dots{ flex:1; display:flex; justify-content:center; gap:7px; }
+  .dot{
+    width:6px; height:6px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.18);
+    transition:background .3s ease, width .3s ease;
+  }
+  .dot.active{ background:var(--gold); width:18px; border-radius:4px; }
+  .nav-raised-btn{
+    position:absolute;
+    right:6px; top:-28px;
+    width:58px; height:58px;
+    border-radius:50%;
+    border:none;
+    background:radial-gradient(circle at 34% 26%, #fff, var(--rose-soft) 58%, var(--gold) 130%);
+    color:#241a2b;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:1px;
+    cursor:pointer;
+    box-shadow:0 14px 28px -10px rgba(0,0,0,0.6), 0 0 0 6px rgba(20,15,27,0.85);
+    transition:transform .25s cubic-bezier(.3,1.5,.4,1), box-shadow .25s ease;
+  }
+  .nav-raised-btn:active{ transform:scale(0.92); }
+  .nav-raised-icon{ display:block; }
+  .nav-raised-label{ font-size:0.56rem; font-weight:700; letter-spacing:0.02em; }
+
+  @media (max-width:380px){
+    .slide{ padding:20px 16px 100px; }
+    .nav-pill{ max-width:none; padding:9px 10px; }
+    .nav-side-btn{ width:34px; height:34px; }
+    .nav-raised-btn{ width:52px; height:52px; top:-24px; }
+  }
+
+  /* ---------- GIFT OPENING OVERLAY (fake loading + kabur-kaburan + gif ngeledek) ---------- */
+  .gift-overlay{
+    position:fixed;
+    inset:0;
+    z-index:45;
+    background:
+      radial-gradient(circle at 15% 10%, rgba(169,147,209,0.16), transparent 45%),
+      radial-gradient(circle at 85% 85%, rgba(232,160,180,0.14), transparent 50%),
+      var(--void);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .4s ease;
+  }
+  .gift-overlay.show{ opacity:1; pointer-events:auto; }
+  .gift-stage{
+    display:none;
+    flex-direction:column;
+    align-items:center;
+    gap:16px;
+    padding:24px;
+    text-align:center;
+    max-width:320px;
+  }
+  .gift-stage.show{ display:flex; }
+  .gift-loading-bar{
+    width:min(80vw, 280px);
+    height:10px;
+    border-radius:999px;
+    background:rgba(255,255,255,0.08);
+    border:1px solid var(--line);
+    overflow:hidden;
+  }
+  .gift-loading-fill{
+    height:100%;
+    width:0%;
+    border-radius:999px;
+    background:linear-gradient(90deg, var(--gold), var(--rose));
+    transition:width 2.2s cubic-bezier(.2,.8,.2,1);
+  }
+  .gift-loading-pct{ font-family:'Space Mono', monospace; font-size:0.85rem; color:var(--muted); }
+  .gift-loading-msg{ font-family:'Fredoka', sans-serif; color:var(--rose-soft); font-size:1.05rem; font-weight:600; }
+  .teasing-gif-wrap{
+    width:120px; height:120px;
+    border-radius:18px;
+    overflow:hidden;
+    border:1px solid var(--line);
+    opacity:0;
+    transform:scale(0.8);
+    transition:opacity .4s ease, transform .4s cubic-bezier(.34,1.56,.64,1);
+  }
+  .teasing-gif-wrap.show{ opacity:1; transform:scale(1); }
+  .teasing-gif-wrap img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .evasive-zone{
+    position:relative;
+    width:min(80vw, 280px);
+    height:76px;
+    opacity:0;
+    transition:opacity .4s ease;
+  }
+  .evasive-zone.show{ opacity:1; }
+  .evasive-btn{
+    position:fixed;
+    top:50vh; left:50%;
+    border:1px solid var(--gold);
+    background:rgba(139,92,246,0.14);
+    color:var(--gold);
+    padding:13px 24px;
+    border-radius:999px;
+    font-size:0.85rem;
+    font-weight:600;
+    cursor:pointer;
+    transition:top .9s cubic-bezier(.34,1.56,.64,1), left .9s cubic-bezier(.34,1.56,.64,1);
+    white-space:nowrap;
+    z-index:46;
+    opacity:0;
+    pointer-events:none;
+  }
+  .evasive-btn.show{ opacity:1; pointer-events:auto; }
+
+  /* ---------- music notice: nunjuk ke tombol musik yang udah ada ---------- */
+  .music-notice{
+    position:fixed;
+    top:calc(66px + env(safe-area-inset-top));
+    right:16px;
+    z-index:41;
+    width:190px;
+    background:rgba(26,20,36,0.85);
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:12px;
+    padding:9px 12px;
+    font-size:0.72rem;
+    color:var(--text);
+    line-height:1.4;
+    opacity:0;
+    transform:translateY(-6px);
+    transition:opacity .4s ease, transform .4s ease;
+    pointer-events:none;
+  }
+  .music-notice.show{ opacity:1; transform:none; }
+  .music-notice::after{
+    content:'';
+    position:absolute;
+    top:-6px; right:16px;
+    width:10px; height:10px;
+    background:rgba(26,20,36,0.85);
+    border-left:1px solid rgba(255,255,255,0.08);
+    border-top:1px solid rgba(255,255,255,0.08);
+    transform:rotate(45deg);
+  }
+
+  /* ---------- cat spin: slot-machine reel, nyatu di dalam slide tetris ---------- */
+  .cat-reel-preview{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    z-index:3;
+  }
+  .cat-reel-preview.hidden{ display:none; }
+  .cat-reel-window{
+    width:150px;
+    height:150px;
+    overflow:hidden;
+    border-radius:18px;
+    border:1px solid var(--line);
+    box-shadow:0 20px 45px -20px rgba(0,0,0,0.6), inset 0 0 0 1px rgba(0,0,0,0.2);
+    position:relative;
+    perspective:500px;
+  }
+  .cat-reel-window::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    z-index:2;
+    pointer-events:none;
+    background:linear-gradient(180deg, rgba(13,10,19,0.55), transparent 22%, transparent 78%, rgba(13,10,19,0.55));
+  }
+  .cat-reel-window.punching{ animation:reel-window-flash 0.5s ease-out; }
+  @keyframes reel-window-flash{
+    0%{ box-shadow:0 20px 45px -20px rgba(0,0,0,0.6), inset 0 0 0 1px rgba(0,0,0,0.2), 0 0 0 3px rgba(139,92,246,0.55); }
+    100%{ box-shadow:0 20px 45px -20px rgba(0,0,0,0.6), inset 0 0 0 1px rgba(0,0,0,0.2), 0 0 0 0 rgba(139,92,246,0); }
+  }
+  .cat-reel-strip{
+    display:flex;
+    flex-direction:column;
+    transform:translateY(0);
+  }
+  .cat-reel-strip.spinning{
+    transition:transform 2.3s cubic-bezier(.12,.85,.2,1);
+    animation:reel-blur-rush 2.3s ease-out;
+  }
+  @keyframes reel-blur-rush{
+    0%{ filter:blur(0); }
+    6%{ filter:blur(16px); }
+    45%{ filter:blur(14px); }
+    75%{ filter:blur(5px); }
+    100%{ filter:blur(0); }
+  }
+  .cat-reel-strip img{
+    width:150px;
+    height:150px;
+    object-fit:cover;
+    display:block;
+    flex:0 0 150px;
+  }
+
+  /* ---------- cat bag / inventory ---------- */
+  .catspin-actions{ display:flex; align-items:center; justify-content:center; gap:10px; }
+  .catbag-btn{
+    position:relative;
+    width:44px; height:44px;
+    border-radius:50%;
+    border:1px solid var(--line);
+    background:rgba(255,255,255,0.04);
+    color:var(--text);
+    font-size:1.15rem;
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer;
+    backdrop-filter:blur(10px);
+    transition:transform .2s ease, border-color .2s ease;
+  }
+  .catbag-btn:hover{ border-color:var(--gold); transform:translateY(-1px); }
+  .catbag-badge{
+    position:absolute;
+    top:-4px; right:-4px;
+    min-width:16px; height:16px;
+    padding:0 3px;
+    border-radius:999px;
+    background:var(--gold);
+    color:#241a2b;
+    font-size:0.62rem;
+    font-weight:700;
+    display:flex; align-items:center; justify-content:center;
+    line-height:1;
+  }
+  .catbag-backdrop{
+    position:fixed; inset:0; z-index:55;
+    background:rgba(8,6,12,0.6);
+    backdrop-filter:blur(4px);
+    display:flex; align-items:flex-end; justify-content:center;
+    opacity:0; pointer-events:none;
+    transition:opacity .3s ease;
+  }
+  .catbag-backdrop.open{ opacity:1; pointer-events:auto; }
+  .catbag-sheet{
+    width:100%; max-width:420px;
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:22px 22px 0 0;
+    padding:18px 16px calc(22px + env(safe-area-inset-bottom));
+    transform:translateY(24px);
+    transition:transform .35s cubic-bezier(.16,1,.3,1);
+    backdrop-filter:blur(20px) saturate(160%);
+  }
+  .catbag-backdrop.open .catbag-sheet{ transform:translateY(0); }
+  .catbag-header{
+    display:flex; align-items:center; justify-content:space-between;
+    font-family:'Fredoka', sans-serif;
+    font-size:1.05rem; color:var(--text);
+  }
+  .catbag-close{
+    background:none; border:none; color:var(--muted);
+    font-size:1rem; cursor:pointer; padding:4px;
+  }
+  .catbag-count{ font-size:0.8rem; color:var(--muted); margin:4px 0 14px; }
+  .catbag-grid{ display:grid; grid-template-columns:repeat(4, 1fr); gap:10px; }
+  .catbag-slot{
+    aspect-ratio:1;
+    border-radius:14px;
+    border:1px solid var(--line);
+    background:var(--panel-2);
+    display:flex; align-items:center; justify-content:center;
+    overflow:hidden;
+    position:relative;
+    color:var(--muted);
+    font-size:1.3rem;
+  }
+  .catbag-slot img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .catbag-slot.collected{ border-color:var(--gold); box-shadow:0 0 0 1px rgba(212,175,55,0.25) inset; }
+
+  /* ---------- share card (client-side, no backend/API) ---------- */
+  .catshare-btn{
+    width:100%;
+    margin-top:14px;
+    padding:13px 18px;
+    border-radius:999px;
+    border:none;
+    background:linear-gradient(120deg, var(--gold), var(--rose));
+    color:#1a1330;
+    font-family:'Fredoka', sans-serif;
+    font-weight:700;
+    font-size:0.95rem;
+    cursor:pointer;
+    box-shadow:0 14px 28px -14px rgba(139,92,246,0.7);
+    transition:transform .2s ease;
+  }
+  .catshare-btn:active{ transform:scale(0.96); }
+  .catshare-btn.hidden{ display:none; }
+
+  .catshare-backdrop{
+    position:fixed; inset:0; z-index:60;
+    background:rgba(8,6,12,0.7);
+    backdrop-filter:blur(4px);
+    display:flex; align-items:flex-end; justify-content:center;
+    opacity:0; pointer-events:none;
+    transition:opacity .3s ease;
+  }
+  .catshare-backdrop.open{ opacity:1; pointer-events:auto; }
+  .catshare-sheet{
+    width:100%; max-width:420px;
+    max-height:88vh;
+    overflow-y:auto;
+    -webkit-overflow-scrolling:touch;
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:22px 22px 0 0;
+    padding:18px 16px calc(22px + env(safe-area-inset-bottom));
+    transform:translateY(24px);
+    transition:transform .35s cubic-bezier(.16,1,.3,1);
+    backdrop-filter:blur(20px) saturate(160%);
+  }
+  .catshare-backdrop.open .catshare-sheet{ transform:translateY(0); }
+  .catshare-preview-wrap{
+    position:relative;
+    width:min(58vw, 230px);
+    aspect-ratio:9/16;
+    margin:16px auto 0;
+    border-radius:18px;
+    overflow:hidden;
+    border:1px solid var(--line);
+    background:var(--panel-2);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .catshare-preview{
+    width:100%; height:100%;
+    object-fit:cover;
+    display:block;
+    opacity:0;
+    transition:opacity .3s ease;
+  }
+  .catshare-preview.ready{ opacity:1; }
+  .catshare-loading{
+    position:absolute; inset:0;
+    display:flex; align-items:center; justify-content:center;
+    color:var(--muted);
+    font-size:0.78rem;
+    text-align:center;
+    padding:0 14px;
+  }
+  .catshare-loading.hidden{ display:none; }
+  .catshare-caption{
+    font-size:0.78rem;
+    color:var(--muted);
+    text-align:center;
+    margin:14px 0 4px;
+    line-height:1.5;
+  }
+  .catshare-actions{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    margin-top:10px;
+  }
+  .catshare-action-btn{
+    padding:12px 16px;
+    border-radius:999px;
+    border:1px solid var(--line);
+    background:rgba(255,255,255,0.04);
+    color:var(--text);
+    font-family:'Fredoka', sans-serif;
+    font-weight:600;
+    font-size:0.85rem;
+    cursor:pointer;
+    transition:transform .2s ease, border-color .2s ease, opacity .2s ease;
+  }
+  .catshare-action-btn:hover{ border-color:var(--gold); }
+  .catshare-action-btn:active{ transform:scale(0.97); }
+  .catshare-action-btn.primary{
+    background:linear-gradient(120deg, var(--gold), var(--rose));
+    border:none;
+    color:#1a1330;
+  }
+  .catshare-action-btn:disabled{ opacity:0.4; cursor:default; transform:none; }
+  .catshare-status{
+    min-height:1.1em;
+    font-size:0.75rem;
+    color:var(--rose-soft);
+    text-align:center;
+    margin-top:8px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="particle-field" id="particleField"></div>
+
+<div class="app">
+
+  <!-- SLIDE 1 — INTRO -->
+  <section class="slide active" id="slide-1">
+    <div class="loader-stage" id="loaderStage">
+      <div class="loader-ring"></div>
+      <p class="loader-text" id="loaderText">Lagi nyiapin sesuatu...</p>
+    </div>
+    <div class="teaser-stage" id="teaserStage">
+      <span class="eyebrow">psst...</span>
+      <p class="teaser-text">Sebelumnyaaa, ada satu hal.....</p>
+      <button class="teaser-btn" id="teaserNextBtn">Lanjutin dong →</button>
+    </div>
+    <div class="intro-content" id="introContent">
+      <div class="ring r3"></div>
+      <div class="ring r2"></div>
+      <div class="ring"></div>
+      <span class="eyebrow">a little something for you</span>
+      <h1 class="display">Happy Birthday,<br><em>Fahiraaaa</em></h1>
+      <p class="sub">Sebelum dibuka, tarik napas dulu.<br>Udahh siapp belumm~</p>
+      <button class="gift-btn" id="openGiftBtn">Open Gift 🎁</button>
+    </div>
+  </section>
+
+  <!-- SLIDE FLOWER — GROWING FLOWER GARDEN (yellow blooms) -->
+  <section class="slide" id="slide-flower">
+    <span class="eyebrow">tumbuh khusus buat kamu</span>
+    <div class="flower-garden-stage">
+      <div class="flower-scene" id="flowerScene">
+    <div class="night"></div>
+    <div class="flowers">
+      <div class="flower flower--1">
+        <div class="flower__leafs flower__leafs--1">
+          <div class="flower__leaf flower__leaf--1"></div>
+          <div class="flower__leaf flower__leaf--2"></div>
+          <div class="flower__leaf flower__leaf--3"></div>
+          <div class="flower__leaf flower__leaf--4"></div>
+          <div class="flower__white-circle"></div>
+  
+          <div class="flower__light flower__light--1"></div>
+          <div class="flower__light flower__light--2"></div>
+          <div class="flower__light flower__light--3"></div>
+          <div class="flower__light flower__light--4"></div>
+          <div class="flower__light flower__light--5"></div>
+          <div class="flower__light flower__light--6"></div>
+          <div class="flower__light flower__light--7"></div>
+          <div class="flower__light flower__light--8"></div>
+  
+        </div>
+        <div class="flower__line">
+          <div class="flower__line__leaf flower__line__leaf--1"></div>
+          <div class="flower__line__leaf flower__line__leaf--2"></div>
+          <div class="flower__line__leaf flower__line__leaf--3"></div>
+          <div class="flower__line__leaf flower__line__leaf--4"></div>
+          <div class="flower__line__leaf flower__line__leaf--5"></div>
+          <div class="flower__line__leaf flower__line__leaf--6"></div>
+        </div>
+      </div>
+  
+      <div class="flower flower--2">
+        <div class="flower__leafs flower__leafs--2">
+          <div class="flower__leaf flower__leaf--1"></div>
+          <div class="flower__leaf flower__leaf--2"></div>
+          <div class="flower__leaf flower__leaf--3"></div>
+          <div class="flower__leaf flower__leaf--4"></div>
+          <div class="flower__white-circle"></div>
+  
+          <div class="flower__light flower__light--1"></div>
+          <div class="flower__light flower__light--2"></div>
+          <div class="flower__light flower__light--3"></div>
+          <div class="flower__light flower__light--4"></div>
+          <div class="flower__light flower__light--5"></div>
+          <div class="flower__light flower__light--6"></div>
+          <div class="flower__light flower__light--7"></div>
+          <div class="flower__light flower__light--8"></div>
+  
+        </div>
+        <div class="flower__line">
+          <div class="flower__line__leaf flower__line__leaf--1"></div>
+          <div class="flower__line__leaf flower__line__leaf--2"></div>
+          <div class="flower__line__leaf flower__line__leaf--3"></div>
+          <div class="flower__line__leaf flower__line__leaf--4"></div>
+        </div>
+      </div>
+  
+      <div class="flower flower--3">
+        <div class="flower__leafs flower__leafs--3">
+          <div class="flower__leaf flower__leaf--1"></div>
+          <div class="flower__leaf flower__leaf--2"></div>
+          <div class="flower__leaf flower__leaf--3"></div>
+          <div class="flower__leaf flower__leaf--4"></div>
+          <div class="flower__white-circle"></div>
+  
+          <div class="flower__light flower__light--1"></div>
+          <div class="flower__light flower__light--2"></div>
+          <div class="flower__light flower__light--3"></div>
+          <div class="flower__light flower__light--4"></div>
+          <div class="flower__light flower__light--5"></div>
+          <div class="flower__light flower__light--6"></div>
+          <div class="flower__light flower__light--7"></div>
+          <div class="flower__light flower__light--8"></div>
+  
+        </div>
+        <div class="flower__line">
+          <div class="flower__line__leaf flower__line__leaf--1"></div>
+          <div class="flower__line__leaf flower__line__leaf--2"></div>
+          <div class="flower__line__leaf flower__line__leaf--3"></div>
+          <div class="flower__line__leaf flower__line__leaf--4"></div>
+        </div>
+      </div>
+  
+      <div class="grow-ans" style="--d:1.2s">
+        <div class="flower__g-long">
+          <div class="flower__g-long__top"></div>
+          <div class="flower__g-long__bottom"></div>
+        </div>
+      </div>
+  
+      <div class="growing-grass">
+        <div class="flower__grass flower__grass--1">
+          <div class="flower__grass--top"></div>
+          <div class="flower__grass--bottom"></div>
+          <div class="flower__grass__leaf flower__grass__leaf--1"></div>
+          <div class="flower__grass__leaf flower__grass__leaf--2"></div>
+          <div class="flower__grass__leaf flower__grass__leaf--3"></div>
+          <div class="flower__grass__leaf flower__grass__leaf--4"></div>
+          <div class="flower__grass__leaf flower__grass__leaf--5"></div>
+          <div class="flower__grass__leaf flower__grass__leaf--6"></div>
+          <div class="flower__grass__leaf flower__grass__leaf--7"></div>
+          <div class="flower__grass__leaf flower__grass__leaf--8"></div>
+          <div class="flower__grass__overlay"></div>
+        </div>
+      </div>
+  
+      <div class="growing-grass">
+        <div class="flower__grass flower__grass--2">
+          <div class="flower__grass--top"></div>
+          <div class="flower__grass--bottom"></div>
+          <div class="flower__grass__leaf flower__grass__leaf--1"></div>
+          <div class="flower__grass__leaf flower__grass__leaf--2"></div>
+          <div class="flower__grass__leaf flower__grass__leaf--3"></div>
+          <div class="flower__grass__leaf flower__grass__leaf--4"></div>
+          <div class="flower__grass__leaf flower__grass__leaf--5"></div>
+          <div class="flower__grass__leaf flower__grass__leaf--6"></div>
+          <div class="flower__grass__leaf flower__grass__leaf--7"></div>
+          <div class="flower__grass__leaf flower__grass__leaf--8"></div>
+          <div class="flower__grass__overlay"></div>
+        </div>
+      </div>
+  
+      <div class="grow-ans" style="--d:2.4s">
+        <div class="flower__g-right flower__g-right--1">
+          <div class="leaf"></div>
+        </div>
+      </div>
+  
+      <div class="grow-ans" style="--d:2.8s">
+        <div class="flower__g-right flower__g-right--2">
+          <div class="leaf"></div>
+        </div>
+      </div>
+  
+      <div class="grow-ans" style="--d:2.8s">
+        <div class="flower__g-front">
+          <div class="flower__g-front__leaf-wrapper flower__g-front__leaf-wrapper--1">
+            <div class="flower__g-front__leaf"></div>
+          </div>
+          <div class="flower__g-front__leaf-wrapper flower__g-front__leaf-wrapper--2">
+            <div class="flower__g-front__leaf"></div>
+          </div>
+          <div class="flower__g-front__leaf-wrapper flower__g-front__leaf-wrapper--3">
+            <div class="flower__g-front__leaf"></div>
+          </div>
+          <div class="flower__g-front__leaf-wrapper flower__g-front__leaf-wrapper--4">
+            <div class="flower__g-front__leaf"></div>
+          </div>
+          <div class="flower__g-front__leaf-wrapper flower__g-front__leaf-wrapper--5">
+            <div class="flower__g-front__leaf"></div>
+          </div>
+          <div class="flower__g-front__leaf-wrapper flower__g-front__leaf-wrapper--6">
+            <div class="flower__g-front__leaf"></div>
+          </div>
+          <div class="flower__g-front__leaf-wrapper flower__g-front__leaf-wrapper--7">
+            <div class="flower__g-front__leaf"></div>
+          </div>
+          <div class="flower__g-front__leaf-wrapper flower__g-front__leaf-wrapper--8">
+            <div class="flower__g-front__leaf"></div>
+          </div>
+          <div class="flower__g-front__line"></div>
+        </div>
+      </div>
+  
+      <div class="grow-ans" style="--d:3.2s">
+        <div class="flower__g-fr">
+          <div class="leaf"></div>
+          <div class="flower__g-fr__leaf flower__g-fr__leaf--1"></div>
+          <div class="flower__g-fr__leaf flower__g-fr__leaf--2"></div>
+          <div class="flower__g-fr__leaf flower__g-fr__leaf--3"></div>
+          <div class="flower__g-fr__leaf flower__g-fr__leaf--4"></div>
+          <div class="flower__g-fr__leaf flower__g-fr__leaf--5"></div>
+          <div class="flower__g-fr__leaf flower__g-fr__leaf--6"></div>
+          <div class="flower__g-fr__leaf flower__g-fr__leaf--7"></div>
+          <div class="flower__g-fr__leaf flower__g-fr__leaf--8"></div>
+        </div>
+      </div>
+  
+      <div class="long-g long-g--0">
+        <div class="grow-ans" style="--d:3s">
+          <div class="leaf leaf--0"></div>
+        </div>
+        <div class="grow-ans" style="--d:2.2s">
+          <div class="leaf leaf--1"></div>
+        </div>
+        <div class="grow-ans" style="--d:3.4s">
+          <div class="leaf leaf--2"></div>
+        </div>
+        <div class="grow-ans" style="--d:3.6s">
+          <div class="leaf leaf--3"></div>
+        </div>
+      </div>
+  
+      <div class="long-g long-g--1">
+        <div class="grow-ans" style="--d:3.6s">
+          <div class="leaf leaf--0"></div>
+        </div>
+        <div class="grow-ans" style="--d:3.8s">
+          <div class="leaf leaf--1"></div>
+        </div>
+        <div class="grow-ans" style="--d:4s">
+          <div class="leaf leaf--2"></div>
+        </div>
+        <div class="grow-ans" style="--d:4.2s">
+          <div class="leaf leaf--3"></div>
+        </div>
+      </div>
+  
+      <div class="long-g long-g--2">
+        <div class="grow-ans" style="--d:4s">
+          <div class="leaf leaf--0"></div>
+        </div>
+        <div class="grow-ans" style="--d:4.2s">
+          <div class="leaf leaf--1"></div>
+        </div>
+        <div class="grow-ans" style="--d:4.4s">
+          <div class="leaf leaf--2"></div>
+        </div>
+        <div class="grow-ans" style="--d:4.6s">
+          <div class="leaf leaf--3"></div>
+        </div>
+      </div>
+  
+      <div class="long-g long-g--3">
+        <div class="grow-ans" style="--d:4s">
+          <div class="leaf leaf--0"></div>
+        </div>
+        <div class="grow-ans" style="--d:4.2s">
+          <div class="leaf leaf--1"></div>
+        </div>
+        <div class="grow-ans" style="--d:3s">
+          <div class="leaf leaf--2"></div>
+        </div>
+        <div class="grow-ans" style="--d:3.6s">
+          <div class="leaf leaf--3"></div>
+        </div>
+      </div>
+  
+      <div class="long-g long-g--4">
+        <div class="grow-ans" style="--d:4s">
+          <div class="leaf leaf--0"></div>
+        </div>
+        <div class="grow-ans" style="--d:4.2s">
+          <div class="leaf leaf--1"></div>
+        </div>
+        <div class="grow-ans" style="--d:3s">
+          <div class="leaf leaf--2"></div>
+        </div>
+        <div class="grow-ans" style="--d:3.6s">
+          <div class="leaf leaf--3"></div>
+        </div>
+      </div>
+  
+      <div class="long-g long-g--5">
+        <div class="grow-ans" style="--d:4s">
+          <div class="leaf leaf--0"></div>
+        </div>
+        <div class="grow-ans" style="--d:4.2s">
+          <div class="leaf leaf--1"></div>
+        </div>
+        <div class="grow-ans" style="--d:3s">
+          <div class="leaf leaf--2"></div>
+        </div>
+        <div class="grow-ans" style="--d:3.6s">
+          <div class="leaf leaf--3"></div>
+        </div>
+      </div>
+  
+      <div class="long-g long-g--6">
+        <div class="grow-ans" style="--d:4.2s">
+          <div class="leaf leaf--0"></div>
+        </div>
+        <div class="grow-ans" style="--d:4.4s">
+          <div class="leaf leaf--1"></div>
+        </div>
+        <div class="grow-ans" style="--d:4.6s">
+          <div class="leaf leaf--2"></div>
+        </div>
+        <div class="grow-ans" style="--d:4.8s">
+          <div class="leaf leaf--3"></div>
+        </div>
+      </div>
+  
+      <div class="long-g long-g--7">
+        <div class="grow-ans" style="--d:3s">
+          <div class="leaf leaf--0"></div>
+        </div>
+        <div class="grow-ans" style="--d:3.2s">
+          <div class="leaf leaf--1"></div>
+        </div>
+        <div class="grow-ans" style="--d:3.5s">
+          <div class="leaf leaf--2"></div>
+        </div>
+        <div class="grow-ans" style="--d:3.6s">
+          <div class="leaf leaf--3"></div>
+        </div>
+      </div>
+    </div>
+      </div>
+    </div>
+    <h2>Satu bunga lagi gasihh 🌼</h2>
+    <p class="sub">Biar tiap kali dibuka, bunganya mekar lagi dari awal.</p>
+  </section>
+
+  <!-- SLIDE BLEND — SPOTIFY BLEND -->
+  <section class="slide" id="slide-blend">
+    <div class="blend-fx" aria-hidden="true">
+      <span class="blend-note n1">♪</span><span class="blend-note n2">♫</span><span class="blend-note n3">♪</span>
+    </div>
+    <span class="eyebrow">before we continue...</span>
+    <div class="blend-eq" aria-hidden="true">
+      <span></span><span></span><span></span><span></span><span></span>
+    </div>
+    <h2>🎵 biasaa iklan duluu</h2>
+    <div class="glass-card blend-card">
+      <p>Aku pengen ngajak kamu bikinnn Spotify Blend. Kalau diibaratkan, Blend itu kayak nyampurin playlist aku sama playlist kamu gituu lohhh, terus Spotify nyaa tuu bakal bikinin playlist baru yang isinya campuran musik kita berdua.</p>
+      <p>Gassinn gaaa nihhh 😎</p>
+    </div>
+    <p class="blend-hint">Jujur harus di gass gasihhh biarr ga penasaran....🎶</p>
+    <button class="gift-btn" id="blendBtn">🎧 Gassin bikin Blend Miskaa</button>
+    <button class="skip-btn" id="blendSkipBtn">Nanti aja</button>
+
+    <div class="blend-matching hidden" id="blendMatching">
+      <p id="blendMatchingText">Mhehehee sudahh saatnyaaa....</p>
+      <div class="blend-bar"><div class="blend-bar-fill" id="blendBarFill"></div></div>
+      <p class="blend-pct" id="blendPct">0%</p>
+    </div>
+  </section>
+
+  <!-- SLIDE 2 — NOTES (tampil langsung, tanpa gate amplop) -->
+  <section class="slide" id="slide-2">
+    <p class="bloom-preline" id="bloomPreline">"I made something for you."</p>
+    <div class="notes-content" id="notesContent">
+    <div class="surprise-stage">
+      <div class="photo-frame">
+        <img src="bocil.gif" alt="Foto kamu" loading="lazy">
+      </div>
+      <svg class="gerbera" viewBox="0 0 240 140" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <g transform="translate(40,80)">
+          <g id="g1">
+            <circle cx="0" cy="0" r="4" fill="var(--gold)"/>
+            <g fill="var(--rose)">
+              <ellipse cx="0" cy="-16" rx="6" ry="16"/>
+              <ellipse cx="11" cy="-11" rx="6" ry="16" transform="rotate(45 11 -11)"/>
+              <ellipse cx="16" cy="0" rx="6" ry="16" transform="rotate(90 16 0)"/>
+              <ellipse cx="11" cy="11" rx="6" ry="16" transform="rotate(135 11 11)"/>
+              <ellipse cx="0" cy="16" rx="6" ry="16" transform="rotate(180 0 16)"/>
+              <ellipse cx="-11" cy="11" rx="6" ry="16" transform="rotate(225 -11 11)"/>
+              <ellipse cx="-16" cy="0" rx="6" ry="16" transform="rotate(270 -16 0)"/>
+              <ellipse cx="-11" cy="-11" rx="6" ry="16" transform="rotate(315 -11 -11)"/>
+            </g>
+            <circle cx="0" cy="0" r="7" fill="var(--gold)"/>
+          </g>
+          <line x1="0" y1="20" x2="6" y2="58" stroke="var(--lavender)" stroke-width="2"/>
+        </g>
+        <g transform="translate(120,60) scale(1.15)">
+          <g fill="var(--rose-soft)">
+            <ellipse cx="0" cy="-16" rx="6" ry="16"/>
+            <ellipse cx="11" cy="-11" rx="6" ry="16" transform="rotate(45 11 -11)"/>
+            <ellipse cx="16" cy="0" rx="6" ry="16" transform="rotate(90 16 0)"/>
+            <ellipse cx="11" cy="11" rx="6" ry="16" transform="rotate(135 11 11)"/>
+            <ellipse cx="0" cy="16" rx="6" ry="16" transform="rotate(180 0 16)"/>
+            <ellipse cx="-11" cy="11" rx="6" ry="16" transform="rotate(225 -11 11)"/>
+            <ellipse cx="-16" cy="0" rx="6" ry="16" transform="rotate(270 -16 0)"/>
+            <ellipse cx="-11" cy="-11" rx="6" ry="16" transform="rotate(315 -11 -11)"/>
+          </g>
+          <circle cx="0" cy="0" r="7" fill="var(--gold)"/>
+          <line x1="0" y1="20" x2="-5" y2="76" stroke="var(--lavender)" stroke-width="2"/>
+        </g>
+        <g transform="translate(190,85)">
+          <g fill="var(--lavender)">
+            <ellipse cx="0" cy="-14" rx="5" ry="14"/>
+            <ellipse cx="10" cy="-10" rx="5" ry="14" transform="rotate(45 10 -10)"/>
+            <ellipse cx="14" cy="0" rx="5" ry="14" transform="rotate(90 14 0)"/>
+            <ellipse cx="10" cy="10" rx="5" ry="14" transform="rotate(135 10 10)"/>
+            <ellipse cx="0" cy="14" rx="5" ry="14" transform="rotate(180 0 14)"/>
+            <ellipse cx="-10" cy="10" rx="5" ry="14" transform="rotate(225 -10 10)"/>
+            <ellipse cx="-14" cy="0" rx="5" ry="14" transform="rotate(270 -14 0)"/>
+            <ellipse cx="-10" cy="-10" rx="5" ry="14" transform="rotate(315 -10 -10)"/>
+          </g>
+          <circle cx="0" cy="0" r="6" fill="var(--gold)"/>
+          <line x1="0" y1="18" x2="4" y2="50" stroke="var(--lavender)" stroke-width="2"/>
+        </g>
+      </svg>
+      <h2>Buat Fahiraaaa yang ke-18 🎈</h2>
+      <p class="sub">Tahann duluu pliss, sampe notifnyaa beresss&hellip;</p>
+    </div>
+    <div class="bonus-photos">
+      <img class="bonus-photo" src="18-tahun.png" alt="18 tahun ni bos" loading="lazy">
+      <img class="bonus-photo" src="2008-18.png" alt="2008 vs 18" loading="lazy">
+    </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 2C — STREAK FLAME + FLORIN REVEAL -->
+  <section class="slide" id="slide-2c">
+    <span class="eyebrow">satu kejutan lagi</span>
+    <p class="slide-scroll-hint">Geser ke bawah kalau ada yang kepotong yaa ⬇️</p>
+    <div class="flame-stage" id="flameStage">
+      <video id="flameVideo" src="streak-flame.mp4" muted playsinline></video>
+      <canvas id="flameCanvas"></canvas>
+    </div>
+    <div class="florin-400-badge" id="florin400Badge">
+      <img src="florin-400.png" alt="Florin ngangkat piala 400+ streak">
+      <span class="f400-spark" style="--x:12%; --y:8%; --d:.2s;"></span>
+      <span class="f400-spark" style="--x:84%; --y:16%; --d:.4s;"></span>
+      <span class="f400-spark" style="--x:6%; --y:68%; --d:.55s;"></span>
+      <span class="f400-spark" style="--x:90%; --y:64%; --d:.3s;"></span>
+    </div>
+    <div class="photo-arches" id="florinReveal">
+      <div class="arch"><img src="florin 1.png" alt="Florin 1"></div>
+      <div class="arch"><img src="florin 2.png" alt="Florin 2"></div>
+      <div class="arch"><img src="florin 3.png" alt="Florin 3"></div>
+      <div class="arch"><img src="florin 4.png" alt="Florin 4"></div>
+      <div class="arch"><img src="florin 5.png" alt="Florin 5"></div>
+    </div>
+    <div class="streak-text" id="streakText">
+      <h2>400+ hari streak bareng Florin 🔥</h2>
+      <p class="sub">Egiluyy, Florinn udah nemenin PKL nya Kluyut, Osn nya Miska, terus juga suka duka war PTN sampee kita dapett almett (paduka semester depan sihh)😎😎</p>
+    </div>
+  </section>
+
+  <!-- SLIDE 2D — CALENDAR + TIMELINE JOURNEY -->
+  <section class="slide" id="slide-2d">
+    <span class="eyebrow">tanggal spesial</span>
+    <div class="mini-calendar">
+      <div class="cal-header" id="calHeader">Agustus 2026</div>
+      <div class="cal-grid">
+        <span class="cal-dow">M</span><span class="cal-dow">S</span><span class="cal-dow">S</span><span class="cal-dow">R</span><span class="cal-dow">K</span><span class="cal-dow">J</span><span class="cal-dow">S</span>
+      </div>
+      <div class="cal-grid" id="calDays">
+        <span class="cal-day empty"></span><span class="cal-day empty"></span><span class="cal-day empty"></span><span class="cal-day empty"></span><span class="cal-day empty"></span><span class="cal-day empty"></span><span class="cal-day">1</span>
+        <span class="cal-day">2</span><span class="cal-day">3</span><span class="cal-day">4</span><span class="cal-day">5</span><span class="cal-day">6</span><span class="cal-day">7</span><span class="cal-day">8</span>
+        <span class="cal-day">9</span><span class="cal-day">10</span><span class="cal-day">11</span><span class="cal-day">12</span><span class="cal-day">13</span><span class="cal-day">14</span><span class="cal-day">15</span>
+        <span class="cal-day">16</span><span class="cal-day">17</span><span class="cal-day">18</span><span class="cal-day">19</span><span class="cal-day">20</span><span class="cal-day">21</span><span class="cal-day">22</span>
+        <span class="cal-day">23</span><span class="cal-day">24</span><span class="cal-day">25</span><span class="cal-day">26</span><span class="cal-day">27</span><span class="cal-day">28</span><span class="cal-day">29</span>
+        <span class="cal-day highlight">30</span><span class="cal-day">31</span>
+      </div>
+    </div>
+    <div class="timeline-journey">
+      <div class="timeline-track" id="timelineTrack"></div>
+    </div>
+    <p class="timeline-hint" id="timelineHint">👉 geser bulatan terakhir buat intip tahun-tahun sebelumnya</p>
+    <h2 id="timelineHeading">18 tahun perjalanan, Congrasttt yahh 🎉</h2>
+    <p class="sub">Dari 30 Agustus 2008, sampe hari ini.</p>
+  </section>
+
+  <!-- SLIDE 3 — POSTCARD BOOK -->
+  <section class="slide" id="slide-3">
+    <span class="eyebrow">buat Miskaaa</span>
+    <div class="postcard-book">
+      <div class="postcard-viewport">
+        <div class="postcard-track" id="postcardTrack">
+          <div class="postcard-page">
+            <div class="postcard">
+              <div class="postcard-stamp">🎂</div>
+              <div class="postcard-postmark"></div>
+              <p class="postcard-to">Kepada: Frisca Fahira Berliana</p>
+              <p class="handwritten">Happy Birthday <span class="name">Frisca Fahira Berliana</span> yang ke-18 tahun! Sehat selalu, always semangat dan ceria yaa, kita seumuran dehh sampe Oktober 😎</p>
+            </div>
+          </div>
+          <div class="postcard-page">
+            <div class="postcard">
+              <div class="postcard-stamp">✨</div>
+              <div class="postcard-postmark"></div>
+              <div class="note-date-row">
+                <span>Date: 15 / 07 / 2026</span>
+                <span>♪</span>
+              </div>
+              <div class="note-notes"><span>♫</span><span>♪♪</span><span>♫</span></div>
+              <p class="note-body">
+                Apapun mimpi dan target kamuuu ke depannyaa, semoga satu per satu bisa terwujud yaaa.
+                Jangan lupa jajan buatt self reward 😋
+                dannnn kalau cape istirahat + sambil main robloxx gasihhh😋,jangan dipaksain.hidup kan hariann bukan borongann.
+                <span class="note-highlight">You're doing great 🔥🔥🔥</span>
+              </p>
+            </div>
+          </div>
+          <div class="postcard-page">
+            <div class="postcard">
+              <div class="postcard-stamp">🔥</div>
+              <div class="postcard-postmark"></div>
+              <div class="note-date-row">
+                <span>Date: 08 / 08 / 2026</span>
+                <span>♪</span>
+              </div>
+              <div class="note-notes"><span>♫</span><span>♪♪</span><span>♫</span></div>
+              <p class="note-body" id="noteBody3">
+                Makasih lohhh udahh mauu bacaa note-nyaa darii awal sampee akhiir mhehehe.
+
+Semangatt yahhh kuliahh nyaa! I hope Miskaa nanti ketemuu sama orang-orang yang sevisi, sejalan, dan bisaa saling ngertiin satu sama lain. Semogaa kuliah nyaa dipenuhin sama orang-orang baik yaa. You’re the besttt😎🔥
+                <span class="note-highlight">Happy 18th, Fahiraaa 🎂🔥</span>
+              </p>
+            </div>
+          </div>
+        </div>
+        <button class="postcard-arrow prev" id="pcPrev" aria-label="Sebelumnya">‹</button>
+        <button class="postcard-arrow next" id="pcNext" aria-label="Selanjutnya">›</button>
+      </div>
+      <div class="postcard-dots" id="postcardDots">
+        <span class="pc-dot active"></span>
+        <span class="pc-dot"></span>
+        <span class="pc-dot"></span>
+      </div>
+    </div>
+    <p class="sub" style="margin-top:6px;">Geser atau tap panah buat baca kartu lainnya</p>
+  </section>
+
+  <!-- SLIDE 3D — TETRIS (RIGGED) -->
+  <section class="slide" id="slide-3d">
+    <span class="eyebrow">satu game kecil</span>
+    <h2>Coba menang, kalau berani 😈</h2>
+    <div class="tetris-wrap">
+      <div class="tetris-hud">
+        <div><span class="tetris-hud-label">Skor</span><span id="tetrisScore">0</span></div>
+        <div><span class="tetris-hud-label">Baris</span><span id="tetrisLines">0</span> / <span id="tetrisTarget">12</span></div>
+      </div>
+      <div class="tetris-stage">
+        <canvas id="tetrisCanvas"></canvas>
+        <div class="tetris-overlay" id="tetrisStartOverlay">
+          <p>Bersihin 8 baris buat menanginn postcard speciall.</p>
+          <button class="gift-btn" id="tetrisStartBtn">Gasskeunnn</button>
+        </div>
+        <div class="tetris-overlay hidden" id="tetrisLoseOverlay">
+          <p class="tetris-overlay-title">BHAHAHAHAA KALAHHHH🥲</p>
+          <p class="tetris-overlay-text">Gass lagii gasihhh biar ga penasaran sama hadiahnya 😼</p>
+          <button class="gift-btn" id="tetrisRetryBtn">Main Lagi</button>
+        </div>
+        <div class="tetris-overlay hidden" id="tetrisWinOverlay">
+          <p class="tetris-overlay-title">YEAAYYYYY MENANGGG🎉</p>
+          <p class="tetris-overlay-text">AKHIRNYAAA!! Proud of you, Miskaaaa 🏆</p>
+        </div>
+        <div class="tetris-overlay hidden" id="catSpinOverlay">
+          <p class="tetris-overlay-title">Hadiah spesial 🎁</p>
+          <div class="cat-reel-window" id="catReelWindow">
+            <img class="cat-reel-preview" id="catReelPreview" src="kucing-1.png" alt="">
+            <div class="cat-reel-strip" id="catReelStrip"></div>
+          </div>
+          <p class="tetris-overlay-text" id="catSpinText">Spin buat lihat hadiah kucingnyaa~</p>
+          <div class="catspin-actions">
+            <button class="gift-btn" id="catSpinBtn">Spin 🎰</button>
+            <button class="catbag-btn" id="catBagBtn" aria-label="Koleksi kucing">🎒<span class="catbag-badge" id="catBagBadge">0</span></button>
+          </div>
+        </div>
+      </div>
+      <div class="tetris-controls">
+        <button id="tLeft" aria-label="Kiri">◀</button>
+        <button id="tRotate" aria-label="Putar">⟳</button>
+        <button id="tRight" aria-label="Kanan">▶</button>
+        <button id="tDown" aria-label="Turun">⬇</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE WS — CARI KATA -->
+  <section class="slide" id="slide-ws">
+    <span class="eyebrow">satu game lagi</span>
+    <h2>Cari Kata Yuk! 🔍</h2>
+    <p class="sub">Tarik jari/mouse buat nyambungin huruf, temukan 9 kata yang tersembunyi.</p>
+    <div class="ws-wrap glass-card">
+      <div class="ws-hud">
+        <div><span class="ws-hud-label">Skor</span><span id="wsScore">0</span></div>
+        <div><span class="ws-hud-label">Ditemukan</span><span id="wsFound">0</span>/<span id="wsTotal">9</span></div>
+        <div><span class="ws-hud-label">Hint</span><span id="wsHintLeft">3</span></div>
+      </div>
+      <div class="ws-grid" id="wsGrid"></div>
+      <div class="ws-actions">
+        <button class="ws-hint-btn" id="wsHintBtn">💡 Hint</button>
+      </div>
+      <div class="ws-wordlist" id="wsWordList"></div>
+
+      <div class="ws-win-overlay hidden" id="wsWinOverlay">
+        <p class="ws-win-title">Yeay, semua kata ketemu! 🎉</p>
+        <p class="ws-win-text">Skor akhir kamu: <span id="wsFinalScore">0</span></p>
+        <button class="gift-btn" id="wsReplayBtn">Main Lagi</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE POLL — GIMANA SERU GA WEBNYA (tombol Tidak kabur) -->
+  <section class="slide" id="slide-poll">
+    <span class="eyebrow">btw...</span>
+    <h2>Jujur aja deh 👀</h2>
+    <p class="sub" id="pollQuestionText">Gimanaa nihh, seru gaa web nyaaa??</p>
+    <div class="poll-wrap">
+      <button class="gift-btn" id="pollYesBtn">Iyaa seru bangett 🥰</button>
+      <button class="evasive-btn poll-no-btn show" id="pollNoBtn">Tidakk 🙄</button>
+    </div>
+    <div class="teasing-gif-wrap" id="pollTeaseGifWrap">
+      <img src="ngeledek.gif" alt="ngeledek" loading="lazy">
+    </div>
+    <p class="poll-answer hidden" id="pollAnswerText">Nahh gitu dongg, makasih yaa udah jujur 😼💛</p>
+  </section>
+
+  <!-- SLIDE 4 — FEEDBACK -->
+  <section class="slide" id="slide-4">
+    <span class="eyebrow">satu lagi</span>
+    <h2>Sudahh saatnyaa 😎</h2>
+    <p class="sub">Tulis balesan kamu, nanti otomatis pindah ke WhatsApp.</p>
+    <div class="feedback-box">
+      <textarea id="feedbackText" placeholder="Apaa ajaa ketikk....."></textarea>
+      <button class="send-btn" id="sendBtn">Kirim Kesan-Kesan via WhatsApp</button>
+      <span class="send-note" id="sendNote">Pesan akan disalin otomatis ke clipboard kamu.</span>
+    </div>
+  </section>
+
+</div>
+
+<div class="toast-stack" id="toastStack"></div>
+
+<nav class="controls" id="controls">
+  <div class="nav-pill">
+    <button class="nav-side-btn" id="backBtn" aria-label="Kembali">
+      <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+    </button>
+    <div class="dots" id="dots"></div>
+    <div class="nav-spacer" aria-hidden="true"></div>
+    <button class="nav-raised-btn" id="nextBtn" aria-label="Lanjut">
+      <svg class="nav-raised-icon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      <span class="nav-raised-label" id="nextBtnLabel">Next</span>
+    </button>
+  </div>
+</nav>
+
+<button class="music-toggle" id="musicToggle" aria-label="Ganti musik">
+  <svg viewBox="0 0 24 24" width="18" height="18">
+    <path d="M8 17V4l8-1.3v9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="5.5" cy="17" r="2.6" fill="currentColor"/>
+  </svg>
+  <span class="music-toggle-plus">+</span>
+</button>
+
+<div class="catbag-backdrop" id="catBagBackdrop">
+  <div class="catbag-sheet">
+    <div class="catbag-header">
+      <span>Koleksi Kucing 🐱</span>
+      <button class="catbag-close" id="catBagCloseBtn" aria-label="Tutup">✕</button>
+    </div>
+    <p class="catbag-count" id="catBagCount">0/4 Collected</p>
+    <div class="catbag-grid" id="catBagGrid"></div>
+    <button class="catshare-btn hidden" id="catShareBtn">🎁 Share My Cats</button>
+  </div>
+</div>
+
+<div class="catshare-backdrop" id="catShareBackdrop">
+  <div class="catshare-sheet">
+    <div class="catbag-header">
+      <span>Share My Cats 🎉</span>
+      <button class="catbag-close" id="catShareCloseBtn" aria-label="Tutup">✕</button>
+    </div>
+    <div class="catshare-preview-wrap">
+      <img class="catshare-preview" id="catSharePreviewImg" alt="Kartu koleksi kucing">
+      <div class="catshare-loading" id="catShareLoading">Membuat kartu…</div>
+    </div>
+    <p class="catshare-caption" id="catShareCaption"></p>
+    <div class="catshare-actions">
+      <button class="catshare-action-btn primary" id="catShareNativeBtn" disabled>📤 Share</button>
+      <button class="catshare-action-btn" id="catShareSaveBtn" disabled>⬇️ Save Image</button>
+      <button class="catshare-action-btn" id="catShareCopyBtn">📋 Copy Caption</button>
+    </div>
+    <p class="catshare-status" id="catShareStatus"></p>
+  </div>
+</div>
+
+<div class="music-modal-backdrop" id="musicModalBackdrop">
+  <div class="music-modal">
+    <div class="music-modal-header">
+      <span>Pilih Musik</span>
+      <button id="musicModalClose" aria-label="Tutup">✕</button>
+    </div>
+    <button class="music-option" data-src="lagu-1.mp3">
+      <span class="music-option-icon">♪</span>
+      <span class="music-option-text">
+        <span class="music-option-title">Lagu 1</span>
+        <span class="music-option-artist">-</span>
+      </span>
+    </button>
+    <button class="music-option" data-src="lagu-2.mp3">
+      <span class="music-option-icon">♪</span>
+      <span class="music-option-text">
+        <span class="music-option-title">Lagu 2</span>
+        <span class="music-option-artist">-</span>
+      </span>
+    </button>
+    <button class="music-option" data-src="lagu-3.mp3">
+      <span class="music-option-icon">♪</span>
+      <span class="music-option-text">
+        <span class="music-option-title">Lagu 3</span>
+        <span class="music-option-artist">-</span>
+      </span>
+    </button>
+    <button class="music-option" data-src="lagu-4.mp3">
+      <span class="music-option-icon">♪</span>
+      <span class="music-option-text">
+        <span class="music-option-title">Lagu 4</span>
+        <span class="music-option-artist">-</span>
+      </span>
+    </button>
+  </div>
+</div>
+
+<!-- GIFT OPENING OVERLAY: fake loading macet 99% + kabur-kaburan + gif ngeledek -->
+<div class="gift-overlay" id="giftOverlay">
+  <div class="gift-stage show" id="giftLoadingStage">
+    <span class="eyebrow">membuka kado</span>
+    <p class="gift-loading-msg" id="giftLoadingMsg">Sabar yaa, lagi disiapin...</p>
+    <div class="gift-loading-bar"><div class="gift-loading-fill" id="giftLoadingFill"></div></div>
+    <p class="gift-loading-pct" id="giftLoadingPct">0%</p>
+    <div class="teasing-gif-wrap" id="teasingGifWrap">
+      <img src="ngeledek.gif" alt="ngeledek" loading="lazy">
+    </div>
+    <div class="evasive-zone" id="evasiveZone">
+      <button class="evasive-btn" id="evasiveBtn">Klik klik ⚡</button>
+    </div>
+  </div>
+</div>
+
+<!-- notice kecil nunjuk ke tombol musik yang sudah ada -->
+<div class="music-notice" id="musicNotice">Musik udah nyala~ mau ganti lagu? Klik ikon 🎵+ di pojok atas</div>
+
+<audio id="bgm" src="musik.mp3" loop preload="none"></audio>
+<audio id="spinSfx" src="jengjeng.mp3" preload="auto"></audio>
+
+<script>
+  // ---------- CONFIG ----------
+  const WHATSAPP_NUMBER = "6289653172791";
+
+  // ---------- SFX: sintesis langsung pakai Web Audio API, gak perlu file audio tambahan ----------
+  // biar seluruh halaman berasa 'ramai' — tiap tap tombol, pindah slide, dll ada bunyinya.
+  const SFX = (() => {
+    let ctx;
+    function getCtx(){
+      if(!ctx) ctx = new (window.AudioContext || window.webkitAudioContext)();
+      if(ctx.state === 'suspended') ctx.resume().catch(() => {});
+      return ctx;
+    }
+    function tone(freq, dur, type, vol, delay){
+      try{
+        const c = getCtx();
+        const osc = c.createOscillator();
+        const gain = c.createGain();
+        osc.type = type || 'sine';
+        osc.frequency.value = freq;
+        osc.connect(gain);
+        gain.connect(c.destination);
+        const t0 = c.currentTime + (delay || 0);
+        gain.gain.setValueAtTime(0.0001, t0);
+        gain.gain.linearRampToValueAtTime(vol || 0.16, t0 + 0.015);
+        gain.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
+        osc.start(t0);
+        osc.stop(t0 + dur + 0.03);
+      }catch(e){}
+    }
+    return {
+      tap(){ tone(680, 0.08, 'triangle', 0.14); },
+      pop(){ tone(480, 0.07, 'sine', 0.18); tone(880, 0.09, 'sine', 0.13, 0.045); },
+      whoosh(){ tone(240, 0.16, 'sawtooth', 0.06); tone(360, 0.12, 'sine', 0.05, 0.03); },
+      success(){ tone(523, 0.13, 'sine', 0.18); tone(659, 0.13, 'sine', 0.16, 0.09); tone(784, 0.2, 'sine', 0.16, 0.18); tone(1047, 0.22, 'sine', 0.14, 0.27); },
+      blip(){ tone(320 + Math.random()*260, 0.05, 'square', 0.07); }
+    };
+  })();
+
+  // tap-sound otomatis buat SEMUA tombol/interaksi di halaman, sekali pasang berlaku ke semua
+  document.addEventListener('click', (e) => {
+    const el = e.target.closest('button, .nav-btn, .gift-btn, .evasive-btn, .teaser-btn, .music-btn, a.nav-btn');
+    if(el) SFX.tap();
+  }, true);
+
+  // ---------- SLIDE NAVIGATION ----------
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  const controls = document.getElementById('controls');
+  const backBtn = document.getElementById('backBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const nextBtnLabel = document.getElementById('nextBtnLabel');
+  const dotsWrap = document.getElementById('dots');
+  let current = 0;
+
+  // ---------- INTRO LOADER (kejutan sebelum judul muncul) ----------
+  (function runIntroLoader(){
+    const loaderStage = document.getElementById('loaderStage');
+    const loaderText = document.getElementById('loaderText');
+    const teaserStage = document.getElementById('teaserStage');
+    const introContent = document.getElementById('introContent');
+    const messages = ['Menyiapkan sesuatu...', 'Menata kejutan kecil...', 'Hampir siap...'];
+    let i = 0;
+    loaderText.textContent = messages[0];
+    const cycle = setInterval(() => {
+      i++;
+      if(i < messages.length) loaderText.textContent = messages[i];
+    }, 950);
+    setTimeout(() => {
+      clearInterval(cycle);
+      loaderStage.classList.add('hide');
+      teaserStage.classList.add('show');
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => teaserStage.classList.add('visible'));
+      });
+    }, messages.length * 950 + 150);
+
+    document.getElementById('teaserNextBtn').addEventListener('click', () => {
+      teaserStage.classList.remove('visible');
+      setTimeout(() => {
+        teaserStage.classList.remove('show');
+        introContent.classList.add('show');
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => introContent.classList.add('visible'));
+        });
+      }, 350);
+    });
+  })();
+
+  slides.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === 0 ? ' active' : '');
+    dotsWrap.appendChild(d);
+  });
+  const dots = Array.from(dotsWrap.children);
+
+  function renderNav(){
+    backBtn.disabled = current === 0;
+    nextBtnLabel.textContent = current === slides.length - 1 ? 'Selesai' : 'Next';
+    dots.forEach((d,i) => d.classList.toggle('active', i === current));
+    controls.classList.toggle('visible', current > 0);
+  }
+
+  function goTo(index){
+    if(index < 0 || index >= slides.length) return;
+    SFX.whoosh();
+    stopAllTypewriters();
+    stopFlowerScene();
+    resetStreakReveal();
+    resetTimeline();
+    stopTetris();
+    stopWordSearch();
+    stopPollDodge();
+    resetBlend();
+    slides[current].classList.remove('active');
+    current = index;
+    slides[current].classList.add('active');
+    renderNav();
+    if(current === 1) playFlowerScene();
+    if(current === 2) playSpotifyBlend();
+    if(current === 3) runToastSequence();
+    if(current === 4) playStreakReveal();
+    if(current === 5) playTimeline();
+    if(current === 6) resetPostcardBook();
+    if(current === 7) resetTetris();
+    if(current === 8) resetWordSearch();
+    if(current === 9) initPollSlide();
+  }
+
+  backBtn.addEventListener('click', () => goTo(current - 1));
+  nextBtn.addEventListener('click', () => goTo(current + 1));
+
+  // ============ SLIDE 2 — NOTES (langsung tampil, amplop sudah dihapus) ============
+  // Notes bisa diakses langsung lewat navigasi slide manual yang sudah ada, tanpa gate amplop.
+
+  // ============ SLIDE BLEND — SPOTIFY BLEND ============
+  const blendBtn = document.getElementById('blendBtn');
+  const blendSkipBtn = document.getElementById('blendSkipBtn');
+  const blendMatching = document.getElementById('blendMatching');
+  const blendMatchingText = document.getElementById('blendMatchingText');
+  const blendBarFill = document.getElementById('blendBarFill');
+  const blendPct = document.getElementById('blendPct');
+  const SPOTIFY_BLEND_URL = 'https://open.spotify.com/blend/taste-match/1466ffe64eb9847b?si=vbNgRw_RRT2KTqirCOrMuQ&fallback=getapp';
+  function resetBlend(){
+    blendMatching.classList.add('hidden');
+    blendBarFill.style.width = '0%';
+    blendPct.textContent = '0%';
+    blendMatchingText.textContent = 'Matching your music...';
+  }
+  function playSpotifyBlend(){ resetBlend(); }
+  function goToNotes(){ goTo(current + 1); }
+  function runBlendMatchingThenContinue(){
+    blendMatching.classList.remove('hidden');
+    let pct = 0;
+    const iv = setInterval(() => {
+      pct += 4 + Math.random() * 6;
+      if(pct >= 100){
+        pct = 100;
+        clearInterval(iv);
+        blendBarFill.style.width = '100%';
+        blendPct.textContent = '100%';
+        blendMatchingText.textContent = '💜 Playlist kalian sedang dibuat...';
+        setTimeout(() => {
+          blendMatchingText.textContent = '🎵 → 💌';
+        }, 700);
+        setTimeout(goToNotes, 1900);
+        return;
+      }
+      blendBarFill.style.width = pct + '%';
+      blendPct.textContent = Math.floor(pct) + '%';
+    }, 140);
+  }
+  blendBtn.addEventListener('click', () => {
+    window.open(SPOTIFY_BLEND_URL, '_blank');
+    runBlendMatchingThenContinue();
+  });
+  blendSkipBtn.addEventListener('click', goToNotes);
+
+  // ---------- OPEN GIFT ----------
+  const bgm = document.getElementById('bgm');
+
+  // small pool of Audio instances so overlapping keystrokes don't cut each other off
+  const TYPE_SOUND_POOL_SIZE = 6;
+  const typeSoundPool = [];
+  for(let i = 0; i < TYPE_SOUND_POOL_SIZE; i++){
+    const a = new Audio('ketik.mp3');
+    a.preload = 'auto';
+    a.volume = 1.0;
+    typeSoundPool.push(a);
+  }
+  let typeSoundIndex = 0;
+
+  function primeTypeSounds(){
+    typeSoundPool.forEach(a => {
+      a.play().then(() => { a.pause(); a.currentTime = 0; }).catch(() => {});
+    });
+  }
+
+  let lastClickTime = 0;
+  const CLICK_MIN_GAP = 130; // ms — keeps clicks from piling up on top of each other
+
+  function playTypeClick(){
+    const now = performance.now();
+    if(now - lastClickTime < CLICK_MIN_GAP) return;
+    lastClickTime = now;
+    const a = typeSoundPool[typeSoundIndex];
+    typeSoundIndex = (typeSoundIndex + 1) % typeSoundPool.length;
+    a.currentTime = 0;
+    a.play().catch(() => {});
+  }
+
+  document.getElementById('openGiftBtn').addEventListener('click', () => {
+    bgm.volume = 0.55;
+    bgm.play().catch(() => {});
+    primeTypeSounds();
+    startGiftSequence();
+  });
+
+  // ---------- MUSIC NOTICE: nunjuk ke tombol musik pojok atas ----------
+  const musicNoticeEl = document.getElementById('musicNotice');
+  let musicNoticeShown = false;
+  function maybeShowMusicNotice(){
+    if(musicNoticeShown) return;
+    musicNoticeShown = true;
+    musicNoticeEl.classList.add('show');
+    setTimeout(() => musicNoticeEl.classList.remove('show'), 5000);
+  }
+  bgm.addEventListener('play', maybeShowMusicNotice);
+
+  // ---------- GIFT OPENING SEQUENCE: fake loading macet 99% + kabur-kaburan + gif ngeledek ----------
+  const giftOverlay = document.getElementById('giftOverlay');
+  const giftLoadingStage = document.getElementById('giftLoadingStage');
+  const giftLoadingFill = document.getElementById('giftLoadingFill');
+  const giftLoadingPct = document.getElementById('giftLoadingPct');
+  const giftLoadingMsg = document.getElementById('giftLoadingMsg');
+  const teasingGifWrap = document.getElementById('teasingGifWrap');
+  const evasiveZone = document.getElementById('evasiveZone');
+  const evasiveBtn = document.getElementById('evasiveBtn');
+
+  const stuckMessages = [
+    'Sabar yaa, lagi disiapin...',
+    'Eh kok lama yaa...',
+    'wettt yaaa, bentarrr...',
+    'berees sebentar lagii 😈'
+  ];
+
+  let lastDodge = 0;
+  const DODGE_COOLDOWN = 950; // ms — disamain sama durasi animasi yang lebih lama
+  function moveEvasiveBtn(){
+    const now = performance.now();
+    if(now - lastDodge < DODGE_COOLDOWN) return;
+    lastDodge = now;
+    SFX.blip();
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+    const btnW = evasiveBtn.offsetWidth || 140;
+    const btnH = evasiveBtn.offsetHeight || 48;
+    const margin = 24;
+    const rect = evasiveBtn.getBoundingClientRect();
+    const currentLeft = rect.left || (vw - btnW) / 2;
+    const currentTop = rect.top || (vh - btnH) / 2;
+    const maxLeft = Math.max(margin, vw - btnW - margin);
+    const maxTop = Math.max(margin, vh - btnH - margin);
+    let newLeft, newTop, tries = 0;
+    do{
+      newLeft = margin + Math.random() * (maxLeft - margin);
+      newTop = margin + Math.random() * (maxTop - margin);
+      tries++;
+    } while(tries < 8 && Math.hypot(newLeft - currentLeft, newTop - currentTop) < 160);
+    evasiveBtn.style.left = newLeft + 'px';
+    evasiveBtn.style.top = newTop + 'px';
+  }
+  evasiveBtn.addEventListener('pointerenter', moveEvasiveBtn);
+  evasiveBtn.addEventListener('click', (e) => { e.preventDefault(); moveEvasiveBtn(); });
+
+  let giftTimers = [];
+  function startGiftSequence(){
+    giftTimers.forEach(id => { clearTimeout(id); clearInterval(id); });
+    giftTimers = [];
+
+    giftOverlay.classList.add('show');
+    giftLoadingStage.classList.add('show');
+    teasingGifWrap.classList.remove('show');
+    evasiveZone.classList.remove('show');
+    evasiveBtn.classList.remove('show');
+    evasiveBtn.style.top = 'calc(50vh - 24px)';
+    evasiveBtn.style.left = 'calc(50vw - 70px)';
+    giftLoadingFill.style.transition = 'none';
+    giftLoadingFill.style.width = '0%';
+    giftLoadingPct.textContent = '0%';
+    let msgIndex = 0;
+    giftLoadingMsg.textContent = stuckMessages[0];
+
+    requestAnimationFrame(() => {
+      giftLoadingFill.style.transition = 'width 2.4s cubic-bezier(.2,.8,.2,1)';
+      giftLoadingFill.style.width = '99%';
+    });
+
+    let pct = 0;
+    const pctTimer = setInterval(() => {
+      pct = Math.min(99, pct + Math.ceil(Math.random() * 8));
+      giftLoadingPct.textContent = pct + '%';
+      if(pct >= 99) clearInterval(pctTimer);
+    }, 110);
+    giftTimers.push(pctTimer);
+
+    const msgTimer = setInterval(() => {
+      msgIndex = (msgIndex + 1) % stuckMessages.length;
+      giftLoadingMsg.textContent = stuckMessages[msgIndex];
+    }, 1400);
+    giftTimers.push(msgTimer);
+
+    giftTimers.push(setTimeout(() => teasingGifWrap.classList.add('show'), 1500));
+    giftTimers.push(setTimeout(() => {
+      evasiveZone.classList.add('show');
+      evasiveBtn.classList.add('show');
+    }, 2100));
+
+    giftTimers.push(setTimeout(() => {
+      clearInterval(msgTimer);
+      giftOverlay.classList.remove('show');
+      giftLoadingStage.classList.remove('show');
+      goTo(1);
+    }, 5800));
+  }
+
+  // ---------- SLIDE 2C: FLAME FLASHES, THEN FLORIN REVEAL ONE BY ONE ----------
+  const flameStage = document.getElementById('flameStage');
+  const flameVideo = document.getElementById('flameVideo');
+  const flameCanvas = document.getElementById('flameCanvas');
+  const flameCtx = flameCanvas.getContext('2d', { willReadFrequently: true });
+  const florinReveal = document.getElementById('florinReveal');
+  const florin400Badge = document.getElementById('florin400Badge');
+  const streakText = document.getElementById('streakText');
+  let streakTimeouts = [];
+  let flameRafId = null;
+  let flameCrop = { sx: 0, sy: 0, sw: 0, sh: 0 };
+  let flameCanvasBlocked = false;
+
+  function sizeFlameCanvas(){
+    const vw = flameVideo.videoWidth || 576;
+    const vh = flameVideo.videoHeight || 1280;
+    // the actual flame + sparks only live in the middle band of the clip —
+    // crop to that band so the display isn't absurdly tall on screen.
+    flameCrop = { sx: 0, sy: vh * 0.20, sw: vw, sh: vh * 0.50 };
+    const targetW = 260;
+    flameCanvas.width = targetW;
+    flameCanvas.height = Math.round(targetW * (flameCrop.sh / flameCrop.sw));
+  }
+  if(flameVideo.readyState >= 1) sizeFlameCanvas();
+  else flameVideo.addEventListener('loadedmetadata', sizeFlameCanvas, { once: true });
+
+  // draws each video frame onto the canvas, then makes near-black pixels
+  // transparent (real alpha, not a CSS blend trick) so the black backing
+  // of the source clip disappears regardless of browser/device.
+  function renderFlameFrame(){
+    if(flameVideo.paused || flameVideo.ended || flameCanvasBlocked) return;
+    try {
+      flameCtx.drawImage(
+        flameVideo,
+        flameCrop.sx, flameCrop.sy, flameCrop.sw, flameCrop.sh,
+        0, 0, flameCanvas.width, flameCanvas.height
+      );
+      const frame = flameCtx.getImageData(0, 0, flameCanvas.width, flameCanvas.height);
+      const d = frame.data;
+      for(let i = 0; i < d.length; i += 4){
+        const luma = 0.299 * d[i] + 0.587 * d[i + 1] + 0.114 * d[i + 2];
+        d[i + 3] = Math.min(255, Math.max(0, (luma - 10) * 3.4));
+      }
+      flameCtx.putImageData(frame, 0, 0);
+      flameRafId = requestAnimationFrame(renderFlameFrame);
+    } catch(err){
+      // pixel access blocked (common when the page is opened straight from a
+      // local file instead of http/https) — fall back to showing the raw
+      // video with a blend-mode approximation instead of leaving it blank.
+      flameCanvasBlocked = true;
+      flameCanvas.style.display = 'none';
+      flameVideo.style.opacity = '1';
+    }
+  }
+
+  function resetStreakReveal(){
+    streakTimeouts.forEach(id => clearTimeout(id));
+    streakTimeouts = [];
+    if(flameRafId){ cancelAnimationFrame(flameRafId); flameRafId = null; }
+    flameVideo.pause();
+    flameVideo.currentTime = 0;
+    flameCtx.clearRect(0, 0, flameCanvas.width, flameCanvas.height);
+    flameStage.classList.remove('hide');
+    florinReveal.classList.remove('reveal');
+    florin400Badge.classList.remove('reveal');
+    streakText.classList.remove('reveal');
+  }
+
+  function playStreakReveal(){
+    resetStreakReveal();
+    sizeFlameCanvas();
+    flameVideo.play().catch(() => {});
+    renderFlameFrame();
+    const onEnded = () => {
+      flameStage.classList.add('hide');
+      const id = setTimeout(() => {
+        florin400Badge.classList.add('reveal');
+        florinReveal.classList.add('reveal');
+        streakText.classList.add('reveal');
+      }, 550);
+      streakTimeouts.push(id);
+      flameVideo.removeEventListener('ended', onEnded);
+    };
+    flameVideo.addEventListener('ended', onEnded);
+    // fallback in case 'ended' doesn't fire (e.g. autoplay was blocked)
+    const fallbackId = setTimeout(() => {
+      if(!flameStage.classList.contains('hide')) onEnded();
+    }, 3600);
+    streakTimeouts.push(fallbackId);
+  }
+
+  // ---------- SLIDE 2D: 2008 → 2026 TIMELINE JOURNEY (bisa digeser) ----------
+  const timelineTrack = document.getElementById('timelineTrack');
+  const timelineHint = document.getElementById('timelineHint');
+  const calHeader = document.getElementById('calHeader');
+  const calDays = document.getElementById('calDays');
+  const timelineHeading = document.getElementById('timelineHeading');
+  const TL_START_YEAR = 2008;
+  const TL_END_YEAR = 2026;
+  const TL_STEPS = TL_END_YEAR - TL_START_YEAR; // 18 — index 0..18
+  let timelineHandle = null;
+  let tlIndex = TL_STEPS; // posisi sekarang (default: tahun 2026 / umur 18)
+
+  (function buildTimeline(){
+    for(let y = TL_START_YEAR; y < TL_END_YEAR; y++){
+      const dot = document.createElement('div');
+      dot.className = 't-dot';
+      if(y === TL_START_YEAR){
+        const label = document.createElement('span');
+        label.className = 't-label';
+        label.textContent = String(TL_START_YEAR);
+        dot.appendChild(label);
+      }
+      timelineTrack.appendChild(dot);
+    }
+    timelineHandle = document.createElement('div');
+    timelineHandle.className = 't-dot final';
+    timelineHandle.id = 'timelineHandle';
+    const label = document.createElement('span');
+    label.className = 't-label';
+    label.id = 'timelineHandleLabel';
+    label.textContent = String(TL_STEPS);
+    timelineHandle.appendChild(label);
+    timelineHandle.setAttribute('role', 'slider');
+    timelineHandle.setAttribute('aria-label', 'Geser buat lihat tahun sebelumnya');
+    timelineTrack.appendChild(timelineHandle);
+  })();
+
+  function daysInAugust(){ return 31; }
+  function firstWeekdayOfAugust(year){
+    // Minggu=0 ... Sabtu=6, cocok sama urutan header M S S R K J S
+    return new Date(year, 7, 1).getDay();
+  }
+  function updateCalendarForYear(year){
+    calHeader.textContent = 'Agustus ' + year;
+    const offset = firstWeekdayOfAugust(year);
+    let html = '';
+    for(let i = 0; i < offset; i++) html += '<span class="cal-day empty"></span>';
+    for(let d = 1; d <= daysInAugust(); d++){
+      html += '<span class="cal-day' + (d === 30 ? ' highlight' : '') + '">' + d + '</span>';
+    }
+    calDays.innerHTML = html;
+  }
+
+  function updateTimelineHandlePosition(){
+    const leftPct = (tlIndex / TL_STEPS) * 100;
+    timelineHandle.style.left = leftPct + '%';
+  }
+
+  function setTimelineIndex(index){
+    const newIndex = Math.min(Math.max(index, 0), TL_STEPS);
+    const changed = newIndex !== tlIndex;
+    tlIndex = newIndex;
+    const age = tlIndex;
+    const year = TL_START_YEAR + tlIndex;
+    document.getElementById('timelineHandleLabel').textContent = age;
+    timelineHeading.textContent = age + ' tahun perjalanan Miskaa 🎉';
+    updateCalendarForYear(year);
+    updateTimelineHandlePosition();
+    if(changed){
+      if(navigator.vibrate) navigator.vibrate(12);
+      timelineHeading.classList.remove('tl-shake');
+      void timelineHeading.offsetWidth; // reflow biar animasinya re-trigger tiap kali
+      timelineHeading.classList.add('tl-shake');
+    }
+  }
+
+  function tlRatioFromClientX(clientX){
+    const rect = timelineTrack.getBoundingClientRect();
+    return Math.min(Math.max((clientX - rect.left) / rect.width, 0), 1);
+  }
+
+  let tlDragging = false;
+  function onTlPointerMove(e){
+    if(!tlDragging) return;
+    const ratio = tlRatioFromClientX(e.clientX);
+    setTimelineIndex(Math.round(ratio * TL_STEPS));
+  }
+  function endTlDrag(){
+    if(!tlDragging) return;
+    tlDragging = false;
+    timelineHandle.classList.remove('dragging');
+    window.removeEventListener('pointermove', onTlPointerMove);
+    window.removeEventListener('pointerup', endTlDrag);
+  }
+  timelineHandle.addEventListener('pointerdown', (e) => {
+    e.preventDefault();
+    tlDragging = true;
+    timelineHandle.classList.remove('hint-nudge');
+    timelineHandle.classList.add('dragging');
+    window.addEventListener('pointermove', onTlPointerMove);
+    window.addEventListener('pointerup', endTlDrag);
+  });
+
+  let timelineTimeouts = [];
+  function resetTimeline(){
+    timelineTimeouts.forEach(id => clearTimeout(id));
+    timelineTimeouts = [];
+    timelineTrack.classList.remove('reveal');
+    timelineHandle.classList.remove('hint-nudge');
+    setTimelineIndex(TL_STEPS); // balik ke 2026 / 18 tahun tiap kali slide dibuka ulang
+  }
+  function playTimeline(){
+    resetTimeline();
+    const dots = Array.from(timelineTrack.children).filter(d => d !== timelineHandle);
+    dots.forEach(d => { d.style.transitionDelay = '0s'; });
+    void timelineTrack.offsetWidth; // force reflow so the class re-triggers cleanly
+    dots.forEach((d, i) => { d.style.transitionDelay = Math.min(i * 45, 900) + 'ms'; });
+    timelineHandle.style.transitionDelay = Math.min(dots.length * 45, 900) + 'ms';
+    const id = setTimeout(() => timelineTrack.classList.add('reveal'), 30);
+    timelineTimeouts.push(id);
+    // kasih hint kecil biar keliatan ini bisa digeser
+    const nudgeId = setTimeout(() => {
+      timelineHandle.classList.add('hint-nudge');
+    }, 1400);
+    timelineTimeouts.push(nudgeId);
+  }
+
+  function silenceTypeSounds(){
+    typeSoundPool.forEach(a => { a.pause(); a.currentTime = 0; });
+  }
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      wasPlayingBeforeHide = !bgm.paused;
+      bgm.pause();
+      stopAllTypewriters();
+      stopFlowerScene();
+      silenceTypeSounds();
+      flameVideo.pause();
+      stopTetris();
+    } else {
+      resumeTetrisIfPlaying();
+      if (wasPlayingBeforeHide) bgm.play().catch(() => {});
+    }
+  });
+  window.addEventListener('pagehide', () => {
+    bgm.pause();
+    stopAllTypewriters();
+    stopFlowerScene();
+    silenceTypeSounds();
+    if(flameVideo) flameVideo.pause();
+    stopTetris();
+  });
+
+  // ---------- iOS-STYLE TOAST SEQUENCE ----------
+  const toastMessages = [
+    'Sehat selaluu yaaaaa kak iamm',
+    ' Cieee jadii teteh teknik nihhh😎',
+    'Haruss always senyum semangat yaaa☀️',
+    'Yesss seumurann kitaaa😎😎 '
+  ];
+  const toastStack = document.getElementById('toastStack');
+  let toastTimeouts = [];
+
+  function showToast(msg, icon, title){
+    const t = document.createElement('div');
+    t.className = 'toast';
+    t.innerHTML = `
+      <div class="toast-icon">${icon || '💌'}</div>
+      <div class="toast-body">
+        <div class="toast-title"></div>
+        <div class="toast-msg"></div>
+      </div>`;
+    t.querySelector('.toast-title').textContent = title || 'Pesan untukmu';
+    t.querySelector('.toast-msg').textContent = msg;
+    toastStack.appendChild(t);
+    setTimeout(() => t.remove(), 3700);
+  }
+
+  function runToastSequence(){
+    toastTimeouts.forEach(id => clearTimeout(id));
+    toastTimeouts = [];
+    toastStack.innerHTML = '';
+    toastMessages.forEach((msg, i) => {
+      const id = setTimeout(() => showToast(msg), 400 + i * 1500);
+      toastTimeouts.push(id);
+    });
+  }
+
+  // ---------- TYPEWRITER EFFECT (reusable) ----------
+  function buildSegments(el){
+    const segs = [];
+    el.childNodes.forEach(node => {
+      if(node.nodeType === Node.TEXT_NODE){
+        segs.push({ text: node.textContent, cls: '' });
+      } else if(node.nodeType === Node.ELEMENT_NODE){
+        segs.push({ text: node.textContent, cls: node.className });
+      }
+    });
+    return segs;
+  }
+
+  function makeTypewriter(el){
+    const segments = buildSegments(el);
+    let timeoutId = null;
+
+    function stop(){
+      if(timeoutId){ clearTimeout(timeoutId); timeoutId = null; }
+    }
+
+    function play(){
+      stop();
+      el.innerHTML = '';
+      const cursor = document.createElement('span');
+      cursor.className = 'type-cursor';
+      el.appendChild(cursor);
+
+      const chars = [];
+      segments.forEach(seg => {
+        for(const ch of seg.text) chars.push({ ch, cls: seg.cls });
+      });
+
+      let i = 0;
+      let currentSpan = null;
+      let currentCls = null;
+
+      function step(){
+        if(i >= chars.length) return;
+        const { ch, cls } = chars[i];
+        if(cls !== currentCls || !currentSpan){
+          currentSpan = document.createElement('span');
+          if(cls) currentSpan.className = cls;
+          el.insertBefore(currentSpan, cursor);
+          currentCls = cls;
+        }
+        currentSpan.textContent += ch;
+        if(ch !== ' ') playTypeClick();
+        i++;
+        const pause = /[,.!]/.test(ch) ? 260 : 32 + Math.random() * 26;
+        timeoutId = setTimeout(step, pause);
+      }
+      step();
+    }
+
+    return { play, stop };
+  }
+
+  const handwrittenTyper = makeTypewriter(document.querySelector('.handwritten'));
+  const noteBodyTyper = makeTypewriter(document.querySelector('.note-body'));
+  const noteBodyTyper2 = makeTypewriter(document.getElementById('noteBody3'));
+  const allTypewriters = [handwrittenTyper, noteBodyTyper, noteBodyTyper2];
+  function stopAllTypewriters(){
+    allTypewriters.forEach(t => t.stop());
+  }
+
+  // ---------- POSTCARD BOOK: SWIPE/TAP BETWEEN THE TWO CARDS ----------
+  const postcardTrack = document.getElementById('postcardTrack');
+  const postcardViewport = postcardTrack.parentElement;
+  const pcDots = Array.from(document.querySelectorAll('.pc-dot'));
+  const pcPrevBtn = document.getElementById('pcPrev');
+  const pcNextBtn = document.getElementById('pcNext');
+  const pcPageTypers = [handwrittenTyper, noteBodyTyper, noteBodyTyper2];
+  const pcStep = 100 / pcDots.length;
+  let pcIndex = 0;
+  let pcDragStartX = 0;
+  let pcDragDeltaX = 0;
+  let pcDragging = false;
+
+  function updatePostcard(){
+    postcardTrack.style.transform = `translateX(-${pcIndex * pcStep}%)`;
+    pcDots.forEach((d, i) => d.classList.toggle('active', i === pcIndex));
+    pcPrevBtn.disabled = pcIndex === 0;
+    pcNextBtn.disabled = pcIndex === pcDots.length - 1;
+    pcPageTypers.forEach(t => t.stop());
+    pcPageTypers[pcIndex].play();
+  }
+  function gotoPostcard(i){
+    pcIndex = Math.max(0, Math.min(pcDots.length - 1, i));
+    updatePostcard();
+  }
+  function resetPostcardBook(){
+    pcIndex = 0;
+    postcardTrack.style.transition = 'none';
+    updatePostcard();
+    void postcardTrack.offsetWidth;
+    postcardTrack.style.transition = '';
+  }
+  pcPrevBtn.addEventListener('click', () => gotoPostcard(pcIndex - 1));
+  pcNextBtn.addEventListener('click', () => gotoPostcard(pcIndex + 1));
+  pcDots.forEach((d, i) => d.addEventListener('click', () => gotoPostcard(i)));
+
+  postcardViewport.addEventListener('pointerdown', e => {
+    pcDragging = true;
+    pcDragStartX = e.clientX;
+    pcDragDeltaX = 0;
+    postcardTrack.style.transition = 'none';
+    postcardViewport.setPointerCapture(e.pointerId);
+  });
+  postcardViewport.addEventListener('pointermove', e => {
+    if(!pcDragging) return;
+    pcDragDeltaX = e.clientX - pcDragStartX;
+    const percent = (pcDragDeltaX / postcardViewport.clientWidth) * pcStep;
+    postcardTrack.style.transform = `translateX(calc(-${pcIndex * pcStep}% + ${percent}%))`;
+  });
+  function endPostcardDrag(){
+    if(!pcDragging) return;
+    pcDragging = false;
+    postcardTrack.style.transition = '';
+    if(pcDragDeltaX < -45 && pcIndex < pcDots.length - 1) pcIndex++;
+    else if(pcDragDeltaX > 45 && pcIndex > 0) pcIndex--;
+    pcDragDeltaX = 0;
+    updatePostcard();
+  }
+  postcardViewport.addEventListener('pointerup', endPostcardDrag);
+  postcardViewport.addEventListener('pointercancel', endPostcardDrag);
+
+  // ---------- FLOATING MUSIC BUTTON → OPENS SONG PICKER ----------
+  const musicToggle = document.getElementById('musicToggle');
+  const musicModalBackdrop = document.getElementById('musicModalBackdrop');
+  const musicModalClose = document.getElementById('musicModalClose');
+  const musicOptions = Array.from(document.querySelectorAll('.music-option'));
+
+  function syncMusicToggleIcon(){
+    musicToggle.classList.toggle('playing', !bgm.paused);
+  }
+  function currentBgmFile(){
+    // bgm.src is resolved to an absolute URL by the browser; compare by filename tail
+    return bgm.getAttribute('src') || '';
+  }
+  function syncActiveMusicOption(){
+    const current = currentBgmFile();
+    musicOptions.forEach(opt => opt.classList.toggle('active', opt.dataset.src === current));
+  }
+  function openMusicModal(){
+    musicModalBackdrop.classList.add('open');
+  }
+  function closeMusicModal(){
+    musicModalBackdrop.classList.remove('open');
+  }
+  musicToggle.addEventListener('click', openMusicModal);
+  musicModalClose.addEventListener('click', closeMusicModal);
+  musicModalBackdrop.addEventListener('click', e => {
+    if(e.target === musicModalBackdrop) closeMusicModal();
+  });
+  musicOptions.forEach(opt => {
+    opt.addEventListener('click', () => {
+      const src = opt.dataset.src;
+      if(currentBgmFile() === src){
+        // same song already selected — just toggle play/pause
+        if(bgm.paused) bgm.play().catch(() => {}); else bgm.pause();
+      } else {
+        bgm.src = src;
+        bgm.currentTime = 0;
+        bgm.volume = 0.55;
+        bgm.play().catch(() => {});
+      }
+      syncActiveMusicOption();
+      closeMusicModal();
+    });
+  });
+  bgm.addEventListener('play', syncMusicToggleIcon);
+  bgm.addEventListener('pause', syncMusicToggleIcon);
+
+  syncMusicToggleIcon();
+  syncActiveMusicOption();
+
+  // ---------- TETRIS (RIGGED NEAR THE WIN) ----------
+  (function initTetris(){
+    const canvas = document.getElementById('tetrisCanvas');
+    const ctx = canvas.getContext('2d');
+    const COLS = 8, ROWS = 15;
+    const WIN_LINES = 8;
+    const SABOTAGE_AT = WIN_LINES - 3; // lines cleared before sabotage kicks in
+
+    const SHAPES = {
+      I: { cells: [[0,1],[1,1],[2,1],[3,1]], color: '#a993d1' },
+      O: { cells: [[1,0],[2,0],[1,1],[2,1]], color: '#d7b26a' },
+      T: { cells: [[1,0],[0,1],[1,1],[2,1]], color: '#e8a0b4' },
+      S: { cells: [[1,0],[2,0],[0,1],[1,1]], color: '#8fd0a8' },
+      Z: { cells: [[0,0],[1,0],[1,1],[2,1]], color: '#e07a86' },
+      J: { cells: [[0,0],[0,1],[1,1],[2,1]], color: '#7ea8d8' },
+      L: { cells: [[2,0],[0,1],[1,1],[2,1]], color: '#e0a35c' }
+    };
+    const NORMAL_KEYS = Object.keys(SHAPES);
+
+    let board, piece, score, lines, dropInterval, dropTimerId, state, bag, sabotaging;
+
+    const hudScore = document.getElementById('tetrisScore');
+    const hudLines = document.getElementById('tetrisLines');
+    document.getElementById('tetrisTarget').textContent = WIN_LINES;
+    const startOverlay = document.getElementById('tetrisStartOverlay');
+    const loseOverlay = document.getElementById('tetrisLoseOverlay');
+    const winOverlay = document.getElementById('tetrisWinOverlay');
+    const allOverlays = [startOverlay, loseOverlay, winOverlay];
+    let catSpinOverlay = null;
+    let resetCatReel = function(){};
+
+    function showOverlay(el){
+      allOverlays.forEach(o => o.classList.toggle('hidden', o !== el));
+    }
+
+    function sizeCanvas(){
+      const dpr = window.devicePixelRatio || 1;
+      const w = canvas.clientWidth * dpr;
+      const h = canvas.clientHeight * dpr;
+      if(canvas.width !== w || canvas.height !== h){
+        canvas.width = w; canvas.height = h;
+      }
+    }
+
+    function newBoard(){
+      return Array.from({ length: ROWS }, () => Array(COLS).fill(null));
+    }
+
+    function refillBag(){
+      bag = NORMAL_KEYS.slice();
+      for(let i = bag.length - 1; i > 0; i--){
+        const j = Math.floor(Math.random() * (i + 1));
+        [bag[i], bag[j]] = [bag[j], bag[i]];
+      }
+    }
+
+    function nextKey(){
+      // once sabotage engages, feed mostly S/Z (the hardest pieces to stack cleanly)
+      if(sabotaging && Math.random() < 0.72){
+        return Math.random() < 0.5 ? 'S' : 'Z';
+      }
+      if(!bag || bag.length === 0) refillBag();
+      return bag.pop();
+    }
+
+    function spawnPiece(){
+      const key = nextKey();
+      const def = SHAPES[key];
+      const cells = def.cells.map(([x, y]) => [x, y]);
+      const p = { key, cells, color: def.color, x: Math.floor(COLS / 2) - 2, y: -1 };
+      if(collides(p, 0, 0)){
+        gameOver();
+        return null;
+      }
+      return p;
+    }
+
+    function collides(p, dx, dy, cells){
+      const testCells = cells || p.cells;
+      for(const [cx, cy] of testCells){
+        const x = p.x + cx + dx;
+        const y = p.y + cy + dy;
+        if(x < 0 || x >= COLS || y >= ROWS) return true;
+        if(y >= 0 && board[y][x]) return true;
+      }
+      return false;
+    }
+
+    function rotateCells(cells){
+      // rotate around the piece's local bounding box center
+      const xs = cells.map(c => c[0]), ys = cells.map(c => c[1]);
+      const size = Math.max(...xs, ...ys) + 1;
+      return cells.map(([x, y]) => [size - 1 - y, x]);
+    }
+
+    function tryRotate(){
+      if(state !== 'playing' || piece.key === 'O') return;
+      const rotated = rotateCells(piece.cells);
+      for(const kick of [0, -1, 1, -2, 2]){
+        if(!collides(piece, kick, 0, rotated)){
+          piece.cells = rotated;
+          piece.x += kick;
+          draw();
+          return;
+        }
+      }
+    }
+
+    function lockPiece(){
+      piece.cells.forEach(([cx, cy]) => {
+        const x = piece.x + cx, y = piece.y + cy;
+        if(y >= 0) board[y][x] = piece.color;
+      });
+      clearLines();
+      piece = spawnPiece();
+    }
+
+    function clearLines(){
+      let cleared = 0;
+      for(let y = ROWS - 1; y >= 0; y--){
+        if(board[y].every(cell => cell)){
+          board.splice(y, 1);
+          board.unshift(Array(COLS).fill(null));
+          cleared++;
+          y++;
+        }
+      }
+      if(cleared > 0){
+        lines += cleared;
+        score += cleared * 100 * cleared;
+        hudScore.textContent = score;
+        hudLines.textContent = lines;
+        if(lines >= SABOTAGE_AT && !sabotaging){
+          sabotaging = true;
+          // kecepatan dibiarkan normal, gak dipercepat lagi
+        }
+        if(lines >= WIN_LINES){
+          winGame();
+        }
+      }
+    }
+
+    function softDrop(){
+      if(state !== 'playing') return;
+      if(!collides(piece, 0, 1)){
+        piece.y += 1;
+      } else {
+        lockPiece();
+      }
+      draw();
+    }
+
+    function hardDrop(){
+      if(state !== 'playing') return;
+      while(!collides(piece, 0, 1)) piece.y += 1;
+      lockPiece();
+      draw();
+    }
+
+    function move(dx){
+      if(state !== 'playing') return;
+      if(!collides(piece, dx, 0)) piece.x += dx;
+      draw();
+    }
+
+    function draw(){
+      sizeCanvas();
+      const cw = canvas.width / COLS, ch = canvas.height / ROWS;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = 'rgba(255,255,255,0.03)';
+      for(let y = 0; y < ROWS; y++){
+        for(let x = 0; x < COLS; x++){
+          if((x + y) % 2 === 0) ctx.fillRect(x * cw, y * ch, cw, ch);
+        }
+      }
+      for(let y = 0; y < ROWS; y++){
+        for(let x = 0; x < COLS; x++){
+          if(board[y][x]) drawCell(x, y, board[y][x], cw, ch);
+        }
+      }
+      if(piece){
+        piece.cells.forEach(([cx, cy]) => {
+          const x = piece.x + cx, y = piece.y + cy;
+          if(y >= 0) drawCell(x, y, piece.color, cw, ch);
+        });
+      }
+    }
+    function drawCell(x, y, color, cw, ch){
+      ctx.fillStyle = color;
+      ctx.fillRect(x * cw + 1, y * ch + 1, cw - 2, ch - 2);
+    }
+
+    function tick(){
+      if(state !== 'playing') return;
+      softDrop();
+      if(state === 'playing') dropTimerId = setTimeout(tick, dropInterval);
+    }
+
+    function gameOver(){
+      state = 'lost';
+      if(dropTimerId) clearTimeout(dropTimerId);
+      showOverlay(loseOverlay);
+    }
+
+    function winGame(){
+      state = 'won';
+      if(dropTimerId) clearTimeout(dropTimerId);
+      showOverlay(winOverlay);
+      SFX.success();
+      const winAudio = new Audio('selamat.mp3');
+      winAudio.volume = 0.8;
+      winAudio.play().catch(() => {});
+      setTimeout(() => {
+        if(catSpinOverlay){
+          resetCatReel();
+          showOverlay(catSpinOverlay);
+        }
+      }, 1600);
+    }
+
+    function startGame(){
+      board = newBoard();
+      score = 0; lines = 0; sabotaging = false;
+      dropInterval = 620;
+      bag = null;
+      state = 'playing';
+      hudScore.textContent = '0';
+      hudLines.textContent = '0';
+      resetCatReel();
+      showOverlay(null);
+      piece = spawnPiece();
+      draw();
+      if(dropTimerId) clearTimeout(dropTimerId);
+      dropTimerId = setTimeout(tick, dropInterval);
+    }
+
+    document.getElementById('tetrisStartBtn').addEventListener('click', startGame);
+    document.getElementById('tetrisRetryBtn').addEventListener('click', startGame);
+    document.getElementById('tLeft').addEventListener('click', () => move(-1));
+    document.getElementById('tRight').addEventListener('click', () => move(1));
+    document.getElementById('tRotate').addEventListener('click', tryRotate);
+    document.getElementById('tDown').addEventListener('click', softDrop);
+    canvas.addEventListener('click', tryRotate);
+
+    // swipe support directly on the board
+    let swipeStartX = 0, swipeStartY = 0, swiping = false;
+    canvas.addEventListener('pointerdown', e => {
+      swiping = true; swipeStartX = e.clientX; swipeStartY = e.clientY;
+    });
+    canvas.addEventListener('pointerup', e => {
+      if(!swiping) return;
+      swiping = false;
+      const dx = e.clientX - swipeStartX, dy = e.clientY - swipeStartY;
+      if(Math.abs(dx) < 18 && Math.abs(dy) < 18) return; // treat as tap → rotate (handled by click)
+      if(Math.abs(dx) > Math.abs(dy)){
+        move(dx > 0 ? 1 : -1);
+      } else if(dy > 40){
+        hardDrop();
+      }
+    });
+
+    window.resetTetris = function(){
+      state = 'idle';
+      if(dropTimerId){ clearTimeout(dropTimerId); dropTimerId = null; }
+      board = newBoard();
+      piece = null;
+      score = 0; lines = 0; sabotaging = false;
+      hudScore.textContent = '0';
+      hudLines.textContent = '0';
+      resetCatReel();
+      showOverlay(startOverlay);
+      sizeCanvas();
+      draw();
+      showToast('Kalau kamu menang, bakal ada sesuatu yang menarik 👀🎁', '👀', 'Psst...');
+    };
+    window.stopTetris = function(){
+      if(dropTimerId){ clearTimeout(dropTimerId); dropTimerId = null; }
+      if(state === 'playing') state = 'paused';
+    };
+    window.resumeTetrisIfPlaying = function(){
+      if(state === 'paused'){
+        state = 'playing';
+        dropTimerId = setTimeout(tick, dropInterval);
+      }
+    };
+
+    // ---------- CAT SPIN REEL: setup terpisah & dibungkus try/catch ----------
+    // biar kalau ada masalah di sini, game utama (canvas + kontrol D-pad) tetap jalan normal
+    try{
+      const el = document.getElementById('catSpinOverlay');
+      const catReelWindow = document.getElementById('catReelWindow');
+      const catReelStrip = document.getElementById('catReelStrip');
+      const catReelPreview = document.getElementById('catReelPreview');
+      const catSpinText = document.getElementById('catSpinText');
+      const catSpinBtn = document.getElementById('catSpinBtn');
+      const spinSfx = document.getElementById('spinSfx');
+      if(!el || !catReelWindow || !catReelStrip || !catReelPreview || !catSpinText || !catSpinBtn){
+        throw new Error('elemen cat-spin tidak ditemukan di halaman');
+      }
+      const REEL_ITEM_H = 150;
+      const CAT_POOL = ['kucing-1.png','kucing-2.png','kucing-3.png','kucing-4.png','kucing-5.png'];
+      const VALID_CATS = CAT_POOL.filter(f => f !== 'kucing-1.png'); // kucing-1 gak boleh pernah kepilih
+      const CAT_MAX_SPINS = 4;
+      let catRevealed = false;
+      let reelLastIndex = 0;
+      let spinsUsed = 0;
+      let cyclePool = []; // sisa kucing valid yang belum keluar di cycle 4-spin saat ini
+
+      function getAvailableCats(){
+        if(cyclePool.length === 0){
+          cyclePool = VALID_CATS.slice();
+          for(let i = cyclePool.length - 1; i > 0; i--){
+            const j = Math.floor(Math.random() * (i + 1));
+            [cyclePool[i], cyclePool[j]] = [cyclePool[j], cyclePool[i]];
+          }
+        }
+        return cyclePool;
+      }
+
+      function selectCatReward(){
+        const pool = getAvailableCats();
+        return pool.pop();
+      }
+
+      // ---------- cat bag / inventory (localStorage) ----------
+      const CAT_BAG_KEY = 'fahiraCatCollection';
+      const SHARE_UNLOCK_COUNT = 4;
+      const catBagBtn = document.getElementById('catBagBtn');
+      const catBagBadge = document.getElementById('catBagBadge');
+      const catBagBackdrop = document.getElementById('catBagBackdrop');
+      const catBagCloseBtn = document.getElementById('catBagCloseBtn');
+      const catBagCount = document.getElementById('catBagCount');
+      const catBagGrid = document.getElementById('catBagGrid');
+      const catShareBtn = document.getElementById('catShareBtn');
+      let catCollection = loadCatCollection();
+
+      function loadCatCollection(){
+        try{
+          const raw = localStorage.getItem(CAT_BAG_KEY);
+          if(!raw) return [];
+          const parsed = JSON.parse(raw);
+          if(!Array.isArray(parsed)) return [];
+          return parsed.filter(f => VALID_CATS.includes(f));
+        }catch(e){
+          return [];
+        }
+      }
+
+      function saveCatCollection(){
+        try{ localStorage.setItem(CAT_BAG_KEY, JSON.stringify(catCollection)); }catch(e){}
+      }
+
+      function addCatToCollection(file){
+        if(!VALID_CATS.includes(file) || catCollection.includes(file)) return;
+        catCollection.push(file);
+        saveCatCollection();
+        renderCatInventory();
+      }
+
+      function renderCatInventory(){
+        if(catBagBadge) catBagBadge.textContent = String(catCollection.length);
+        if(catBagCount) catBagCount.textContent = `${catCollection.length}/${VALID_CATS.length} Collected`;
+        if(catShareBtn) catShareBtn.classList.toggle('hidden', catCollection.length < SHARE_UNLOCK_COUNT);
+        if(!catBagGrid) return;
+        catBagGrid.innerHTML = VALID_CATS.map(file => {
+          const got = catCollection.includes(file);
+          return got
+            ? `<div class="catbag-slot collected"><img src="${file}" alt=""></div>`
+            : `<div class="catbag-slot">🔒</div>`;
+        }).join('');
+      }
+
+      if(catBagBtn && catBagBackdrop){
+        catBagBtn.addEventListener('click', () => {
+          renderCatInventory();
+          catBagBackdrop.classList.add('open');
+        });
+      }
+      if(catBagCloseBtn){
+        catBagCloseBtn.addEventListener('click', () => catBagBackdrop.classList.remove('open'));
+      }
+      if(catBagBackdrop){
+        catBagBackdrop.addEventListener('click', (e) => {
+          if(e.target === catBagBackdrop) catBagBackdrop.classList.remove('open');
+        });
+      }
+      renderCatInventory();
+
+      // ---------- share card generator (100% client-side, no backend/API/SDK) ----------
+      const CAT_SHARE_CARD_W = 1080;
+      const CAT_SHARE_CARD_H = 1920;
+      const CAT_SHARE_CAPTION = 'Koleksi kucing ulang tahun ke-18 aku udah komplit! 🐱🎂✨';
+      const catShareBackdrop = document.getElementById('catShareBackdrop');
+      const catShareCloseBtn = document.getElementById('catShareCloseBtn');
+      const catSharePreviewImg = document.getElementById('catSharePreviewImg');
+      const catShareLoading = document.getElementById('catShareLoading');
+      const catShareCaption = document.getElementById('catShareCaption');
+      const catShareNativeBtn = document.getElementById('catShareNativeBtn');
+      const catShareSaveBtn = document.getElementById('catShareSaveBtn');
+      const catShareCopyBtn = document.getElementById('catShareCopyBtn');
+      const catShareStatus = document.getElementById('catShareStatus');
+      let catShareBlob = null;
+      let catShareObjectUrl = null;
+
+      function loadImageEl(src){
+        return new Promise((resolve, reject) => {
+          const img = new Image();
+          img.onload = () => resolve(img);
+          img.onerror = reject;
+          img.src = src;
+        });
+      }
+
+      function drawCoverImage(ctx, img, x, y, w, h){
+        const ir = img.width / img.height;
+        const r = w / h;
+        let sx, sy, sw, sh;
+        if(ir > r){
+          sh = img.height; sw = sh * r; sx = (img.width - sw) / 2; sy = 0;
+        } else {
+          sw = img.width; sh = sw / r; sx = 0; sy = (img.height - sh) / 2;
+        }
+        ctx.drawImage(img, sx, sy, sw, sh, x, y, w, h);
+      }
+
+      function roundedRectPath(ctx, x, y, w, h, r){
+        ctx.beginPath();
+        ctx.moveTo(x + r, y);
+        ctx.arcTo(x + w, y, x + w, y + h, r);
+        ctx.arcTo(x + w, y + h, x, y + h, r);
+        ctx.arcTo(x, y + h, x, y, r);
+        ctx.arcTo(x, y, x + w, y, r);
+        ctx.closePath();
+      }
+
+      async function generateCatShareCard(){
+        try{
+          await Promise.all([
+            document.fonts.load('700 64px Fredoka'),
+            document.fonts.load('600 40px Fredoka'),
+            document.fonts.load('400 30px Fredoka')
+          ]);
+        }catch(e){}
+
+        const canvas = document.createElement('canvas');
+        canvas.width = CAT_SHARE_CARD_W;
+        canvas.height = CAT_SHARE_CARD_H;
+        const ctx = canvas.getContext('2d');
+
+        const bgGrad = ctx.createLinearGradient(0, 0, 0, CAT_SHARE_CARD_H);
+        bgGrad.addColorStop(0, '#171533');
+        bgGrad.addColorStop(0.55, '#1E1B4B');
+        bgGrad.addColorStop(1, '#09090B');
+        ctx.fillStyle = bgGrad;
+        ctx.fillRect(0, 0, CAT_SHARE_CARD_W, CAT_SHARE_CARD_H);
+
+        const glow1 = ctx.createRadialGradient(190, 230, 40, 190, 230, 540);
+        glow1.addColorStop(0, 'rgba(139,92,246,0.35)');
+        glow1.addColorStop(1, 'rgba(139,92,246,0)');
+        ctx.fillStyle = glow1;
+        ctx.fillRect(0, 0, CAT_SHARE_CARD_W, CAT_SHARE_CARD_H);
+
+        const glow2 = ctx.createRadialGradient(CAT_SHARE_CARD_W - 170, CAT_SHARE_CARD_H - 320, 40, CAT_SHARE_CARD_W - 170, CAT_SHARE_CARD_H - 320, 580);
+        glow2.addColorStop(0, 'rgba(167,139,250,0.28)');
+        glow2.addColorStop(1, 'rgba(167,139,250,0)');
+        ctx.fillStyle = glow2;
+        ctx.fillRect(0, 0, CAT_SHARE_CARD_W, CAT_SHARE_CARD_H);
+
+        ctx.textAlign = 'center';
+        ctx.fillStyle = '#F5F3FF';
+        ctx.font = '700 62px Fredoka, sans-serif';
+        ctx.fillText('Koleksi Kucing', CAT_SHARE_CARD_W / 2, 190);
+        ctx.fillStyle = '#C4B5FD';
+        ctx.fillText('Ulang Tahun ke-18 🐱', CAT_SHARE_CARD_W / 2, 268);
+
+        const cats = catCollection.slice(0, VALID_CATS.length);
+        const images = await Promise.all(cats.map(f => loadImageEl(f)));
+
+        const gridSize = 2;
+        const cellGap = 36;
+        const gridPad = 90;
+        const cellW = (CAT_SHARE_CARD_W - gridPad * 2 - cellGap) / gridSize;
+        const cellH = cellW;
+        const gridStartY = 380;
+
+        images.forEach((img, i) => {
+          const col = i % gridSize;
+          const row = Math.floor(i / gridSize);
+          const x = gridPad + col * (cellW + cellGap);
+          const y = gridStartY + row * (cellH + cellGap);
+
+          ctx.save();
+          roundedRectPath(ctx, x - 6, y - 6, cellW + 12, cellH + 12, 34);
+          ctx.fillStyle = 'rgba(255,255,255,0.06)';
+          ctx.fill();
+          ctx.restore();
+
+          ctx.save();
+          roundedRectPath(ctx, x, y, cellW, cellH, 28);
+          ctx.clip();
+          drawCoverImage(ctx, img, x, y, cellW, cellH);
+          ctx.restore();
+
+          ctx.save();
+          roundedRectPath(ctx, x, y, cellW, cellH, 28);
+          ctx.lineWidth = 4;
+          ctx.strokeStyle = 'rgba(212,175,55,0.55)';
+          ctx.stroke();
+          ctx.restore();
+        });
+
+        const gridEndY = gridStartY + gridSize * cellH + (gridSize - 1) * cellGap;
+        ctx.font = '600 40px Fredoka, sans-serif';
+        ctx.fillStyle = '#F5F3FF';
+        ctx.fillText(`${cats.length}/${VALID_CATS.length} Collected \u2728`, CAT_SHARE_CARD_W / 2, gridEndY + 90);
+
+        ctx.font = '400 30px Fredoka, sans-serif';
+        ctx.fillStyle = '#A1A1AA';
+        ctx.fillText('a little something for you', CAT_SHARE_CARD_W / 2, CAT_SHARE_CARD_H - 70);
+        return new Promise(resolve => canvas.toBlob(blob => resolve(blob), 'image/png'));
+      }
+
+      function resetCatShareModal(){
+        catSharePreviewImg.classList.remove('ready');
+        catSharePreviewImg.removeAttribute('src');
+        catShareLoading.classList.remove('hidden');
+        catShareLoading.textContent = 'Membuat kartu\u2026';
+        catShareStatus.textContent = '';
+        catShareCaption.textContent = CAT_SHARE_CAPTION;
+        catShareNativeBtn.disabled = true;
+        catShareSaveBtn.disabled = true;
+        if(catShareObjectUrl){ URL.revokeObjectURL(catShareObjectUrl); catShareObjectUrl = null; }
+        catShareBlob = null;
+      }
+
+      async function openCatShareModal(){
+        resetCatShareModal();
+        catShareBackdrop.classList.add('open');
+        try{
+          const blob = await generateCatShareCard();
+          catShareBlob = blob;
+          catShareObjectUrl = URL.createObjectURL(blob);
+          catSharePreviewImg.src = catShareObjectUrl;
+          catSharePreviewImg.classList.add('ready');
+          catShareLoading.classList.add('hidden');
+          catShareNativeBtn.disabled = false;
+          catShareSaveBtn.disabled = false;
+        }catch(e){
+          catShareLoading.textContent = 'Gagal bikin kartu, coba lagi ya.';
+        }
+      }
+
+      if(catShareBtn){
+        catShareBtn.addEventListener('click', openCatShareModal);
+      }
+      if(catShareCloseBtn){
+        catShareCloseBtn.addEventListener('click', () => catShareBackdrop.classList.remove('open'));
+      }
+      if(catShareBackdrop){
+        catShareBackdrop.addEventListener('click', (e) => {
+          if(e.target === catShareBackdrop) catShareBackdrop.classList.remove('open');
+        });
+      }
+
+      if(catShareNativeBtn){
+        catShareNativeBtn.addEventListener('click', async () => {
+          if(!catShareBlob) return;
+          const file = new File([catShareBlob], 'koleksi-kucing-fahira.png', { type: 'image/png' });
+          const canUseNativeShare = typeof navigator.share === 'function' &&
+            (typeof navigator.canShare !== 'function' || navigator.canShare({ files: [file] }));
+          if(canUseNativeShare){
+            try{
+              await navigator.share({
+                files: [file],
+                title: 'Koleksi Kucing Ulang Tahun ke-18',
+                text: CAT_SHARE_CAPTION
+              });
+            }catch(e){
+              if(e && e.name !== 'AbortError'){
+                catShareStatus.textContent = 'Share dibatalkan/gagal — coba Save Image aja ya.';
+              }
+            }
+          } else {
+            catShareStatus.textContent = 'Browser ini belum dukung share gambar langsung — pakai Save Image, terus upload manual ke WhatsApp/Instagram/TikTok.';
+          }
+        });
+      }
+
+      if(catShareSaveBtn){
+        catShareSaveBtn.addEventListener('click', () => {
+          if(!catShareObjectUrl) return;
+          const a = document.createElement('a');
+          a.href = catShareObjectUrl;
+          a.download = 'koleksi-kucing-fahira.png';
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
+          catShareStatus.textContent = 'Gambar tersimpan! Upload manual ke WA/IG/TikTok yaa.';
+        });
+      }
+
+      if(catShareCopyBtn){
+        catShareCopyBtn.addEventListener('click', async () => {
+          try{
+            await navigator.clipboard.writeText(CAT_SHARE_CAPTION);
+            catShareStatus.textContent = 'Caption disalin ke clipboard!';
+          }catch(e){
+            catShareStatus.textContent = 'Gagal nyalin otomatis — salin manual captionnya ya.';
+          }
+        });
+      }
+
+      function buildReel(resultFile){
+        const FILLER_COUNT = 26;
+        let html = '';
+        for(let i = 0; i < FILLER_COUNT; i++){
+          const f = CAT_POOL[Math.floor(Math.random() * CAT_POOL.length)];
+          html += '<img src="' + f + '" alt="">';
+        }
+        html += '<img src="' + resultFile + '" alt="">';
+        catReelStrip.innerHTML = html;
+        reelLastIndex = catReelStrip.children.length - 1;
+      }
+
+      resetCatReel = function(){
+        catRevealed = false;
+        spinsUsed = 0;
+        cyclePool = []; // mulai cycle 4-spin baru & fresh shuffle tiap kali menang Tetris
+        catReelStrip.classList.remove('spinning');
+        catReelStrip.innerHTML = ''; // strip cuma dipakai buat konten spin, bukan buat nampilin preview diam
+        reelLastIndex = 0;
+        catReelStrip.style.transform = 'translateY(0px)';
+        catReelPreview.classList.remove('hidden'); // preview kucing-1 tampil diem di layer-nya sendiri
+        catSpinText.textContent = `Spin buat lihat hadiah kucingnyaa~ (${CAT_MAX_SPINS}x kesempatan)`;
+        catSpinBtn.textContent = 'Spin 🎰';
+        catSpinBtn.disabled = false;
+      };
+
+      catSpinBtn.addEventListener('click', () => {
+        if(spinsUsed >= CAT_MAX_SPINS) return; // kesempatan habis
+        catSpinBtn.disabled = true;
+        catReelPreview.classList.add('hidden'); // preview kucing-1 disembunyikan total sebelum spin layer mulai jalan
+        try{ spinSfx.currentTime = 0; spinSfx.play().catch(() => {}); }catch(e){}
+        catReelStrip.classList.remove('spinning');
+        catReelStrip.style.transition = 'none';
+        catReelStrip.style.transform = 'translateY(0px)'; // reset posisi biar mulai muter dari 0 tiap spin
+        void catReelStrip.offsetHeight; // paksa reflow
+        catReelStrip.style.transition = '';
+        const result = selectCatReward();
+        buildReel(result);
+        catReelWindow.classList.remove('punching');
+        void catReelWindow.offsetWidth;
+        catReelWindow.classList.add('punching');
+        void catReelStrip.offsetHeight; // paksa reflow biar transisinya mulus
+        catReelStrip.classList.add('spinning');
+        catReelStrip.style.transform = `translateY(-${reelLastIndex * REEL_ITEM_H}px)`;
+        const blipTimer = setInterval(() => SFX.blip(), 90);
+        setTimeout(() => {
+          clearInterval(blipTimer);
+          catReelStrip.classList.remove('spinning');
+          SFX.pop();
+          spinsUsed++;
+          catRevealed = true;
+          addCatToCollection(result);
+          const sisa = CAT_MAX_SPINS - spinsUsed;
+          if(sisa > 0){
+            catSpinText.textContent = `Dapet kucing ini! 🐱 Sisa ${sisa}x kesempatan spin.`;
+            catSpinBtn.textContent = `Spin Lagi (${sisa} tersisa)`;
+            catSpinBtn.disabled = false;
+          } else {
+            catSpinText.textContent = 'Selamat, kamu dapet kucing ini! Kesempatan spin sudah habis 🐱💛';
+            catSpinBtn.textContent = 'Yeay!';
+            catSpinBtn.disabled = true;
+          }
+          showToast('Screenshot dulu buat kenang-kenangan 📸', '🐱', 'Yeyy, dapet! 🗿');
+        }, 2300);
+      });
+
+      allOverlays.push(el);
+      catSpinOverlay = el;
+    }catch(err){
+      console.warn('Cat spin reel gagal disiapkan, fitur ini dilewati:', err);
+    }
+
+    board = newBoard();
+    showOverlay(startOverlay);
+  })();
+
+  // ---------- WORD SEARCH: CARI KATA ----------
+  window.resetWordSearch = function(){};
+  window.stopWordSearch = function(){};
+  (function initWordSearch(){
+    const WORDS = ['FLORIN','FRISCA','FAHIRA','BERLIANA','KIMPUL','BANDUNG','ULTAH','HABEDE','KULIAH'];
+    const GRID_SIZE = 13;
+    // hanya 4 arah "maju" buat NEMPATIN kata: kanan, bawah, diagonal kanan-bawah, diagonal kiri-bawah.
+    // Jadi kalau grid dibaca normal (kiri->kanan, atas->bawah), kata SELALU kebaca bener,
+    // gak akan pernah nongol kebalik/acak (mis. FRISCA jadi ACSIRF).
+    // Seleksi/drag pas main tetep bebas dari ujung mana aja (kanan->kiri, bawah->atas, dst),
+    // karena checkSelection() nyocokin dua arah baca (maju & mundur) ke ejaan yang benar.
+    const DIRS = [
+      {dx:1,dy:0},{dx:0,dy:1},{dx:1,dy:1},{dx:-1,dy:1}
+    ];
+    const LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const HINT_MAX = 3;
+    const SCORE_PER_WORD = 100;
+    const HINT_PENALTY = 15;
+
+    const wsGrid = document.getElementById('wsGrid');
+    if(!wsGrid) return;
+    const wsWordList = document.getElementById('wsWordList');
+    const wsScoreEl = document.getElementById('wsScore');
+    const wsFoundEl = document.getElementById('wsFound');
+    const wsTotalEl = document.getElementById('wsTotal');
+    const wsHintLeftEl = document.getElementById('wsHintLeft');
+    const wsHintBtn = document.getElementById('wsHintBtn');
+    const wsWinOverlay = document.getElementById('wsWinOverlay');
+    const wsFinalScoreEl = document.getElementById('wsFinalScore');
+    const wsReplayBtn = document.getElementById('wsReplayBtn');
+
+    wsTotalEl.textContent = WORDS.length;
+
+    let grid, cellEls, foundWords, score, hintsLeft, isSelecting, selStart, selCells, puzzleData;
+
+    function emptyGrid(){
+      return Array.from({length:GRID_SIZE}, () => Array(GRID_SIZE).fill(null));
+    }
+
+    function tryPlaceWord(g, word){
+      const attempts = 300;
+      for(let a=0;a<attempts;a++){
+        const dir = DIRS[Math.floor(Math.random()*DIRS.length)];
+        const startR = Math.floor(Math.random()*GRID_SIZE);
+        const startC = Math.floor(Math.random()*GRID_SIZE);
+        const endR = startR + dir.dy*(word.length-1);
+        const endC = startC + dir.dx*(word.length-1);
+        if(endR < 0 || endR >= GRID_SIZE || endC < 0 || endC >= GRID_SIZE) continue;
+        let ok = true;
+        for(let i=0;i<word.length;i++){
+          const r = startR + dir.dy*i;
+          const c = startC + dir.dx*i;
+          if(g[r][c] !== null && g[r][c] !== word[i]){ ok = false; break; }
+        }
+        if(!ok) continue;
+        const coords = [];
+        for(let i=0;i<word.length;i++){
+          const r = startR + dir.dy*i;
+          const c = startC + dir.dx*i;
+          g[r][c] = word[i];
+          coords.push({r,c});
+        }
+        return coords;
+      }
+      return null;
+    }
+
+    function buildPuzzle(){
+      let g, coordsMap, tries = 0, failed;
+      do{
+        g = emptyGrid();
+        coordsMap = {};
+        failed = false;
+        const order = [...WORDS].sort(() => Math.random()-0.5);
+        for(const w of order){
+          const coords = tryPlaceWord(g, w);
+          if(!coords){ failed = true; break; }
+          coordsMap[w] = coords;
+        }
+        tries++;
+      } while(failed && tries < 30);
+
+      for(let r=0;r<GRID_SIZE;r++){
+        for(let c=0;c<GRID_SIZE;c++){
+          if(g[r][c] === null){
+            g[r][c] = LETTERS[Math.floor(Math.random()*LETTERS.length)];
+          }
+        }
+      }
+      return {g, coordsMap};
+    }
+
+    function key(r,c){ return r+'_'+c; }
+
+    function render(){
+      wsGrid.style.gridTemplateColumns = `repeat(${GRID_SIZE}, 1fr)`;
+      wsGrid.innerHTML = '';
+      cellEls = {};
+      for(let r=0;r<GRID_SIZE;r++){
+        for(let c=0;c<GRID_SIZE;c++){
+          const el = document.createElement('div');
+          el.className = 'ws-cell';
+          el.textContent = grid[r][c];
+          el.dataset.r = r;
+          el.dataset.c = c;
+          wsGrid.appendChild(el);
+          cellEls[key(r,c)] = el;
+        }
+      }
+      wsWordList.innerHTML = '';
+      WORDS.forEach(w => {
+        const span = document.createElement('span');
+        span.className = 'ws-word';
+        span.textContent = w;
+        span.id = 'wsWord_' + w;
+        wsWordList.appendChild(span);
+      });
+    }
+
+    function updateHud(){
+      wsScoreEl.textContent = score;
+      wsFoundEl.textContent = foundWords.size;
+      wsHintLeftEl.textContent = hintsLeft;
+      wsHintBtn.disabled = hintsLeft <= 0 || foundWords.size >= WORDS.length;
+    }
+
+    function cellFromPoint(clientX, clientY){
+      const el = document.elementFromPoint(clientX, clientY);
+      if(!el || !el.classList.contains('ws-cell')) return null;
+      return { r: parseInt(el.dataset.r,10), c: parseInt(el.dataset.c,10) };
+    }
+
+    function lineBetween(start, end){
+      const dr = end.r - start.r;
+      const dc = end.c - start.c;
+      const steps = Math.max(Math.abs(dr), Math.abs(dc));
+      if(steps === 0) return [start];
+      // cuma garis lurus yang valid: horizontal, vertikal, atau diagonal 45°
+      if(!(dr === 0 || dc === 0 || Math.abs(dr) === Math.abs(dc))) return null;
+      const stepR = dr === 0 ? 0 : dr / Math.abs(dr);
+      const stepC = dc === 0 ? 0 : dc / Math.abs(dc);
+      const cells = [];
+      for(let i=0;i<=steps;i++){
+        cells.push({ r: start.r + stepR*i, c: start.c + stepC*i });
+      }
+      return cells;
+    }
+
+    function clearSelectingClass(){
+      if(!selCells) return;
+      selCells.forEach(({r,c}) => {
+        const el = cellEls[key(r,c)];
+        if(el && !el.classList.contains('found')) el.classList.remove('selecting');
+      });
+    }
+
+    function lettersFor(cells){
+      return cells.map(({r,c}) => grid[r][c]).join('');
+    }
+
+    function checkSelection(cells){
+      const forward = lettersFor(cells);
+      const backward = forward.split('').reverse().join('');
+      for(const w of WORDS){
+        if(foundWords.has(w)) continue;
+        if(forward === w || backward === w) return w;
+      }
+      return null;
+    }
+
+    function markFound(word, cells){
+      foundWords.add(word);
+      cells.forEach(({r,c}) => {
+        const el = cellEls[key(r,c)];
+        el.classList.remove('selecting');
+        el.classList.add('found');
+      });
+      const label = document.getElementById('wsWord_' + word);
+      if(label) label.classList.add('done');
+      score += SCORE_PER_WORD;
+      SFX.success();
+      updateHud();
+      if(foundWords.size === WORDS.length){
+        setTimeout(showWin, 500);
+      }
+    }
+
+    function showWin(){
+      wsFinalScoreEl.textContent = score;
+      wsWinOverlay.classList.remove('hidden');
+      SFX.success();
+      const winAudio = new Audio('selamat.mp3');
+      winAudio.volume = 0.8;
+      winAudio.play().catch(() => {});
+    }
+
+    function startSelection(point){
+      isSelecting = true;
+      selStart = point;
+      selCells = [point];
+      const el = cellEls[key(point.r, point.c)];
+      if(el && !el.classList.contains('found')) el.classList.add('selecting');
+    }
+
+    function updateSelection(point){
+      if(!isSelecting) return;
+      const cells = lineBetween(selStart, point);
+      if(!cells) return;
+      clearSelectingClass();
+      selCells = cells;
+      cells.forEach(({r,c}) => {
+        const el = cellEls[key(r,c)];
+        if(el && !el.classList.contains('found')) el.classList.add('selecting');
+      });
+    }
+
+    function endSelection(){
+      if(!isSelecting) return;
+      isSelecting = false;
+      const word = checkSelection(selCells);
+      if(word){
+        markFound(word, selCells);
+      } else {
+        clearSelectingClass();
+      }
+      selCells = null;
+      selStart = null;
+    }
+
+    wsGrid.addEventListener('mousedown', (e) => {
+      const p = cellFromPoint(e.clientX, e.clientY);
+      if(p) startSelection(p);
+    });
+    wsGrid.addEventListener('mousemove', (e) => {
+      if(!isSelecting) return;
+      const p = cellFromPoint(e.clientX, e.clientY);
+      if(p) updateSelection(p);
+    });
+    window.addEventListener('mouseup', endSelection);
+
+    wsGrid.addEventListener('touchstart', (e) => {
+      const t = e.touches[0];
+      const p = cellFromPoint(t.clientX, t.clientY);
+      if(p) startSelection(p);
+    }, {passive:true});
+    wsGrid.addEventListener('touchmove', (e) => {
+      if(!isSelecting) return;
+      const t = e.touches[0];
+      const p = cellFromPoint(t.clientX, t.clientY);
+      if(p) updateSelection(p);
+      e.preventDefault();
+    }, {passive:false});
+    window.addEventListener('touchend', endSelection);
+
+    wsHintBtn.addEventListener('click', () => {
+      if(hintsLeft <= 0) return;
+      const remaining = WORDS.filter(w => !foundWords.has(w));
+      if(remaining.length === 0) return;
+      const w = remaining[Math.floor(Math.random()*remaining.length)];
+      const coords = puzzleData.coordsMap[w];
+      const cell = coords[Math.floor(Math.random()*coords.length)];
+      const el = cellEls[key(cell.r, cell.c)];
+      if(el){
+        el.classList.add('hint');
+        setTimeout(() => el.classList.remove('hint'), 1400);
+      }
+      hintsLeft--;
+      score = Math.max(0, score - HINT_PENALTY);
+      updateHud();
+    });
+
+    function newGame(){
+      puzzleData = buildPuzzle();
+      grid = puzzleData.g;
+      foundWords = new Set();
+      score = 0;
+      hintsLeft = HINT_MAX;
+      isSelecting = false;
+      selCells = null;
+      selStart = null;
+      wsWinOverlay.classList.add('hidden');
+      render();
+      updateHud();
+    }
+
+    wsReplayBtn.addEventListener('click', newGame);
+
+    window.stopWordSearch = function(){
+      if(isSelecting){
+        clearSelectingClass();
+        isSelecting = false;
+        selCells = null;
+        selStart = null;
+      }
+    };
+    window.resetWordSearch = function(){
+      updateHud();
+    };
+
+    newGame();
+  })();
+
+  // ---------- POLL: "SERU GA WEBNYA" — tombol Tidak kabur, cuma bisa klik Iya ----------
+  window.initPollSlide = function(){};
+  window.stopPollDodge = function(){};
+  (function initPoll(){
+    const pollYesBtn = document.getElementById('pollYesBtn');
+    const pollNoBtn = document.getElementById('pollNoBtn');
+    const pollTeaseGifWrap = document.getElementById('pollTeaseGifWrap');
+    const pollAnswerText = document.getElementById('pollAnswerText');
+    const pollQuestionText = document.getElementById('pollQuestionText');
+    if(!pollYesBtn || !pollNoBtn) return;
+
+    const DEFAULT_QUESTION = 'Gimanaa nihh, seru gaa web nyaaa??';
+    const TEASE_CAPTIONS = [
+      'Eh gagal mulu yaa, coba lagi deh 😏',
+      'Hihi gabisa gitu doangg 😼',
+      'Yah meleset lagi~ mainnya kurang jago 🙈',
+      'Udahlahh, klik Iya aja yaudahh 🥹',
+      'Ke-gercep-an ituu bang 😹'
+    ];
+    let teaseIndex = 0;
+    let answered = false;
+    let gifTimer = null;
+    let lastDodge = 0;
+    const DODGE_COOLDOWN = 900;
+
+    function positionPollNoBtn(){
+      const vw = window.innerWidth, vh = window.innerHeight;
+      const yesRect = pollYesBtn.getBoundingClientRect();
+      const w = pollNoBtn.offsetWidth || 110;
+      const h = pollNoBtn.offsetHeight || 46;
+      let left = yesRect.left + yesRect.width/2 - w/2;
+      let top = yesRect.bottom + 16;
+      left = Math.min(Math.max(16, left), vw - w - 16);
+      top = Math.min(Math.max(16, top), vh - h - 16);
+      pollNoBtn.style.left = left + 'px';
+      pollNoBtn.style.top = top + 'px';
+    }
+
+    function showTease(){
+      pollQuestionText.textContent = TEASE_CAPTIONS[teaseIndex % TEASE_CAPTIONS.length];
+      teaseIndex++;
+      pollTeaseGifWrap.classList.add('show');
+      if(gifTimer) clearTimeout(gifTimer);
+      gifTimer = setTimeout(() => pollTeaseGifWrap.classList.remove('show'), 1200);
+    }
+
+    function dodgePollNoBtn(){
+      if(answered) return;
+      const now = performance.now();
+      if(now - lastDodge < DODGE_COOLDOWN) return;
+      lastDodge = now;
+      SFX.blip();
+      showTease();
+      const vw = window.innerWidth, vh = window.innerHeight;
+      const w = pollNoBtn.offsetWidth || 110;
+      const h = pollNoBtn.offsetHeight || 46;
+      const margin = 20;
+      const rect = pollNoBtn.getBoundingClientRect();
+      const curLeft = rect.left, curTop = rect.top;
+      const maxLeft = Math.max(margin, vw - w - margin);
+      const maxTop = Math.max(margin, vh - h - margin);
+      let newLeft, newTop, tries = 0;
+      do{
+        newLeft = margin + Math.random() * (maxLeft - margin);
+        newTop = margin + Math.random() * (maxTop - margin);
+        tries++;
+      } while(tries < 8 && Math.hypot(newLeft - curLeft, newTop - curTop) < 140);
+      pollNoBtn.style.left = newLeft + 'px';
+      pollNoBtn.style.top = newTop + 'px';
+    }
+
+    pollNoBtn.addEventListener('pointerenter', dodgePollNoBtn);
+    pollNoBtn.addEventListener('click', (e) => { e.preventDefault(); dodgePollNoBtn(); });
+    pollNoBtn.addEventListener('touchstart', (e) => { e.preventDefault(); dodgePollNoBtn(); }, {passive:false});
+
+    pollYesBtn.addEventListener('click', () => {
+      answered = true;
+      SFX.success();
+      pollTeaseGifWrap.classList.remove('show');
+      pollNoBtn.classList.add('hidden');
+      pollQuestionText.textContent = DEFAULT_QUESTION;
+      pollAnswerText.classList.remove('hidden');
+    });
+
+    window.initPollSlide = function(){
+      answered = false;
+      teaseIndex = 0;
+      pollQuestionText.textContent = DEFAULT_QUESTION;
+      pollAnswerText.classList.add('hidden');
+      pollTeaseGifWrap.classList.remove('show');
+      pollNoBtn.classList.remove('hidden');
+      pollNoBtn.classList.add('show');
+      setTimeout(positionPollNoBtn, 650);
+    };
+
+    window.stopPollDodge = function(){
+      if(gifTimer){ clearTimeout(gifTimer); gifTimer = null; }
+      pollTeaseGifWrap.classList.remove('show');
+    };
+  })();
+
+  // ---------- FLOWER SCENE (new CSS flower-garden project, yellow blooms) ----------
+  const flowerScene = document.getElementById('flowerScene');
+  function playFlowerScene(){
+    if(!flowerScene) return;
+    flowerScene.classList.remove('playing');
+    flowerScene.classList.add('resetting');
+    void flowerScene.offsetWidth; // force reflow biar animasi kereset ke awal
+    flowerScene.classList.remove('resetting');
+    flowerScene.classList.add('playing');
+  }
+  function stopFlowerScene(){
+    if(!flowerScene) return;
+    flowerScene.classList.remove('playing');
+  }
+
+
+  // ---------- FEEDBACK: COPY + REDIRECT ----------
+  const sendBtn = document.getElementById('sendBtn');
+  const sendNote = document.getElementById('sendNote');
+  sendBtn.addEventListener('click', async () => {
+    const text = document.getElementById('feedbackText').value.trim();
+    if(!text){
+      sendNote.textContent = 'Ciee menginjak kepala 18🗿';
+      return;
+    }
+    const prefilled = 'Haii haiii Kluyutt!! 👋🏻👋🏻\n\n' + text;
+    const waUrl = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(prefilled);
+    try{
+      await navigator.clipboard.writeText(text);
+      sendNote.textContent = 'Tersalin! Mengarahkan ke WhatsApp...';
+    }catch(e){
+      sendNote.textContent = 'Mengarahkan ke WhatsApp...';
+    }
+    setTimeout(() => { window.open(waUrl, '_blank'); }, 700);
+  });
+
+  // ---------- FLOATING "18" PARTICLES ----------
+  const particleField = document.getElementById('particleField');
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function spawnParticle(){
+    if(prefersReducedMotion) return;
+    const p = document.createElement('span');
+    p.className = 'particle';
+    p.textContent = '18';
+    const size = 14 + Math.random() * 22;
+    const duration = 7 + Math.random() * 6;
+    p.style.left = Math.random() * 100 + 'vw';
+    p.style.fontSize = size + 'px';
+    p.style.animationDuration = duration + 's';
+    particleField.appendChild(p);
+    setTimeout(() => p.remove(), duration * 1000 + 200);
+  }
+  setInterval(spawnParticle, 650);
+  for(let i = 0; i < 6; i++) setTimeout(spawnParticle, i * 300);
+
+  renderNav();
+</script>
+
+</body>
+</html>
